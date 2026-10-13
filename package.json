@@ -1,0 +1,36 @@
+{
+  "name": "cab-platform",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "typecheck": "npm run typecheck --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "build": "npm run build -w @cab/web",
+    "dev": "npm run dev -w @cab/web",
+    "db:generate": "npm run generate -w @cab/db",
+    "db:migrate": "npm run migrate -w @cab/db",
+    "db:seed": "npm run seed -w @cab/db",
+    "format": "prettier --write .",
+    "audit:crawl": "node audit/crawl.mjs",
+    "audit:pages": "node audit/pages.mjs",
+    "audit:similarity": "node audit/similarity.mjs",
+    "audit:fares": "node audit/fares.mjs",
+    "audit:lighthouse": "node audit/lighthouse.mjs"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "cheerio": "^1.2.0",
+    "prettier": "^3.9.10",
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.4"
+  }
+}
