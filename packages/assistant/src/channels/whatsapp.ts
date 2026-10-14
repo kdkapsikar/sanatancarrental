@@ -19,6 +19,7 @@ import { cancelProposal, confirmProposal } from "../proposals";
 import type { AssistantService } from "../service";
 import type { ProposalView } from "../tools";
 import type { HistoryTurn, Locale, QuickReply } from "../types";
+import { OFFLINE_STRINGS, replyLocale } from "../offline-strings";
 
 export interface InboundMessage {
   id: string;
@@ -108,7 +109,17 @@ export function graphSender(config: AssistantConfig, fetchImpl: typeof fetch = f
 }
 
 const clip = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1)}…` : s);
-const detectLocale = (text: string): Locale => (/[ऀ-ॿ]/.test(text) ? "mr" : "en");
+/** Latin script → English; Devanagari → Marathi or Hindi from the words used. */
+const detectLocale = (text: string): Locale => replyLocale("en", text);
+
+async function threadLocale(db: Db, waId: string): Promise<Locale> {
+  const [c] = await db
+    .select({ locale: conversations.locale })
+    .from(conversations)
+    .where(and(eq(conversations.channel, "whatsapp"), eq(conversations.externalThreadId, waId)))
+    .limit(1);
+  return (c?.locale as Locale | null) ?? "en";
+}
 
 function textMessage(to: string, body: string) {
   return { to, type: "text", text: { body: clip(body, 4096), preview_url: false } };
@@ -153,15 +164,14 @@ export async function handleInbound(deps: WhatsAppDeps, msg: InboundMessage): Pr
   const action = /^(confirm|cancel):([0-9a-f-]{36})$/.exec(msg.buttonId ?? "");
   if (action) {
     const [, verb, id] = action;
+    const L = OFFLINE_STRINGS[await threadLocale(db, msg.from)];
     if (verb === "confirm") {
       const r = await confirmProposal(db, id!, { ownerRef: msg.from });
-      await sender.send(
-        textMessage(msg.from, r.ok ? "Sent. Our team will call you back." : "That request has expired or was already handled. Ask again and I'll prepare a new one."),
-      );
+      await sender.send(textMessage(msg.from, r.ok ? L.sent : L.expired));
       return "confirmed";
     }
     await cancelProposal(db, id!, { ownerRef: msg.from });
-    await sender.send(textMessage(msg.from, "Cancelled. Nothing was saved."));
+    await sender.send(textMessage(msg.from, L.cancelled));
     return "cancelled";
   }
 
@@ -202,7 +212,9 @@ export async function handleInbound(deps: WhatsAppDeps, msg: InboundMessage): Pr
       else if (e.type === "error") text = text || e.message;
     },
   });
-  text = text.trim() || "Sorry, I couldn't answer just now.";
+  const lang = detectLocale(userText);
+  const L = OFFLINE_STRINGS[lang];
+  text = text.trim() || L.sorry;
   if (deps.siteUrl) {
     const origin = deps.siteUrl.replace(/\/$/, "");
     text = text.replace(/(^|\s)(\/(?:en|hi|mr)(?:\/[\w-]+)+)/g, (_m, pre: string, path: string) => `${pre}${origin}${path}`);
@@ -213,8 +225,8 @@ export async function handleInbound(deps: WhatsAppDeps, msg: InboundMessage): Pr
   if (p) {
     await sender.send(
       buttonsMessage(msg.from, `${text}\n\n${p.summary}`, [
-        { id: `confirm:${p.id}`, title: "Confirm" },
-        { id: `cancel:${p.id}`, title: "Cancel" },
+        { id: `confirm:${p.id}`, title: L.confirmLabel },
+        { id: `cancel:${p.id}`, title: L.cancelLabel },
       ]),
     );
   } else if (quick.length) {

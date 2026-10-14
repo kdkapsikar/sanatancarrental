@@ -90,9 +90,34 @@ describe("offline engine", () => {
     expect(r.text).not.toMatch(/closed every/);
   });
 
-  it("understands Marathi place names", async () => {
+  it("answers a Marathi question in Marathi, even on the English page", async () => {
     const r = await ask("वेरूळ लेणी कधी बंद असते?");
-    expect(r.text).toMatch(/Ellora Caves/);
+    expect(r.text).toMatch(/वेरूळ लेणी/);
+    expect(r.text).toMatch(/सुट्टीचा दिवस अजून निश्चित नाही/);
+  });
+
+  it("follows the page language", async () => {
+    const hi = await ask("Is Ellora closed on Tuesday?", { locale: "hi" });
+    expect(hi.text).toMatch(/एलोरा/);
+    expect(hi.text).toMatch(/बंद का दिन अभी पक्का नहीं/);
+  });
+
+  it.each(["hi", "mr"] as const)("understands its own %s quick replies", async (locale) => {
+    const { OFFLINE_STRINGS } = await import("./offline-strings");
+    const L = OFFLINE_STRINGS[locale];
+    for (const q of [...L.menu.slice(0, 3), L.fareTo("Ellora Caves"), L.howFar("Ellora Caves")]) {
+      const r = await ask(q.message, { locale });
+      expect(r.text, q.message).not.toBe(L.fallback);
+      expect(r.text, q.message).toMatch(/[\u0900-\u097F]/);
+    }
+  });
+
+  it("never uses the old city name", async () => {
+    for (const locale of ["en", "hi", "mr"] as const) {
+      const r = await ask("Is this Aurangabad?", { locale });
+      expect(r.text).not.toMatch(/aurangabad|औरंगाबाद/i);
+      expect(r.text).toMatch(/Chhatrapati Sambhajinagar|छत्रपति संभाजीनगर|छत्रपती संभाजीनगर/);
+    }
   });
 
   it("never invents a fare", async () => {

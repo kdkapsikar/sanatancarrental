@@ -31,10 +31,11 @@ export async function AssistantMount({ locale }: { locale: string }) {
     readAloud: t("readAloud"),
     newChat: t("newChat"),
     beep: t("beep"),
+    openPage: t("openPage"),
     error: t("error"),
     rateLimited: t("rateLimited"),
     tools: Object.fromEntries(TOOLS.map((k) => [k, t(`tools.${k}`)])),
     chips: CHIPS.map((k) => ({ label: t(`chips.${k}.label`), message: t(`chips.${k}.message`) })),
   };
-  return <AssistantWidget locale={locale} strings={strings} />;
+  return <AssistantWidget key={locale} locale={locale} strings={strings} />;
 }

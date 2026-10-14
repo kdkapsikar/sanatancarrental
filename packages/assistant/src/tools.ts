@@ -314,7 +314,7 @@ const TOOLS: AssistantTool[] = [
         booking:
           "Trips are outstation, airport transfers and sightseeing from Chhatrapati Sambhajinagar. Online booking and payment are not open yet; a person from the team calls back with a quote.",
         languages: "The site and assistant work in English, Hindi and Marathi.",
-        city_names: "Chhatrapati Sambhajinagar is the city formerly called Aurangabad. Both names work everywhere on the site.",
+        city_names: "The city is Chhatrapati Sambhajinagar, Maharashtra. Always use this name. Searches with the old name still find the city.",
         privacy:
           "The assistant does not save a phone number unless the person confirms a call-back request. Website chats are not stored on the server.",
         verification:

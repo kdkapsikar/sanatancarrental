@@ -24,7 +24,7 @@ export function businessInfo(): BusinessInfo | null {
       postalCode: e["BUSINESS_POSTCODE"]!,
       addressCountry: "IN",
     },
-    areaServed: ["Chhatrapati Sambhajinagar", "Aurangabad", "छत्रपती संभाजीनगर", "औरंगाबाद"],
+    areaServed: ["Chhatrapati Sambhajinagar", "छत्रपती संभाजीनगर", "छत्रपति संभाजीनगर"],
   };
 }
 

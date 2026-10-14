@@ -1,7 +1,7 @@
 {
   "site": {
     "defaultBrand": "Cab & Tour Booking",
-    "tagline": "Outstation, airport and sightseeing trips from Chhatrapati Sambhajinagar (Aurangabad)",
+    "tagline": "Outstation, airport and sightseeing trips from Chhatrapati Sambhajinagar",
     "nav": {
       "home": "Home",
       "places": "Destinations",
@@ -11,7 +11,7 @@
     },
     "footer": {
       "pricesNote": "Prices are calculated per trip and shown with every inclusion and exclusion.",
-      "cityNames": "Chhatrapati Sambhajinagar, formerly Aurangabad",
+      "cityNames": "Chhatrapati Sambhajinagar, Maharashtra",
       "sourcesNote": "Facts on this site show their source. Anything not yet confirmed is marked as being verified."
     }
   },
@@ -26,14 +26,14 @@
     }
   },
   "home": {
-    "metaTitle": "Cabs and tours from Chhatrapati Sambhajinagar (Aurangabad)",
+    "metaTitle": "Cabs and tours from Chhatrapati Sambhajinagar",
     "metaDescription": "Outstation cabs, airport transfers and sightseeing trips to Ajanta, Ellora, Shirdi and more, with itemised fares.",
     "heading": "Ajanta, Ellora and the Deccan, with every rupee explained",
     "intro": "Outstation trips, airport transfers and sightseeing from the city. Each quote lists every charge, and every fact on this site shows its source.",
     "destinationsHeading": "Where would you like to go?",
     "routesHeading": "Routes from the city",
     "dataNote": "Details marked as not yet verified are still being checked with official sources.",
-    "eyebrow": "Chhatrapati Sambhajinagar · formerly Aurangabad",
+    "eyebrow": "Chhatrapati Sambhajinagar · Maharashtra",
     "ctaDestinations": "Explore destinations",
     "ctaFares": "How fares work",
     "ctaWhatsapp": "Get a quote on WhatsApp",
@@ -50,7 +50,7 @@
     "faresIntro": "Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book.",
     "finder": {
       "label": "Where do you want to go?",
-      "placeholder": "Try Ellora, शिर्डी, Verul or Lonar…",
+      "placeholder": "Try Ellora, Shirdi, Ajanta or Lonar…",
       "go": "Show trip",
       "ask": "Ask e-Taxi",
       "askMessage": "Tell me about {place}",
@@ -299,7 +299,8 @@
     },
     "askPlaceMessage": "Tell me about {place}",
     "askTripMessage": "I want a cab from {from} to {to}",
-    "beep": "Beep!"
+    "beep": "Beep!",
+    "openPage": "Open page"
   },
   "mobileBar": {
     "places": "Places",

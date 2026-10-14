@@ -1,18 +1,18 @@
 {
   "site": {
-    "defaultBrand": "TODO_TRANSLATE: Cab & Tour Booking",
-    "tagline": "TODO_TRANSLATE: Outstation, airport and sightseeing trips from Chhatrapati Sambhajinagar (Aurangabad)",
+    "defaultBrand": "कैब और टूर बुकिंग",
+    "tagline": "छत्रपति संभाजीनगर से आउटस्टेशन, एयरपोर्ट और दर्शनीय स्थलों की यात्राएँ",
     "nav": {
-      "home": "TODO_TRANSLATE: Home",
-      "places": "TODO_TRANSLATE: Destinations",
-      "routes": "TODO_TRANSLATE: Routes",
-      "language": "TODO_TRANSLATE: Language",
-      "fares": "TODO_TRANSLATE: Fares"
+      "home": "होम",
+      "places": "गंतव्य",
+      "routes": "मार्ग",
+      "language": "भाषा",
+      "fares": "किराया"
     },
     "footer": {
-      "pricesNote": "TODO_TRANSLATE: Prices are calculated per trip and shown with every inclusion and exclusion.",
-      "cityNames": "TODO_TRANSLATE: Chhatrapati Sambhajinagar, formerly Aurangabad",
-      "sourcesNote": "TODO_TRANSLATE: Facts on this site show their source. Anything not yet confirmed is marked as being verified."
+      "pricesNote": "किराया हर यात्रा के लिए अलग से निकाला जाता है और उसमें क्या शामिल है, क्या नहीं, सब दिखाया जाता है।",
+      "cityNames": "छत्रपति संभाजीनगर, महाराष्ट्र",
+      "sourcesNote": "इस साइट की हर जानकारी के साथ उसका स्रोत दिया गया है। जो बात अभी पक्की नहीं है, उसे \"सत्यापन जारी\" के रूप में दिखाया गया है।"
     }
   },
   "languages": {
@@ -26,291 +26,292 @@
     }
   },
   "home": {
-    "metaTitle": "TODO_TRANSLATE: Cabs and tours from Chhatrapati Sambhajinagar (Aurangabad)",
-    "metaDescription": "TODO_TRANSLATE: Outstation cabs, airport transfers and sightseeing trips to Ajanta, Ellora, Shirdi and more, with itemised fares.",
-    "heading": "TODO_TRANSLATE: Ajanta, Ellora and the Deccan, with every rupee explained",
-    "intro": "TODO_TRANSLATE: Outstation trips, airport transfers and sightseeing from the city. Each quote lists every charge, and every fact on this site shows its source.",
-    "destinationsHeading": "TODO_TRANSLATE: Where would you like to go?",
-    "routesHeading": "TODO_TRANSLATE: Routes from the city",
-    "dataNote": "TODO_TRANSLATE: Details marked as not yet verified are still being checked with official sources.",
-    "eyebrow": "TODO_TRANSLATE: Chhatrapati Sambhajinagar · formerly Aurangabad",
-    "ctaDestinations": "TODO_TRANSLATE: Explore destinations",
-    "ctaFares": "TODO_TRANSLATE: How fares work",
-    "ctaWhatsapp": "TODO_TRANSLATE: Get a quote on WhatsApp",
-    "statPlaces": "TODO_TRANSLATE: destinations mapped",
-    "statRoutes": "TODO_TRANSLATE: routes from the city",
-    "statLanguages": "TODO_TRANSLATE: languages",
-    "tripsEyebrow": "TODO_TRANSLATE: Ways to travel",
-    "tripsHeading": "TODO_TRANSLATE: Built for trips out of the city, not across it",
-    "destinationsEyebrow": "TODO_TRANSLATE: Destinations",
-    "destinationsIntro": "TODO_TRANSLATE: Pick a place to see what is confirmed so far and how to get there.",
-    "routesEyebrow": "TODO_TRANSLATE: Routes",
-    "faresEyebrow": "TODO_TRANSLATE: Price transparency",
-    "faresHeading": "TODO_TRANSLATE: How a fare is built",
-    "faresIntro": "TODO_TRANSLATE: Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book.",
+    "metaTitle": "छत्रपति संभाजीनगर से कैब और टूर",
+    "metaDescription": "अजंता, एलोरा, शिरडी और अन्य स्थानों के लिए आउटस्टेशन कैब, एयरपोर्ट ट्रांसफर और दर्शनीय यात्राएँ, पूरे ब्योरे वाले किराए के साथ।",
+    "heading": "अजंता, एलोरा और दक्कन, हर रुपये के पूरे हिसाब के साथ",
+    "intro": "शहर से आउटस्टेशन यात्राएँ, एयरपोर्ट ट्रांसफर और दर्शनीय भ्रमण। हर कोटेशन में हर शुल्क अलग से लिखा होता है, और इस साइट की हर जानकारी के साथ उसका स्रोत दिया गया है।",
+    "destinationsHeading": "आप कहाँ जाना चाहेंगे?",
+    "routesHeading": "शहर से मार्ग",
+    "dataNote": "\"अभी सत्यापित नहीं\" के रूप में दिखाई गई जानकारी की अभी आधिकारिक स्रोतों से जाँच हो रही है।",
+    "eyebrow": "छत्रपति संभाजीनगर · महाराष्ट्र",
+    "ctaDestinations": "गंतव्य देखें",
+    "ctaFares": "किराया कैसे तय होता है",
+    "ctaWhatsapp": "WhatsApp पर कोटेशन पाएँ",
+    "statPlaces": "गंतव्य मानचित्र पर",
+    "statRoutes": "शहर से मार्ग",
+    "statLanguages": "भाषाएँ",
+    "tripsEyebrow": "यात्रा के तरीके",
+    "tripsHeading": "शहर के भीतर नहीं, शहर से बाहर की यात्राओं के लिए",
+    "destinationsEyebrow": "गंतव्य",
+    "destinationsIntro": "कोई स्थान चुनें और देखें कि अब तक क्या पक्का है और वहाँ कैसे पहुँचें।",
+    "routesEyebrow": "मार्ग",
+    "faresEyebrow": "पारदर्शी किराया",
+    "faresHeading": "किराया कैसे बनता है",
+    "faresIntro": "हर कोटेशन में पूरा ब्योरा होता है। बुकिंग से पहले ही आप देख सकते हैं कि किराए में क्या शामिल है और किसका भुगतान वास्तविक खर्च के अनुसार होगा।",
     "finder": {
-      "label": "TODO_TRANSLATE: Where do you want to go?",
-      "placeholder": "TODO_TRANSLATE: Try Ellora, शिर्डी, Verul or Lonar…",
-      "go": "TODO_TRANSLATE: Show trip",
-      "ask": "TODO_TRANSLATE: Ask e-Taxi",
-      "askMessage": "TODO_TRANSLATE: Tell me about {place}",
-      "noMatch": "TODO_TRANSLATE: No destination by that name yet. Ask e-Taxi and our team can help.",
-      "from": "TODO_TRANSLATE: From"
+      "label": "आप कहाँ जाना चाहते हैं?",
+      "placeholder": "जैसे एलोरा, शिरडी, अजंता या लोनार…",
+      "go": "यात्रा देखें",
+      "ask": "e-Taxi से पूछें",
+      "askMessage": "मुझे {place} के बारे में बताइए",
+      "noMatch": "इस नाम का कोई गंतव्य अभी नहीं है। e-Taxi से पूछें, हमारी टीम मदद करेगी।",
+      "from": "से"
     },
     "filter": {
-      "all": "TODO_TRANSLATE: All",
-      "caves": "TODO_TRANSLATE: Caves",
-      "temples": "TODO_TRANSLATE: Temples",
-      "heritage": "TODO_TRANSLATE: Forts & monuments",
-      "cities": "TODO_TRANSLATE: Cities & towns",
-      "nature": "TODO_TRANSLATE: Nature"
+      "all": "सभी",
+      "caves": "गुफाएँ",
+      "temples": "मंदिर",
+      "heritage": "किले और स्मारक",
+      "cities": "शहर और कस्बे",
+      "nature": "प्रकृति"
     }
   },
   "place": {
-    "metaTitle": "TODO_TRANSLATE: {name}: visiting information and cabs",
-    "metaDescription": "TODO_TRANSLATE: Plan a trip to {name} from Chhatrapati Sambhajinagar.",
+    "metaTitle": "{name}: घूमने की जानकारी और कैब",
+    "metaDescription": "छत्रपति संभाजीनगर से {name} की यात्रा की योजना बनाएँ।",
     "kind": {
-      "city": "TODO_TRANSLATE: City",
-      "town": "TODO_TRANSLATE: Town",
-      "airport": "TODO_TRANSLATE: Airport",
-      "cave_site": "TODO_TRANSLATE: Cave site",
-      "temple": "TODO_TRANSLATE: Temple",
-      "fort": "TODO_TRANSLATE: Fort",
-      "monument": "TODO_TRANSLATE: Monument",
-      "nature": "TODO_TRANSLATE: Natural site"
+      "city": "शहर",
+      "town": "कस्बा",
+      "airport": "हवाई अड्डा",
+      "cave_site": "गुफाएँ",
+      "temple": "मंदिर",
+      "fort": "किला",
+      "monument": "स्मारक",
+      "nature": "प्राकृतिक स्थल"
     },
-    "facts": "TODO_TRANSLATE: Visiting information",
-    "closedDays": "TODO_TRANSLATE: Weekly closing day",
-    "openingHours": "TODO_TRANSLATE: Opening hours",
-    "entryFees": "TODO_TRANSLATE: Entry fees",
-    "unesco": "TODO_TRANSLATE: UNESCO World Heritage Site",
-    "officialTickets": "TODO_TRANSLATE: Buy entry tickets on the official website",
-    "notVerified": "TODO_TRANSLATE: Not yet verified",
-    "verificationPending": "TODO_TRANSLATE: Some details on this page are still being verified with official sources, so it is not yet listed in search engines.",
-    "routesHere": "TODO_TRANSLATE: Routes to {name}",
-    "source": "TODO_TRANSLATE: Source",
-    "backToAll": "TODO_TRANSLATE: All destinations",
-    "planEyebrow": "TODO_TRANSLATE: Plan your visit",
-    "mapHeading": "TODO_TRANSLATE: Where it is"
+    "facts": "घूमने की जानकारी",
+    "closedDays": "साप्ताहिक बंद का दिन",
+    "openingHours": "खुलने का समय",
+    "entryFees": "प्रवेश शुल्क",
+    "unesco": "यूनेस्को विश्व धरोहर स्थल",
+    "officialTickets": "आधिकारिक वेबसाइट पर प्रवेश टिकट खरीदें",
+    "notVerified": "अभी सत्यापित नहीं",
+    "verificationPending": "इस पेज की कुछ जानकारी की अभी आधिकारिक स्रोतों से पुष्टि हो रही है, इसलिए यह अभी सर्च इंजनों में सूचीबद्ध नहीं है।",
+    "routesHere": "{name} तक के मार्ग",
+    "source": "स्रोत",
+    "backToAll": "सभी गंतव्य",
+    "planEyebrow": "अपनी यात्रा की योजना बनाएँ",
+    "mapHeading": "यह कहाँ है"
   },
   "route": {
-    "metaTitle": "TODO_TRANSLATE: {origin} to {destination} cab",
-    "metaDescription": "TODO_TRANSLATE: Cab from {origin} to {destination} with an itemised fare.",
-    "heading": "TODO_TRANSLATE: {origin} to {destination}",
-    "distance": "TODO_TRANSLATE: Road distance",
-    "driveTime": "TODO_TRANSLATE: Typical drive time",
-    "toll": "TODO_TRANSLATE: Estimated tolls",
-    "faresPending": "TODO_TRANSLATE: Fares for this route are being finalised. Ask us for a quote and we will send the full breakdown.",
-    "kmValue": "TODO_TRANSLATE: {km} km",
-    "minutesValue": "TODO_TRANSLATE: {hours, plural, =0 {} one {# hr } other {# hrs }}{minutes} min",
-    "eyebrow": "TODO_TRANSLATE: Route",
-    "fareHeading": "TODO_TRANSLATE: Fare",
-    "factsHeading": "TODO_TRANSLATE: Trip facts",
-    "from": "TODO_TRANSLATE: From",
-    "to": "TODO_TRANSLATE: To"
+    "metaTitle": "{origin} से {destination} कैब",
+    "metaDescription": "{origin} से {destination} तक कैब, पूरे ब्योरे वाले किराए के साथ।",
+    "heading": "{origin} से {destination}",
+    "distance": "सड़क मार्ग से दूरी",
+    "driveTime": "सामान्य यात्रा समय",
+    "toll": "अनुमानित टोल",
+    "faresPending": "इस मार्ग का किराया अभी तय किया जा रहा है। कोटेशन के लिए पूछें, हम पूरा ब्योरा भेजेंगे।",
+    "kmValue": "{km} किमी",
+    "minutesValue": "{hours, plural, =0 {} one {# घंटा } other {# घंटे }}{minutes} मिनट",
+    "eyebrow": "मार्ग",
+    "fareHeading": "किराया",
+    "factsHeading": "यात्रा की जानकारी",
+    "from": "से",
+    "to": "तक"
   },
   "weekday": {
-    "mon": "TODO_TRANSLATE: Monday",
-    "tue": "TODO_TRANSLATE: Tuesday",
-    "wed": "TODO_TRANSLATE: Wednesday",
-    "thu": "TODO_TRANSLATE: Thursday",
-    "fri": "TODO_TRANSLATE: Friday",
-    "sat": "TODO_TRANSLATE: Saturday",
-    "sun": "TODO_TRANSLATE: Sunday"
+    "mon": "सोमवार",
+    "tue": "मंगलवार",
+    "wed": "बुधवार",
+    "thu": "गुरुवार",
+    "fri": "शुक्रवार",
+    "sat": "शनिवार",
+    "sun": "रविवार"
   },
   "quote": {
-    "total": "TODO_TRANSLATE: Total",
-    "includes": "TODO_TRANSLATE: Included",
-    "excludes": "TODO_TRANSLATE: Not included",
+    "total": "कुल",
+    "includes": "शामिल",
+    "excludes": "शामिल नहीं",
     "line": {
-      "base_km": "TODO_TRANSLATE: Distance ({km} km)",
-      "minimum_km_applied": "TODO_TRANSLATE: Minimum billing top-up ({minKmPerDay} km/day × {days} days)",
-      "one_way_return": "TODO_TRANSLATE: Return distance share ({percent}%)",
-      "driver_allowance": "TODO_TRANSLATE: Driver allowance",
-      "night_halt": "TODO_TRANSLATE: Night halt",
-      "toll": "TODO_TRANSLATE: Tolls (estimate included in fare)",
-      "parking": "TODO_TRANSLATE: Parking (estimate included in fare)",
-      "border_tax": "TODO_TRANSLATE: State entry tax ({state})",
-      "waiting": "TODO_TRANSLATE: Waiting time beyond {freeMinutes} free minutes",
-      "airport_fee": "TODO_TRANSLATE: Airport entry fee",
-      "local_package": "TODO_TRANSLATE: Local package ({hours} hrs / {km} km)",
-      "local_extra_km": "TODO_TRANSLATE: Extra km",
-      "local_extra_hours": "TODO_TRANSLATE: Extra hours",
-      "airport_base": "TODO_TRANSLATE: Airport transfer (up to {includedKm} km)",
-      "airport_extra_km": "TODO_TRANSLATE: Extra km",
-      "gst": "TODO_TRANSLATE: GST ({percent}%)"
+      "base_km": "दूरी ({km} किमी)",
+      "minimum_km_applied": "न्यूनतम बिलिंग की पूर्ति ({minKmPerDay} किमी/दिन × {days} दिन)",
+      "one_way_return": "वापसी दूरी का हिस्सा ({percent}%)",
+      "driver_allowance": "ड्राइवर भत्ता",
+      "night_halt": "रात्रि ठहराव",
+      "toll": "टोल (अनुमानित राशि किराए में शामिल)",
+      "parking": "पार्किंग (अनुमानित राशि किराए में शामिल)",
+      "border_tax": "राज्य प्रवेश कर ({state})",
+      "waiting": "{freeMinutes} मुफ़्त मिनट के बाद प्रतीक्षा समय",
+      "airport_fee": "हवाई अड्डा प्रवेश शुल्क",
+      "local_package": "लोकल पैकेज ({hours} घंटे / {km} किमी)",
+      "local_extra_km": "अतिरिक्त किमी",
+      "local_extra_hours": "अतिरिक्त घंटे",
+      "airport_base": "एयरपोर्ट ट्रांसफर ({includedKm} किमी तक)",
+      "airport_extra_km": "अतिरिक्त किमी",
+      "gst": "जीएसटी ({percent}%)"
     },
     "note": {
-      "toll_at_actuals": "TODO_TRANSLATE: Tolls, paid at actual cost",
-      "parking_at_actuals": "TODO_TRANSLATE: Parking, paid at actual cost",
-      "border_tax_at_actuals": "TODO_TRANSLATE: State entry tax for {state}, paid at actual cost",
-      "toll_included": "TODO_TRANSLATE: Tolls",
-      "parking_included": "TODO_TRANSLATE: Parking",
-      "driver_allowance_included": "TODO_TRANSLATE: Driver allowance for {days} days",
-      "night_halt_included": "TODO_TRANSLATE: Night halt for {nights} nights",
-      "minimum_km_rule": "TODO_TRANSLATE: Minimum {minKmPerDay} km per day",
-      "waiting_beyond_estimate": "TODO_TRANSLATE: Waiting beyond the estimate, charged per {blockMinutes} minutes after {freeMinutes} free minutes",
-      "extra_km_beyond_estimate": "TODO_TRANSLATE: Distance beyond the estimate, charged per km",
-      "gst_included": "TODO_TRANSLATE: GST at {percent}%"
+      "toll_at_actuals": "टोल, वास्तविक खर्च के अनुसार",
+      "parking_at_actuals": "पार्किंग, वास्तविक खर्च के अनुसार",
+      "border_tax_at_actuals": "{state} का राज्य प्रवेश कर, वास्तविक खर्च के अनुसार",
+      "toll_included": "टोल",
+      "parking_included": "पार्किंग",
+      "driver_allowance_included": "{days} दिन का ड्राइवर भत्ता",
+      "night_halt_included": "{nights} रात का रात्रि ठहराव",
+      "minimum_km_rule": "प्रतिदिन न्यूनतम {minKmPerDay} किमी",
+      "waiting_beyond_estimate": "अनुमान से अधिक प्रतीक्षा, {freeMinutes} मुफ़्त मिनट के बाद हर {blockMinutes} मिनट के हिसाब से",
+      "extra_km_beyond_estimate": "अनुमान से अधिक दूरी, प्रति किमी के हिसाब से",
+      "gst_included": "{percent}% जीएसटी"
     }
   },
   "map": {
-    "title": "TODO_TRANSLATE: Map of destinations from Chhatrapati Sambhajinagar",
-    "caption": "TODO_TRANSLATE: Drawn from each place’s coordinates. Lines show direction from the city, not road routes or distances.",
-    "insetTitle": "TODO_TRANSLATE: Around the city",
-    "routeCaption": "TODO_TRANSLATE: Straight-line sketch from coordinates. Road distance and time appear above once verified."
+    "title": "छत्रपति संभाजीनगर से गंतव्यों का मानचित्र",
+    "caption": "हर स्थान के निर्देशांकों से बनाया गया। रेखाएँ शहर से दिशा दिखाती हैं, सड़क मार्ग या दूरी नहीं।",
+    "insetTitle": "शहर के आसपास",
+    "routeCaption": "निर्देशांकों से बनी सीधी रेखा। सत्यापन के बाद सड़क मार्ग की दूरी और समय ऊपर दिखेंगे।"
   },
   "trips": {
     "outstation": {
-      "title": "TODO_TRANSLATE: Outstation",
-      "body": "TODO_TRANSLATE: One-way or round trips to Shirdi, Nashik, Pune, Mumbai and beyond, billed by distance with a clear daily minimum."
+      "title": "आउटस्टेशन",
+      "body": "शिरडी, नाशिक, पुणे, मुंबई और आगे के लिए एकतरफ़ा या आना-जाना यात्राएँ, दूरी के अनुसार किराया और साफ़ दैनिक न्यूनतम सीमा के साथ।"
     },
     "airport": {
-      "title": "TODO_TRANSLATE: Airport transfers",
-      "body": "TODO_TRANSLATE: Pickups and drops at the city airport, straight to your hotel or to the caves."
+      "title": "एयरपोर्ट ट्रांसफर",
+      "body": "शहर के हवाई अड्डे से पिकअप और ड्रॉप, सीधे आपके होटल या गुफाओं तक।"
     },
     "sightseeing": {
-      "title": "TODO_TRANSLATE: Sightseeing",
-      "body": "TODO_TRANSLATE: Day plans for Ellora, Ajanta, Daulatabad and the city, planned around closing days."
+      "title": "दर्शनीय भ्रमण",
+      "body": "एलोरा, अजंता, दौलताबाद और शहर के लिए एक दिन की योजनाएँ, बंद रहने वाले दिनों को ध्यान में रखकर।"
     },
     "pilgrimage": {
-      "title": "TODO_TRANSLATE: Pilgrimage circuits",
-      "body": "TODO_TRANSLATE: Grishneshwar, Shirdi, Shani Shingnapur and the Nashik–Trimbakeshwar circuit."
+      "title": "तीर्थ यात्राएँ",
+      "body": "घृष्णेश्वर, शिरडी, शनि शिंगणापुर और नाशिक–त्र्यंबकेश्वर यात्रा।"
     }
   },
   "status": {
-    "verified": "TODO_TRANSLATE: Verified",
-    "pending": "TODO_TRANSLATE: Being verified",
-    "score": "TODO_TRANSLATE: {percent}% of details confirmed"
+    "verified": "सत्यापित",
+    "pending": "सत्यापन जारी",
+    "score": "{percent}% जानकारी पक्की"
   },
   "fares": {
-    "receiptTitle": "TODO_TRANSLATE: Anatomy of a quote",
+    "receiptTitle": "कोटेशन की बनावट",
     "line": {
-      "base_km": "TODO_TRANSLATE: Distance driven",
-      "minimum_km_applied": "TODO_TRANSLATE: Daily minimum distance top-up",
-      "driver_allowance": "TODO_TRANSLATE: Driver allowance per day",
-      "night_halt": "TODO_TRANSLATE: Night halt, when the trip spans the night",
-      "gst": "TODO_TRANSLATE: GST, shown as its own line"
+      "base_km": "तय की गई दूरी",
+      "minimum_km_applied": "दैनिक न्यूनतम दूरी की पूर्ति",
+      "driver_allowance": "प्रतिदिन ड्राइवर भत्ता",
+      "night_halt": "रात्रि ठहराव, जब यात्रा रात भर चले",
+      "gst": "जीएसटी, अलग पंक्ति में"
     },
-    "noAmounts": "TODO_TRANSLATE: Labels only. Real amounts appear in your quote once rates are approved.",
-    "builtInTitle": "TODO_TRANSLATE: Built into the price",
-    "builtInBody": "TODO_TRANSLATE: Distance, any daily minimum, driver allowance and night halts are calculated up front and listed one by one.",
-    "actualsTitle": "TODO_TRANSLATE: Paid at actual cost",
+    "noAmounts": "केवल विवरण। दरें मंज़ूर होने के बाद असली राशि आपके कोटेशन में दिखेगी।",
+    "builtInTitle": "किराए में शामिल",
+    "builtInBody": "दूरी, दैनिक न्यूनतम सीमा, ड्राइवर भत्ता और रात्रि ठहराव पहले ही गिने जाते हैं और एक-एक करके लिखे जाते हैं।",
+    "actualsTitle": "वास्तविक खर्च के अनुसार",
     "note": {
-      "toll_at_actuals": "TODO_TRANSLATE: Tolls, as charged at the plaza",
-      "parking_at_actuals": "TODO_TRANSLATE: Parking, as charged on site",
-      "border_tax_at_actuals": "TODO_TRANSLATE: State entry tax, if the trip leaves Maharashtra"
+      "toll_at_actuals": "टोल, टोल नाके पर जितना लगे",
+      "parking_at_actuals": "पार्किंग, मौके पर जितनी लगे",
+      "border_tax_at_actuals": "राज्य प्रवेश कर, यदि यात्रा महाराष्ट्र से बाहर जाए"
     },
-    "sameBillTitle": "TODO_TRANSLATE: Quote and bill match",
-    "sameBillBody": "TODO_TRANSLATE: Your bill is checked against the saved quote. It changes only if the trip itself changes."
+    "sameBillTitle": "कोटेशन और बिल एक जैसे",
+    "sameBillBody": "आपके बिल का मिलान सहेजे गए कोटेशन से किया जाता है। यह तभी बदलता है जब यात्रा ही बदले।"
   },
   "trust": {
-    "eyebrow": "TODO_TRANSLATE: Checked before every trip",
-    "heading": "TODO_TRANSLATE: No trip is assigned without valid documents",
-    "body": "TODO_TRANSLATE: Before a vehicle and driver are assigned, our system checks that each document below is on file, verified and valid for the whole trip. If anything is missing or expires mid-trip, the assignment is blocked.",
+    "eyebrow": "हर यात्रा से पहले जाँच",
+    "heading": "वैध दस्तावेज़ों के बिना कोई यात्रा नहीं सौंपी जाती",
+    "body": "गाड़ी और ड्राइवर सौंपने से पहले हमारा सिस्टम जाँचता है कि नीचे दिया हर दस्तावेज़ मौजूद है, सत्यापित है और पूरी यात्रा के दौरान वैध है। कुछ भी कम हो या यात्रा के बीच समाप्त हो रहा हो, तो असाइनमेंट रोक दिया जाता है।",
     "group": {
-      "vehicle": "TODO_TRANSLATE: Vehicle",
-      "driver": "TODO_TRANSLATE: Driver"
+      "vehicle": "गाड़ी",
+      "driver": "ड्राइवर"
     },
     "doc": {
-      "registration_certificate": "TODO_TRANSLATE: Registration certificate (RC)",
-      "tourist_permit": "TODO_TRANSLATE: Tourist / contract-carriage permit",
-      "insurance": "TODO_TRANSLATE: Insurance",
-      "fitness_certificate": "TODO_TRANSLATE: Fitness certificate",
-      "puc_certificate": "TODO_TRANSLATE: Pollution (PUC) certificate",
-      "driving_licence": "TODO_TRANSLATE: Driving licence",
-      "psv_badge": "TODO_TRANSLATE: Public service vehicle badge",
-      "police_verification": "TODO_TRANSLATE: Police verification",
-      "vendor_kyc": "TODO_TRANSLATE: Vendor KYC",
-      "vendor_agreement": "TODO_TRANSLATE: Vendor agreement"
+      "registration_certificate": "पंजीकरण प्रमाणपत्र (RC)",
+      "tourist_permit": "टूरिस्ट / कॉन्ट्रैक्ट-कैरिज परमिट",
+      "insurance": "बीमा",
+      "fitness_certificate": "फ़िटनेस प्रमाणपत्र",
+      "puc_certificate": "प्रदूषण (PUC) प्रमाणपत्र",
+      "driving_licence": "ड्राइविंग लाइसेंस",
+      "psv_badge": "सार्वजनिक सेवा वाहन बैज",
+      "police_verification": "पुलिस सत्यापन",
+      "vendor_kyc": "वेंडर KYC",
+      "vendor_agreement": "वेंडर अनुबंध"
     },
-    "footnote": "TODO_TRANSLATE: This describes how our booking system checks assignments. It is not a statement about any licence or registration."
+    "footnote": "यह बताता है कि हमारा बुकिंग सिस्टम असाइनमेंट की जाँच कैसे करता है। यह किसी लाइसेंस या पंजीकरण के बारे में कथन नहीं है।"
   },
   "weekStrip": {
-    "label": "TODO_TRANSLATE: Weekly opening days",
-    "closed": "TODO_TRANSLATE: Closed",
-    "open": "TODO_TRANSLATE: Open",
-    "unknown": "TODO_TRANSLATE: The weekly closing day has not been verified yet.",
-    "conflict": "TODO_TRANSLATE: Published sources disagree on the closing day, so we are confirming it with the authority.",
-    "knownNote": "TODO_TRANSLATE: Check holiday closures before you travel."
+    "label": "सप्ताह में खुलने के दिन",
+    "closed": "बंद",
+    "open": "खुला",
+    "unknown": "साप्ताहिक बंद का दिन अभी सत्यापित नहीं हुआ है।",
+    "conflict": "प्रकाशित स्रोत बंद के दिन पर एकमत नहीं हैं, इसलिए हम संबंधित प्राधिकरण से इसकी पुष्टि कर रहे हैं।",
+    "knownNote": "यात्रा से पहले छुट्टियों के दिन बंद रहने की जानकारी देख लें।"
   },
   "weekdayShort": {
-    "mon": "TODO_TRANSLATE: Mon",
-    "tue": "TODO_TRANSLATE: Tue",
-    "wed": "TODO_TRANSLATE: Wed",
-    "thu": "TODO_TRANSLATE: Thu",
-    "fri": "TODO_TRANSLATE: Fri",
-    "sat": "TODO_TRANSLATE: Sat",
-    "sun": "TODO_TRANSLATE: Sun"
+    "mon": "सोम",
+    "tue": "मंगल",
+    "wed": "बुध",
+    "thu": "गुरु",
+    "fri": "शुक्र",
+    "sat": "शनि",
+    "sun": "रवि"
   },
   "assistant": {
-    "tagline": "TODO_TRANSLATE: Trips, places and fares · English, हिन्दी, मराठी",
-    "teaserTitle": "TODO_TRANSLATE: Namaste!",
-    "teaser": "TODO_TRANSLATE: Planning Ajanta, Ellora or Shirdi? Ask me anything about your trip.",
-    "open": "TODO_TRANSLATE: Open the {name} assistant",
-    "close": "TODO_TRANSLATE: Close",
-    "placeholder": "TODO_TRANSLATE: Ask about a place, a fare or a call back…",
-    "send": "TODO_TRANSLATE: Send",
-    "intro": "TODO_TRANSLATE: Namaste! I am {name}. Ask me about places around Chhatrapati Sambhajinagar, how fares work, or ask our team to call you. I only share facts that are confirmed.",
-    "basicMode": "TODO_TRANSLATE: Basic mode: quick answers from our data",
-    "privacy": "TODO_TRANSLATE: Chats are not stored on our server. Your number is saved only if you confirm a call-back request.",
-    "confirm": "TODO_TRANSLATE: Confirm",
-    "cancel": "TODO_TRANSLATE: Cancel",
-    "confirmed": "TODO_TRANSLATE: Sent. Our team will call you back.",
-    "cancelled": "TODO_TRANSLATE: Cancelled. Nothing was saved.",
-    "proposalTitle": "TODO_TRANSLATE: Call-back request",
-    "mic": "TODO_TRANSLATE: Speak your question",
-    "listening": "TODO_TRANSLATE: Listening…",
-    "readAloud": "TODO_TRANSLATE: Read answers aloud",
-    "newChat": "TODO_TRANSLATE: Start a new chat",
-    "error": "TODO_TRANSLATE: Sorry, I could not answer just now. Please try again.",
-    "rateLimited": "TODO_TRANSLATE: Too many messages this hour. Please try again a bit later.",
-    "askAbout": "TODO_TRANSLATE: Ask {name} about {place}",
-    "askTrip": "TODO_TRANSLATE: Ask about this trip",
+    "tagline": "यात्राएँ, स्थान और किराया · English, हिन्दी, मराठी",
+    "teaserTitle": "नमस्ते!",
+    "teaser": "अजंता, एलोरा या शिरडी जाने की सोच रहे हैं? अपनी यात्रा के बारे में कुछ भी पूछें।",
+    "open": "{name} सहायक खोलें",
+    "close": "बंद करें",
+    "placeholder": "किसी स्थान, किराए या कॉल-बैक के बारे में पूछें…",
+    "send": "भेजें",
+    "intro": "नमस्ते! मैं {name} हूँ। छत्रपति संभाजीनगर के आसपास के स्थानों, किराया कैसे तय होता है, इसके बारे में पूछें या हमारी टीम से कॉल-बैक माँगें। मैं केवल पक्की जानकारी ही देता हूँ।",
+    "basicMode": "बेसिक मोड: हमारे डेटा से तुरंत जवाब",
+    "privacy": "चैट हमारे सर्वर पर सहेजी नहीं जाती। आपका नंबर तभी सहेजा जाता है जब आप कॉल-बैक अनुरोध की पुष्टि करें।",
+    "confirm": "पुष्टि करें",
+    "cancel": "रद्द करें",
+    "confirmed": "भेज दिया। हमारी टीम आपको कॉल करेगी।",
+    "cancelled": "रद्द किया। कुछ भी सहेजा नहीं गया।",
+    "proposalTitle": "कॉल-बैक अनुरोध",
+    "mic": "अपना सवाल बोलें",
+    "listening": "सुन रहा हूँ…",
+    "readAloud": "जवाब पढ़कर सुनाएँ",
+    "newChat": "नई चैट शुरू करें",
+    "error": "क्षमा करें, अभी जवाब नहीं दे पाया। कृपया फिर से कोशिश करें।",
+    "rateLimited": "इस घंटे बहुत सारे संदेश आ गए हैं। कृपया थोड़ी देर बाद कोशिश करें।",
+    "askAbout": "{place} के बारे में {name} से पूछें",
+    "askTrip": "इस यात्रा के बारे में पूछें",
     "tools": {
-      "search_places": "TODO_TRANSLATE: Looking up places…",
-      "get_place": "TODO_TRANSLATE: Checking visiting details…",
-      "list_routes": "TODO_TRANSLATE: Looking at our routes…",
-      "get_route": "TODO_TRANSLATE: Checking the route…",
-      "list_vehicle_classes": "TODO_TRANSLATE: Checking vehicles…",
-      "get_quote": "TODO_TRANSLATE: Asking the fare engine…",
-      "explain_fares": "TODO_TRANSLATE: Checking how fares work…",
-      "site_help": "TODO_TRANSLATE: Checking the help pages…",
-      "request_callback": "TODO_TRANSLATE: Preparing your request…",
-      "default": "TODO_TRANSLATE: Checking…"
+      "search_places": "स्थान खोज रहा हूँ…",
+      "get_place": "घूमने की जानकारी देख रहा हूँ…",
+      "list_routes": "हमारे मार्ग देख रहा हूँ…",
+      "get_route": "मार्ग की जानकारी देख रहा हूँ…",
+      "list_vehicle_classes": "गाड़ियाँ देख रहा हूँ…",
+      "get_quote": "किराया इंजन से पूछ रहा हूँ…",
+      "explain_fares": "किराए की जानकारी देख रहा हूँ…",
+      "site_help": "सहायता पेज देख रहा हूँ…",
+      "request_callback": "आपका अनुरोध तैयार कर रहा हूँ…",
+      "default": "जाँच रहा हूँ…"
     },
     "chips": {
       "ellora": {
-        "label": "TODO_TRANSLATE: Is Ellora open on Tuesday?",
-        "message": "TODO_TRANSLATE: Is Ellora closed on Tuesday?"
+        "label": "क्या एलोरा मंगलवार को खुला है?",
+        "message": "क्या एलोरा मंगलवार को बंद रहता है?"
       },
       "shirdi": {
-        "label": "TODO_TRANSLATE: Fare to Shirdi",
-        "message": "TODO_TRANSLATE: What is the fare to Shirdi?"
+        "label": "शिरडी का किराया",
+        "message": "शिरडी का किराया कितना है?"
       },
       "fares": {
-        "label": "TODO_TRANSLATE: How fares work",
-        "message": "TODO_TRANSLATE: How do fares work?"
+        "label": "किराया कैसे तय होता है",
+        "message": "किराया कैसे तय होता है?"
       },
       "callback": {
-        "label": "TODO_TRANSLATE: Call me back",
-        "message": "TODO_TRANSLATE: Please call me back"
+        "label": "मुझे कॉल करें",
+        "message": "कृपया मुझे कॉल-बैक करें"
       }
     },
-    "askPlaceMessage": "TODO_TRANSLATE: Tell me about {place}",
-    "askTripMessage": "TODO_TRANSLATE: I want a cab from {from} to {to}",
-    "beep": "TODO_TRANSLATE: Beep!"
+    "askPlaceMessage": "मुझे {place} के बारे में बताइए",
+    "askTripMessage": "मुझे {from} से {to} तक कैब चाहिए",
+    "beep": "पीं-पीं!",
+    "openPage": "पेज देखें"
   },
   "mobileBar": {
-    "places": "TODO_TRANSLATE: Places",
-    "fares": "TODO_TRANSLATE: Fares",
-    "ask": "TODO_TRANSLATE: Ask e-Taxi",
-    "whatsapp": "TODO_TRANSLATE: WhatsApp"
+    "places": "स्थान",
+    "fares": "किराया",
+    "ask": "e-Taxi से पूछें",
+    "whatsapp": "WhatsApp"
   },
   "notFound": {
-    "eyebrow": "TODO_TRANSLATE: Wrong turn",
-    "title": "TODO_TRANSLATE: We could not find that page",
-    "body": "TODO_TRANSLATE: The page may have moved, or the place is not on our list yet. Start again from the destinations, or ask e-Taxi.",
-    "home": "TODO_TRANSLATE: Back to the start"
+    "eyebrow": "गलत मोड़",
+    "title": "यह पेज नहीं मिला",
+    "body": "हो सकता है पेज हट गया हो, या यह स्थान अभी हमारी सूची में न हो। गंतव्यों से फिर शुरू करें या e-Taxi से पूछें।",
+    "home": "शुरुआत पर लौटें"
   }
 }

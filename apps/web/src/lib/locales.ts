@@ -12,9 +12,13 @@ function hasPlaceholder(v: unknown): boolean {
 }
 
 /**
- * Locales whose UI strings are fully translated. Only these are indexable and listed in
- * hreflang / the sitemap; placeholder locales still render (for review) but are noindex.
+ * Locales that search engines may index (and that appear in hreflang / the sitemap): fully
+ * translated AND signed off in INDEXABLE_LOCALES (comma list, default "en"). Hindi and Marathi
+ * render for everyone but stay noindex until a native speaker has reviewed them.
  */
-export const READY_LOCALES: readonly Locale[] = LOCALES.filter((l) => !hasPlaceholder(MESSAGES[l]));
+const SIGNED_OFF = (process.env["INDEXABLE_LOCALES"] ?? "en").split(",").map((s) => s.trim());
+export const READY_LOCALES: readonly Locale[] = LOCALES.filter(
+  (l) => !hasPlaceholder(MESSAGES[l]) && SIGNED_OFF.includes(l),
+);
 
 export const isReadyLocale = (l: Locale) => READY_LOCALES.includes(l);

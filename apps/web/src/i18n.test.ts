@@ -30,13 +30,19 @@ describe("i18n messages", () => {
     for (const c of QUOTE_NOTE_CODES) expect(enKeys, c).toContain(`quote.note.${c}`);
   });
 
-  it("untranslated hi/mr strings are explicitly marked", () => {
-    for (const [msgs] of [[hi], [mr]]) {
-      for (const k of keys(msgs)) {
-        if (k.startsWith("languages.")) continue;
-        const v = get(msgs, k);
-        if (v === get(en, k)) throw new Error(`${k} is an unmarked copy of English`);
-      }
+  it.each([["hi", hi], ["mr", mr]])("%s is fully translated into Devanagari", (_l, msgs) => {
+    // Brand names that stay in Latin script.
+    const LATIN_OK = new Set(["languages.en", "languages.short.en", "mobileBar.whatsapp"]);
+    for (const k of keys(msgs)) {
+      const v = get(msgs, k);
+      expect(v, k).not.toMatch(/TODO_TRANSLATE/);
+      if (!LATIN_OK.has(k)) expect(v, k).toMatch(/[\u0900-\u097F]/);
+    }
+  });
+
+  it("no visible copy uses the old city name", () => {
+    for (const msgs of [en, hi, mr]) {
+      for (const k of keys(msgs)) expect(get(msgs, k), k).not.toMatch(/aurangabad|औरंगाबाद/i);
     }
   });
 });

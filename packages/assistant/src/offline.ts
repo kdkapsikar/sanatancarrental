@@ -1,16 +1,19 @@
 import { allPlaces, findPlacesInText, runTool, CITY, type ProposalView, type ToolOutput } from "./tools";
 import type { AssistantEngine, QuickReply, Turn, TurnResult } from "./types";
+import { OFFLINE_STRINGS, replyLocale } from "./offline-strings";
 
 /**
  * The assistant without an API key (or past the daily budget): keyword/intent matching in
  * English, Hindi and Marathi that calls the SAME tools as the Claude engine and words its answers
  * only from their results. It can't hold a real conversation, but it never makes facts up.
- * Replies are in English for now; hi/mr wording is TODO_TRANSLATE like the rest of the UI.
+ * Replies follow the page language (en/hi/mr); see offline-strings.ts.
  */
 export class OfflineAssistant implements AssistantEngine {
   readonly mode = "offline" as const;
 
-  async respond(turn: Turn): Promise<TurnResult> {
+  async respond(input: Turn): Promise<TurnResult> {
+    // Tools (and the page links they return) use the reply language, not just the page language.
+    const turn: Turn = { ...input, ctx: { ...input.ctx, locale: replyLocale(input.ctx.locale, input.message) } };
     const proposals: ProposalView[] = [];
     const call = async (name: string, input: Record<string, unknown>): Promise<ToolOutput> => {
       turn.emit({ type: "tool", name, status: "start" });
@@ -38,37 +41,29 @@ const INTENT = {
   callback: /call ?back|call me|callback|contact|speak to|talk to|book|booking|फोन|कॉल|संपर्क|बुक/i,
   fare: /fare|price|cost|rate|charges?|how much|quote|₹|rs\.?|rupees|भाडे|भाड़ा|किराया|दर|किंमत|कीमत|पैसे/i,
   closed: /closed|closing|open|timings?|hours|holiday|visit(ing)? time|बंद|सुट्टी|वेळ|समय|खुला|उघड/i,
-  route: /distance|how far|km|kilomet|drive|travel time|how long|toll|अंतर|दूरी|किती वेळ|कितना समय|टोल/i,
-  fareHow: /how (do|are) (fares|prices)|included|inclusive|exclusive|toll|parking|gst/i,
+  route: /distance|how far|km|kilomet|drive|travel time|how long|toll|अंतर|दूरी|दूर|लांब|किती वेळ|कितना समय|टोल/i,
+  fareHow: /how (do|are) (fares|prices)|included|inclusive|exclusive|toll|parking|gst|कसे ठरते|कसं ठरतं|कैसे तय|शामिल|समाविष्ट/i,
   language: /language|marathi|hindi|english|भाषा|मराठी|हिंदी/i,
   cityName: /aurangabad|sambhajinagar|औरंगाबाद|संभाजीनगर/i,
 };
 
-const DAY: Record<string, string> = { mon: "Monday", tue: "Tuesday", wed: "Wednesday", thu: "Thursday", fri: "Friday", sat: "Saturday", sun: "Sunday" };
-
-const MENU: QuickReply[] = [
-  { label: "Ellora closing day", message: "Is Ellora closed on Tuesday?" },
-  { label: "Fare to Shirdi", message: "What is the fare to Shirdi?" },
-  { label: "How fares work", message: "How do fares work?" },
-  { label: "Call me back", message: "Please call me back" },
-];
-
 type Fact = { status: "verified" | "not_verified" | "unknown"; value?: unknown; reason?: string };
-
-const pendingWhy = (f: Fact) =>
-  /CONFLICT/.test(f.reason ?? "")
-    ? "published sources disagree, so it is being confirmed with the authority"
-    : "it has not been confirmed with an official source yet";
 
 function tomorrowMorningIst(now: Date): string {
   const ist = new Date(now.getTime() + 330 * 60_000 + 86_400_000);
   return `${ist.toISOString().slice(0, 10)}T08:00:00+05:30`;
 }
 
-/** "my name is Ravi", "I am Ravi", "मी रवी", "नाम रवि" → Ravi (best effort, optional). */
+/** "my name is Ravi", "माझे नाव रवी", "मेरा नाम रवि" → Ravi (best effort, optional). */
+const NAME = /(?:my name is|i am|i'm|this is|name[:\s]+|माझे नाव|माझं नाव|मेरा नाम|नाव|नाम)\s+([A-Za-z\u0900-\u097F][A-Za-z\u0900-\u097F .]{0,40})/i;
 function nameIn(text: string): string | undefined {
-  const m = /(?:my name is|i am|i'm|this is|name[:\s]+|नाव|नाम|मी)\s+([A-Za-zऀ-ॿ][A-Za-zऀ-ॿ .]{0,40})/i.exec(text);
-  return m?.[1]?.split(/[.,!?;\n]/)[0]?.replace(/\s+(and|on|my|phone|number|call).*$/i, "").trim() || undefined;
+  const m = NAME.exec(text);
+  return (
+    m?.[1]
+      ?.split(/[.,!?;\n।]/)[0]
+      ?.replace(/\s+(and|on|my|phone|number|call|आहे|है)(\s.*)?$/i, "")
+      .trim() || undefined
+  );
 }
 const PHONE = /(?:\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}/;
 const phoneIn = (text: string) => PHONE.exec(text)?.[0];
@@ -77,7 +72,7 @@ const phoneIn = (text: string) => PHONE.exec(text)?.[0];
 function tripGist(text: string): string {
   return text
     .replace(PHONE, "")
-    .replace(/(?:my name is|i am|i'm|this is|नाव|नाम)\s+[^.,!?]+/gi, "")
+    .replace(/(?:my name is|i am|i'm|this is|माझे नाव|माझं नाव|मेरा नाम|नाव|नाम)\s+[^.,!?।]+/gi, "")
     .replace(/\b(please|pls|kindly)?\s*(call me back|call back|callback|call me)\b(\s+on)?/gi, "")
     .replace(/\s*[.,]\s*[.,]+/g, ".")
     .replace(/^[\s.,:-]+|[\s.,:-]+$/g, "")
@@ -85,122 +80,98 @@ function tripGist(text: string): string {
     .slice(0, 200);
 }
 
+const VISITABLE = ["cave_site", "temple", "fort", "monument", "nature"];
+
 async function answer(turn: Turn, call: Call): Promise<{ text: string; quickReplies: QuickReply[] }> {
   const t = turn.message.trim();
+  const lang = replyLocale(turn.ctx.locale, t);
+  const L = OFFLINE_STRINGS[lang];
   const list = await allPlaces(turn.ctx.db);
-  const mentioned = findPlacesInText(t, list).filter((p) => p.slug !== CITY);
-  const place = mentioned[0];
-  const placeName = place ? place.name.en : null;
+  const place = findPlacesInText(t, list).filter((p) => p.slug !== CITY)[0];
+  const placeName = place ? (place.name[lang] ?? place.name.en) : null;
 
   // Call back: propose only (Confirm card), never store directly.
   if (has(t, INTENT.callback) || phoneIn(t)) {
     const phone = phoneIn(t);
-    if (!phone && !(turn.ctx.channel === "whatsapp" && turn.ctx.ownerRef)) {
-      return {
-        text: "Happy to arrange a call back from our team. Please send your name and 10-digit mobile number, for example: “Call me on 98xxxxxxxx, my name is Ravi”.",
-        quickReplies: [],
-      };
-    }
+    if (!phone && !(turn.ctx.channel === "whatsapp" && turn.ctx.ownerRef)) return { text: L.askPhone, quickReplies: [] };
     const name = nameIn(t);
     const out = await call("request_callback", {
       ...(name ? { name } : {}),
       ...(phone ? { phone } : {}),
-      trip_summary: [placeName ? `Trip to ${placeName}` : null, tripGist(t) || null].filter(Boolean).join(" · ") || "Call back requested",
-      preferred_language: turn.ctx.locale,
+      // The ops team reads English summaries; the person's own words follow.
+      trip_summary: [place ? `Trip to ${place.name.en}` : null, tripGist(t) || null].filter(Boolean).join(" · ") || "Call back requested",
+      preferred_language: lang,
     });
-    if (out.isError) return { text: "That number doesn't look like a 10-digit Indian mobile number. Could you send it again?", quickReplies: [] };
-    return { text: "I've prepared a call-back request. Please check the card below and press Confirm to send it. Nothing is saved until you do.", quickReplies: [] };
+    if (out.isError) return { text: L.badPhone, quickReplies: [] };
+    return { text: L.callbackReady, quickReplies: [] };
   }
 
   // Fares: only the fare engine (via get_quote) may produce a number.
   if (has(t, INTENT.fare) && !has(t, INTENT.fareHow)) {
-    if (!place) {
-      const out = await call("explain_fares", {});
-      const r = out.result as { built_into_price: string[]; paid_at_actual_cost: string[] };
-      return {
-        text: `Every quote is itemised. Built into the price: ${r.built_into_price.join(", ")}. Paid at actual cost: ${r.paid_at_actual_cost.join(", ")}. Tell me where you're going and I'll check the fare.`,
-        quickReplies: MENU.slice(1, 2),
-      };
+    if (!place || !placeName) {
+      await call("explain_fares", {});
+      return { text: `${L.fareExplain(L.join(L.builtIn), L.join(L.actuals))} ${L.fareAskWhere}`, quickReplies: L.menu.slice(1, 2) };
     }
     const out = await call("get_quote", { destination: place.slug, start: tomorrowMorningIst(turn.ctx.now) });
     const r = out.result;
     if (typeof r["total_inr"] === "number") {
-      return { text: `A one-way sedan from Chhatrapati Sambhajinagar to ${placeName} comes to ₹${r["total_inr"]} including the listed items. Tolls and parking are paid at actual cost.`, quickReplies: [{ label: "Call me back", message: "Please call me back" }] };
+      const total = new Intl.NumberFormat(`${lang}-IN`, { style: "currency", currency: "INR" }).format(r["total_inr"]);
+      return { text: L.fareQuote(placeName, total), quickReplies: [L.callMe(placeName)] };
     }
-    return {
-      text: `Fares to ${placeName} aren't published yet${r["unavailable"] === "distance_not_verified" ? " (the road distance is still being verified)" : ""}. I can ask our team to call you with a quote.`,
-      quickReplies: [{ label: "Call me back", message: `Please call me back about a trip to ${placeName}` }],
-    };
+    return { text: L.fareNotPublished(placeName, r["unavailable"] === "distance_not_verified"), quickReplies: [L.callMe(placeName)] };
   }
 
   if (has(t, INTENT.fareHow)) {
-    const out = await call("explain_fares", {});
-    const r = out.result as { built_into_price: string[]; paid_at_actual_cost: string[]; promise: string };
-    return {
-      text: `Built into the price: ${r.built_into_price.join(", ")}. Paid at actual cost: ${r.paid_at_actual_cost.join(", ")}. ${r.promise}`,
-      quickReplies: MENU.slice(1, 2),
-    };
+    await call("explain_fares", {});
+    return { text: `${L.fareExplain(L.join(L.builtIn), L.join(L.actuals))} ${L.promise}`, quickReplies: L.menu.slice(1, 2) };
   }
 
   // Route facts.
-  if (place && has(t, INTENT.route)) {
+  if (place && placeName && has(t, INTENT.route)) {
     const out = await call("get_route", { destination: place.slug });
-    if (out.isError) return { text: `I don't have a route to ${placeName} yet.`, quickReplies: MENU };
+    if (out.isError) return { text: L.noRoute(placeName), quickReplies: L.menu };
     const r = out.result as Record<string, Fact | string>;
     const km = r["road_distance_km"] as Fact;
     const mins = r["drive_minutes"] as Fact;
     const parts = [
-      km.status === "verified" ? `The road distance is ${km.value} km.` : "The road distance is still being verified.",
-      mins.status === "verified" ? `Typical drive time is about ${Math.round(Number(mins.value) / 6) / 10} hours.` : "Drive time is still being verified.",
+      km.status === "verified" ? L.distance(km.value) : L.distancePending,
+      mins.status === "verified" ? L.driveTime(Math.round(Number(mins.value) / 6) / 10) : L.drivePending,
+      L.details(String(r["page"])),
     ];
-    return { text: `${parts.join(" ")} Details: ${r["page"]}`, quickReplies: [{ label: `Fare to ${placeName}`.slice(0, 20), message: `What is the fare to ${placeName}?` }] };
+    return { text: parts.join(" "), quickReplies: [L.fareTo(placeName)] };
   }
 
   // Closing day / timings, or a place mentioned on its own.
-  if (place) {
+  if (place && placeName) {
     const out = await call("get_place", { slug: place.slug });
     const r = out.result as Record<string, unknown>;
     const closed = r["weekly_closing_day"] as Fact;
     const hours = r["opening_hours"] as Fact;
     const lines: string[] = [];
     if (closed.status === "verified" && Array.isArray(closed.value)) {
-      lines.push(closed.value.length ? `${placeName} is closed every ${closed.value.map((d) => DAY[d as string]).join(" and ")}.` : `${placeName} has no weekly closing day.`);
-    } else if (["cave_site", "temple", "fort", "monument", "nature"].includes(place.kind)) {
-      lines.push(`The weekly closing day for ${placeName} isn't confirmed: ${pendingWhy(closed)}. Please check before you travel.`);
+      lines.push(closed.value.length ? L.closedEvery(placeName, L.join(closed.value.map((d) => L.days[d as string] ?? String(d)))) : L.noClosingDay(placeName));
+    } else if (VISITABLE.includes(place.kind)) {
+      lines.push(L.closingUnconfirmed(placeName, /CONFLICT/.test(closed.reason ?? "")));
     }
     if (has(t, INTENT.closed)) {
       if (hours.status === "verified") {
         const h = hours.value as { open: string; close: string };
-        lines.push(`Opening hours: ${h.open}–${h.close}.`);
-      } else if (place.kind !== "city" && place.kind !== "town") lines.push("Opening hours are still being verified.");
+        lines.push(L.hours(h.open, h.close));
+      } else if (VISITABLE.includes(place.kind)) lines.push(L.hoursPending);
     }
-    if (r["unesco_world_heritage"]) lines.push("It is a UNESCO World Heritage Site.");
-    lines.push(`More: ${r["page"]}`);
-    return {
-      text: lines.join(" "),
-      quickReplies: [
-        { label: `Fare to ${placeName}`.slice(0, 20), message: `What is the fare to ${placeName}?` },
-        { label: "How far is it?", message: `How far is ${placeName}?` },
-      ],
-    };
+    if (r["unesco_world_heritage"]) lines.push(L.unesco);
+    lines.push(L.more(String(r["page"])));
+    return { text: lines.join(" "), quickReplies: [L.fareTo(placeName), L.howFar(placeName)] };
   }
 
   if (has(t, INTENT.language)) {
-    const out = await call("site_help", { topic: "languages" });
-    return { text: String(out.result["text"]), quickReplies: MENU };
+    await call("site_help", { topic: "languages" });
+    return { text: L.languages, quickReplies: L.menu };
   }
   if (has(t, INTENT.cityName)) {
-    const out = await call("site_help", { topic: "city_names" });
-    return { text: String(out.result["text"]), quickReplies: MENU };
+    await call("site_help", { topic: "city_names" });
+    return { text: L.cityName, quickReplies: L.menu };
   }
-  if (has(t, INTENT.greet) || t.length < 3) {
-    return {
-      text: "Namaste! I can tell you about destinations around Chhatrapati Sambhajinagar, how our fares work, and arrange a call back from our team.",
-      quickReplies: MENU,
-    };
-  }
-  return {
-    text: "I'm in basic mode and didn't catch that. Try asking about a place (like Ellora or Shirdi), fares, or a call back.",
-    quickReplies: MENU,
-  };
+  if (has(t, INTENT.greet) || t.length < 3) return { text: L.greeting, quickReplies: L.menu };
+  return { text: L.fallback, quickReplies: L.menu };
 }

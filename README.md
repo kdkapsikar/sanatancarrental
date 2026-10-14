@@ -85,7 +85,8 @@ Content and facts
 - **Road distances, drive times and toll estimates for all 20 routes:** not sourced, so NULL. Measure them with the chosen maps provider. Do not copy competitor figures. As a result every route scores 0 and is `noindex`.
 - **Railway station code CPSN** (renamed 25 Oct 2025?) and the **airport's current official name**.
 - **District name for Shirdi/Shani Shingnapur** after the Ahmednagar → Ahilyanagar rename.
-- **Hindi/Marathi UI strings** are all `TODO_TRANSLATE` placeholders, so the hi/mr pages are `noindex`. Place names in hi/mr come from Wikipedia interlanguage titles and need a native-speaker check. The city's Hindi name is the official form, not Wikipedia's.
+- **Hindi and Marathi translations** of the whole UI, the vehicle classes and the bot's offline replies were written by Claude and **need a native-speaker review**. They are shown to visitors now but stay `noindex` until you add `hi,mr` to `INDEXABLE_LOCALES`. Place names in hi/mr come from Wikipedia interlanguage titles. The city and airport use the current name in all three languages.
+- **Airport name**: shown as "Chhatrapati Sambhajinagar Airport"; confirm the official name with AAI.
 - Coordinates come from Wikipedia (a secondary source).
 
 Commercial / legal (client decisions)
@@ -99,7 +100,7 @@ Commercial / legal (client decisions)
 Assistant
 - **Only offline mode has been exercised** end to end. The Claude engine is covered by tests with a mocked SDK; a live run needs `ANTHROPIC_API_KEY` + `ASSISTANT_MODEL` in `.env`.
 - **WhatsApp** was tested against a local mock Graph API only. A real sandbox number and BSP/Meta app are needed, plus a decision on message retention.
-- **Offline replies are English** for now (hi/mr wording is TODO_TRANSLATE). Marathi and Hindi questions are understood; the Claude engine replies in the user's language.
+- **Offline replies** follow the page language (en/hi/mr); on the English page a question typed in Devanagari gets a Marathi or Hindi reply depending on the words used. The Claude engine replies in the person's language.
 - **Voice** uses the browser's own speech engines, so quality varies by device. Server-side voice (as मदतनीस does with Bhashini) is not wired in.
 
 Audit gaps

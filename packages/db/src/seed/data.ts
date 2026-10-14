@@ -29,6 +29,7 @@ type PlaceSeed = {
   aliases: string[];
   nameEn?: string;
   nameHi?: string;
+  nameMr?: string;
   district?: string | null;
   unescoSite?: boolean | null;
   needsVerification: NeedsVerification;
@@ -51,10 +52,14 @@ export const PLACE_SEEDS: PlaceSeed[] = [
   },
   {
     slug: "chhatrapati-sambhajinagar-airport",
+    // Shown with the city's current name; Wikipedia still titles it "Aurangabad Airport".
+    nameEn: "Chhatrapati Sambhajinagar Airport",
+    nameHi: "छत्रपति संभाजीनगर हवाई अड्डा",
+    nameMr: "छत्रपती संभाजीनगर विमानतळ",
     aliases: ["Aurangabad Airport", "IXU", "Chikkalthana Airport", "Chhatrapati Sambhajinagar Airport"],
     district: "Chhatrapati Sambhajinagar",
     needsVerification: {
-      name: "Wikipedia lists 'Aurangabad Airport'; current official name after the city rename is unverified.",
+      name: "Displayed with the city's current name; confirm the airport's official name with AAI.",
       description: "Needs the client's first-hand content.",
     },
   },
@@ -229,9 +234,9 @@ export const routeGaps = (extra?: NeedsVerification): NeedsVerification => ({ ..
  * Seat counts exclude the driver.
  */
 export const VEHICLE_CLASSES = [
-  { code: "sedan", name: { en: "Sedan", hi: "TODO_TRANSLATE: Sedan", mr: "TODO_TRANSLATE: Sedan" }, seats: 4, luggageBags: 2, exampleModels: ["Maruti Dzire", "Toyota Etios", "Honda Amaze"], sortOrder: 1 },
-  { code: "muv", name: { en: "MUV (6–7 seats)", hi: "TODO_TRANSLATE: MUV", mr: "TODO_TRANSLATE: MUV" }, seats: 6, luggageBags: 3, exampleModels: ["Maruti Ertiga", "Kia Carens"], sortOrder: 2 },
-  { code: "suv", name: { en: "SUV", hi: "TODO_TRANSLATE: SUV", mr: "TODO_TRANSLATE: SUV" }, seats: 6, luggageBags: 3, exampleModels: ["Mahindra Scorpio"], sortOrder: 3 },
-  { code: "muv_premium", name: { en: "Premium MUV", hi: "TODO_TRANSLATE: Premium MUV", mr: "TODO_TRANSLATE: Premium MUV" }, seats: 6, luggageBags: 4, exampleModels: ["Toyota Innova Crysta", "Toyota Innova Hycross"], sortOrder: 4 },
-  { code: "tempo_traveller", name: { en: "Tempo Traveller", hi: "TODO_TRANSLATE: Tempo Traveller", mr: "TODO_TRANSLATE: Tempo Traveller" }, seats: 12, luggageBags: 8, exampleModels: ["Force Tempo Traveller"], sortOrder: 5 },
+  { code: "sedan", name: { en: "Sedan", hi: "सेडान", mr: "सेडान" }, seats: 4, luggageBags: 2, exampleModels: ["Maruti Dzire", "Toyota Etios", "Honda Amaze"], sortOrder: 1 },
+  { code: "muv", name: { en: "MUV (6–7 seats)", hi: "एमयूवी (6–7 सीटें)", mr: "एमयूव्ही (6–7 आसने)" }, seats: 6, luggageBags: 3, exampleModels: ["Maruti Ertiga", "Kia Carens"], sortOrder: 2 },
+  { code: "suv", name: { en: "SUV", hi: "एसयूवी", mr: "एसयूव्ही" }, seats: 6, luggageBags: 3, exampleModels: ["Mahindra Scorpio"], sortOrder: 3 },
+  { code: "muv_premium", name: { en: "Premium MUV", hi: "प्रीमियम एमयूवी", mr: "प्रीमियम एमयूव्ही" }, seats: 6, luggageBags: 4, exampleModels: ["Toyota Innova Crysta", "Toyota Innova Hycross"], sortOrder: 4 },
+  { code: "tempo_traveller", name: { en: "Tempo Traveller", hi: "टेम्पो ट्रैवलर", mr: "टेम्पो ट्रॅव्हलर" }, seats: 12, luggageBags: 8, exampleModels: ["Force Tempo Traveller"], sortOrder: 5 },
 ];

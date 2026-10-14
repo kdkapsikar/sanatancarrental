@@ -34,7 +34,7 @@ try {
         name: {
           en: seed.nameEn ?? w.wikipediaTitle,
           ...(seed.nameHi ?? w.hi ? { hi: seed.nameHi ?? w.hi! } : {}),
-          ...(w.mr ? { mr: w.mr } : {}),
+          ...(seed.nameMr ?? w.mr ? { mr: seed.nameMr ?? w.mr! } : {}),
         },
         aliases: seed.aliases,
         location: w.lat !== null && w.lng !== null ? { lat: w.lat, lng: w.lng } : null,

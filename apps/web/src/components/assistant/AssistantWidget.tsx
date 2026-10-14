@@ -32,6 +32,7 @@ export interface WidgetStrings {
   readAloud: string;
   newChat: string;
   beep: string;
+  openPage: string;
   error: string;
   rateLimited: string;
   tools: Record<string, string>;
@@ -48,17 +49,18 @@ interface Message {
   error?: boolean;
 }
 
-const STORE_KEY = "etaxi_chat_v1";
+// One conversation per language, so switching language doesn't mix old replies in.
+const storeKey = (locale: string) => `etaxi_chat_v1_${locale}`;
 const TEASER_KEY = "etaxi_teaser_closed";
 const VOICE_KEY = "etaxi_read_aloud";
 let nextId = 1;
 
 /** Turns relative page paths in an answer ("/en/places/ellora-caves") into links. */
-function linkify(text: string): ReactNode[] {
+function linkify(text: string, label: string): ReactNode[] {
   return text.split(/(\/(?:en|hi|mr)(?:\/[\w-]+)+)/g).map((part, i) =>
     /^\/(en|hi|mr)\//.test(part) ? (
       <a key={i} href={part} className="font-medium text-kumkum-700 underline decoration-dotted underline-offset-2">
-        {part.split("/").pop()?.replace(/-/g, " ")}
+        {label} →
       </a>
     ) : (
       part
@@ -89,7 +91,7 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
   // Restore this tab's conversation and preferences (never sent anywhere but our own API).
   useEffect(() => {
     try {
-      const saved = JSON.parse(sessionStorage.getItem(STORE_KEY) ?? "null") as Message[] | null;
+      const saved = JSON.parse(sessionStorage.getItem(storeKey(locale)) ?? "null") as Message[] | null;
       if (saved?.length) {
         setMessages(saved.map((m) => ({ ...m, proposals: m.proposals.map((p) => (p.state === "pending" || p.state === "working" ? { ...p, state: "cancelled" as const } : p)) })));
         nextId = Math.max(...saved.map((m) => m.id)) + 1;
@@ -112,11 +114,11 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
 
   useEffect(() => {
     try {
-      sessionStorage.setItem(STORE_KEY, JSON.stringify(messages.slice(-40)));
+      sessionStorage.setItem(storeKey(locale), JSON.stringify(messages.slice(-40)));
     } catch {
       /* ignore */
     }
-  }, [messages]);
+  }, [messages, locale]);
 
   useEffect(() => {
     if (!open || mode) return;
@@ -334,7 +336,7 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
                 <div key={m.id} className="space-y-2">
                   {m.text && (
                     <div className={`max-w-[88%] rounded-2xl rounded-tl-sm px-3.5 py-2.5 text-sm whitespace-pre-wrap shadow-sm ${m.error ? "bg-kumkum-50 text-kumkum-700" : "bg-white"}`}>
-                      {linkify(m.text)}
+                      {linkify(m.text, s.openPage)}
                     </div>
                   )}
                   {m.proposals.map((p) => (
