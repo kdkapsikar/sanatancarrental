@@ -1,0 +1,110 @@
+{
+  "site": {
+    "defaultBrand": "Cab & Tour Booking",
+    "tagline": "Outstation, airport and sightseeing trips from Chhatrapati Sambhajinagar (Aurangabad)",
+    "nav": {
+      "home": "Home",
+      "places": "Destinations",
+      "routes": "Routes",
+      "language": "Language"
+    },
+    "footer": {
+      "pricesNote": "Prices are calculated per trip and shown with every inclusion and exclusion.",
+      "cityNames": "Chhatrapati Sambhajinagar, formerly Aurangabad"
+    }
+  },
+  "languages": {
+    "en": "English",
+    "hi": "हिन्दी",
+    "mr": "मराठी"
+  },
+  "home": {
+    "metaTitle": "Cabs and tours from Chhatrapati Sambhajinagar (Aurangabad)",
+    "metaDescription": "Outstation cabs, airport transfers and sightseeing trips to Ajanta, Ellora, Shirdi and more, with itemised fares.",
+    "heading": "Trips from Chhatrapati Sambhajinagar",
+    "intro": "Outstation cabs, airport transfers and sightseeing trips. Every fare shows exactly what is included and what is not.",
+    "destinationsHeading": "Destinations",
+    "routesHeading": "Routes from the city",
+    "dataNote": "Details marked as not yet verified are still being checked with official sources."
+  },
+  "place": {
+    "metaTitle": "{name}: visiting information and cabs",
+    "metaDescription": "Plan a trip to {name} from Chhatrapati Sambhajinagar.",
+    "kind": {
+      "city": "City",
+      "town": "Town",
+      "airport": "Airport",
+      "cave_site": "Cave site",
+      "temple": "Temple",
+      "fort": "Fort",
+      "monument": "Monument",
+      "nature": "Natural site"
+    },
+    "facts": "Visiting information",
+    "closedDays": "Weekly closing day",
+    "openingHours": "Opening hours",
+    "entryFees": "Entry fees",
+    "unesco": "UNESCO World Heritage Site",
+    "officialTickets": "Buy entry tickets on the official website",
+    "notVerified": "Not yet verified",
+    "verificationPending": "Some details on this page are still being verified with official sources, so it is not yet listed in search engines.",
+    "routesHere": "Routes to {name}",
+    "source": "Source"
+  },
+  "route": {
+    "metaTitle": "{origin} to {destination} cab",
+    "metaDescription": "Cab from {origin} to {destination} with an itemised fare.",
+    "heading": "{origin} to {destination}",
+    "distance": "Road distance",
+    "driveTime": "Typical drive time",
+    "toll": "Estimated tolls",
+    "faresPending": "Fares for this route are being finalised. Ask us for a quote and we will send the full breakdown.",
+    "kmValue": "{km} km",
+    "minutesValue": "{hours, plural, =0 {} one {# hr } other {# hrs }}{minutes} min"
+  },
+  "weekday": {
+    "mon": "Monday",
+    "tue": "Tuesday",
+    "wed": "Wednesday",
+    "thu": "Thursday",
+    "fri": "Friday",
+    "sat": "Saturday",
+    "sun": "Sunday"
+  },
+  "quote": {
+    "total": "Total",
+    "includes": "Included",
+    "excludes": "Not included",
+    "line": {
+      "base_km": "Distance ({km} km)",
+      "minimum_km_applied": "Minimum billing top-up ({minKmPerDay} km/day × {days} days)",
+      "one_way_return": "Return distance share ({percent}%)",
+      "driver_allowance": "Driver allowance",
+      "night_halt": "Night halt",
+      "toll": "Tolls (estimate included in fare)",
+      "parking": "Parking (estimate included in fare)",
+      "border_tax": "State entry tax ({state})",
+      "waiting": "Waiting time beyond {freeMinutes} free minutes",
+      "airport_fee": "Airport entry fee",
+      "local_package": "Local package ({hours} hrs / {km} km)",
+      "local_extra_km": "Extra km",
+      "local_extra_hours": "Extra hours",
+      "airport_base": "Airport transfer (up to {includedKm} km)",
+      "airport_extra_km": "Extra km",
+      "gst": "GST ({percent}%)"
+    },
+    "note": {
+      "toll_at_actuals": "Tolls, paid at actual cost",
+      "parking_at_actuals": "Parking, paid at actual cost",
+      "border_tax_at_actuals": "State entry tax for {state}, paid at actual cost",
+      "toll_included": "Tolls",
+      "parking_included": "Parking",
+      "driver_allowance_included": "Driver allowance for {days} days",
+      "night_halt_included": "Night halt for {nights} nights",
+      "minimum_km_rule": "Minimum {minKmPerDay} km per day",
+      "waiting_beyond_estimate": "Waiting beyond the estimate, charged per {blockMinutes} minutes after {freeMinutes} free minutes",
+      "extra_km_beyond_estimate": "Distance beyond the estimate, charged per km",
+      "gst_included": "GST at {percent}%"
+    }
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "site": {
+    "defaultBrand": "TODO_TRANSLATE: Cab & Tour Booking",
+    "tagline": "TODO_TRANSLATE: Outstation, airport and sightseeing trips from Chhatrapati Sambhajinagar (Aurangabad)",
+    "nav": {
+      "home": "TODO_TRANSLATE: Home",
+      "places": "TODO_TRANSLATE: Destinations",
+      "routes": "TODO_TRANSLATE: Routes",
+      "language": "TODO_TRANSLATE: Language"
+    },
+    "footer": {
+      "pricesNote": "TODO_TRANSLATE: Prices are calculated per trip and shown with every inclusion and exclusion.",
+      "cityNames": "TODO_TRANSLATE: Chhatrapati Sambhajinagar, formerly Aurangabad"
+    }
+  },
+  "languages": {
+    "en": "English",
+    "hi": "हिन्दी",
+    "mr": "मराठी"
+  },
+  "home": {
+    "metaTitle": "TODO_TRANSLATE: Cabs and tours from Chhatrapati Sambhajinagar (Aurangabad)",
+    "metaDescription": "TODO_TRANSLATE: Outstation cabs, airport transfers and sightseeing trips to Ajanta, Ellora, Shirdi and more, with itemised fares.",
+    "heading": "TODO_TRANSLATE: Trips from Chhatrapati Sambhajinagar",
+    "intro": "TODO_TRANSLATE: Outstation cabs, airport transfers and sightseeing trips. Every fare shows exactly what is included and what is not.",
+    "destinationsHeading": "TODO_TRANSLATE: Destinations",
+    "routesHeading": "TODO_TRANSLATE: Routes from the city",
+    "dataNote": "TODO_TRANSLATE: Details marked as not yet verified are still being checked with official sources."
+  },
+  "place": {
+    "metaTitle": "TODO_TRANSLATE: {name}: visiting information and cabs",
+    "metaDescription": "TODO_TRANSLATE: Plan a trip to {name} from Chhatrapati Sambhajinagar.",
+    "kind": {
+      "city": "TODO_TRANSLATE: City",
+      "town": "TODO_TRANSLATE: Town",
+      "airport": "TODO_TRANSLATE: Airport",
+      "cave_site": "TODO_TRANSLATE: Cave site",
+      "temple": "TODO_TRANSLATE: Temple",
+      "fort": "TODO_TRANSLATE: Fort",
+      "monument": "TODO_TRANSLATE: Monument",
+      "nature": "TODO_TRANSLATE: Natural site"
+    },
+    "facts": "TODO_TRANSLATE: Visiting information",
+    "closedDays": "TODO_TRANSLATE: Weekly closing day",
+    "openingHours": "TODO_TRANSLATE: Opening hours",
+    "entryFees": "TODO_TRANSLATE: Entry fees",
+    "unesco": "TODO_TRANSLATE: UNESCO World Heritage Site",
+    "officialTickets": "TODO_TRANSLATE: Buy entry tickets on the official website",
+    "notVerified": "TODO_TRANSLATE: Not yet verified",
+    "verificationPending": "TODO_TRANSLATE: Some details on this page are still being verified with official sources, so it is not yet listed in search engines.",
+    "routesHere": "TODO_TRANSLATE: Routes to {name}",
+    "source": "TODO_TRANSLATE: Source"
+  },
+  "route": {
+    "metaTitle": "TODO_TRANSLATE: {origin} to {destination} cab",
+    "metaDescription": "TODO_TRANSLATE: Cab from {origin} to {destination} with an itemised fare.",
+    "heading": "TODO_TRANSLATE: {origin} to {destination}",
+    "distance": "TODO_TRANSLATE: Road distance",
+    "driveTime": "TODO_TRANSLATE: Typical drive time",
+    "toll": "TODO_TRANSLATE: Estimated tolls",
+    "faresPending": "TODO_TRANSLATE: Fares for this route are being finalised. Ask us for a quote and we will send the full breakdown.",
+    "kmValue": "TODO_TRANSLATE: {km} km",
+    "minutesValue": "TODO_TRANSLATE: {hours, plural, =0 {} one {# hr } other {# hrs }}{minutes} min"
+  },
+  "weekday": {
+    "mon": "TODO_TRANSLATE: Monday",
+    "tue": "TODO_TRANSLATE: Tuesday",
+    "wed": "TODO_TRANSLATE: Wednesday",
+    "thu": "TODO_TRANSLATE: Thursday",
+    "fri": "TODO_TRANSLATE: Friday",
+    "sat": "TODO_TRANSLATE: Saturday",
+    "sun": "TODO_TRANSLATE: Sunday"
+  },
+  "quote": {
+    "total": "TODO_TRANSLATE: Total",
+    "includes": "TODO_TRANSLATE: Included",
+    "excludes": "TODO_TRANSLATE: Not included",
+    "line": {
+      "base_km": "TODO_TRANSLATE: Distance ({km} km)",
+      "minimum_km_applied": "TODO_TRANSLATE: Minimum billing top-up ({minKmPerDay} km/day × {days} days)",
+      "one_way_return": "TODO_TRANSLATE: Return distance share ({percent}%)",
+      "driver_allowance": "TODO_TRANSLATE: Driver allowance",
+      "night_halt": "TODO_TRANSLATE: Night halt",
+      "toll": "TODO_TRANSLATE: Tolls (estimate included in fare)",
+      "parking": "TODO_TRANSLATE: Parking (estimate included in fare)",
+      "border_tax": "TODO_TRANSLATE: State entry tax ({state})",
+      "waiting": "TODO_TRANSLATE: Waiting time beyond {freeMinutes} free minutes",
+      "airport_fee": "TODO_TRANSLATE: Airport entry fee",
+      "local_package": "TODO_TRANSLATE: Local package ({hours} hrs / {km} km)",
+      "local_extra_km": "TODO_TRANSLATE: Extra km",
+      "local_extra_hours": "TODO_TRANSLATE: Extra hours",
+      "airport_base": "TODO_TRANSLATE: Airport transfer (up to {includedKm} km)",
+      "airport_extra_km": "TODO_TRANSLATE: Extra km",
+      "gst": "TODO_TRANSLATE: GST ({percent}%)"
+    },
+    "note": {
+      "toll_at_actuals": "TODO_TRANSLATE: Tolls, paid at actual cost",
+      "parking_at_actuals": "TODO_TRANSLATE: Parking, paid at actual cost",
+      "border_tax_at_actuals": "TODO_TRANSLATE: State entry tax for {state}, paid at actual cost",
+      "toll_included": "TODO_TRANSLATE: Tolls",
+      "parking_included": "TODO_TRANSLATE: Parking",
+      "driver_allowance_included": "TODO_TRANSLATE: Driver allowance for {days} days",
+      "night_halt_included": "TODO_TRANSLATE: Night halt for {nights} nights",
+      "minimum_km_rule": "TODO_TRANSLATE: Minimum {minKmPerDay} km per day",
+      "waiting_beyond_estimate": "TODO_TRANSLATE: Waiting beyond the estimate, charged per {blockMinutes} minutes after {freeMinutes} free minutes",
+      "extra_km_beyond_estimate": "TODO_TRANSLATE: Distance beyond the estimate, charged per km",
+      "gst_included": "TODO_TRANSLATE: GST at {percent}%"
+    }
+  }
+}
