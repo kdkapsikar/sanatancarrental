@@ -1,0 +1,19 @@
+{
+  "name": "@cab/jobs",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "worker": "tsx src/worker.ts"
+  },
+  "dependencies": {
+    "@cab/compliance": "*",
+    "@cab/config": "*",
+    "bullmq": "^6.3.14",
+    "ioredis": "^6.0.0"
+  }
+}
