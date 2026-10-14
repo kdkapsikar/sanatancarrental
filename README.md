@@ -1,6 +1,6 @@
 # सनातन कार रेंटल (Sanatan Car Rental)
 
-Trilingual (en/hi/mr) outstation, airport and sightseeing booking platform for Chhatrapati Sambhajinagar. The brand is always written in Devanagari (`BRAND` in `packages/config`). See `cab-platform-plan.md` for scope and `CLAUDE.md` for the rules every change must follow.
+Trilingual (en/hi/mr) outstation, airport and sightseeing booking platform for Chhatrapati Sambhajinagar. The brand is always written in Devanagari (`BRAND` in `packages/config`). See `CLAUDE.md` for the rules every change must follow. The client's plan and the competitor audit are kept outside this repository (in a local, gitignored `private/` folder).
 
 ## Layout
 | Path | What |
@@ -13,7 +13,6 @@ Trilingual (en/hi/mr) outstation, airport and sightseeing booking platform for C
 | `packages/jobs` | BullMQ queue definitions and a stub worker |
 | `packages/assistant` | e-Taxi assistant: Claude + offline engines, tools, proposals, WhatsApp channel |
 | `packages/config` | Env schema and feature flags (`AGGREGATOR_MODE=false`) |
-| `audit/` | Phase 0 competitor audit scripts, CSVs and `findings.md` |
 | `docs/next-session.md` | Proposal for the quote/booking flow and Razorpay test mode |
 
 **ORM choice: Drizzle.** Migrations are plain SQL we commit and review, which matters for PostGIS `geography` columns, CHECK constraints, partial unique indexes and triggers. It has no query-engine binary, and types are inferred from the schema under TS strict. Prisma would have needed `Unsupported("geography")` and raw SQL for most of these guards anyway.
@@ -76,7 +75,6 @@ Built the same way as Saathi (irctc-api-integration), with मदतनीस's 
 | `npm test` | Vitest: fare engine, compliance, completeness, seed guards, DB integrity, SEO, i18n parity, hardcoded-fare guard |
 | `npm run db:generate` | `drizzle-kit generate` (then review the SQL; see CLAUDE.md) |
 | `npm run db:migrate` / `db:seed` | apply migrations / seed data |
-| `npm run audit:*` | re-run the competitor audit (uses the cache in `audit/raw/`) |
 
 ## What I could not verify (open items)
 Content and facts
@@ -102,7 +100,3 @@ Assistant
 - **WhatsApp** was tested against a local mock Graph API only. A real sandbox number and BSP/Meta app are needed, plus a decision on message retention.
 - **Offline replies** follow the page language (en/hi/mr); on the English page a question typed in Devanagari gets a Marathi or Hindi reply depending on the words used. The Claude engine replies in the person's language.
 - **Voice** uses the browser's own speech engines, so quality varies by device. Server-side voice (as मदतनीस does with Bhashini) is not wired in.
-
-Audit gaps
-- **Field INP (CrUX):** the PageSpeed Insights API returned 429 without an API key. Lab LCP/CLS/TBT were recorded.
-- Backlinks, indexed page counts, GBP ratings and rankings need Search Console, Ahrefs/Semrush or GBP access.

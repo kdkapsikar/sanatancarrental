@@ -3,7 +3,7 @@
 The brand name is always shown in Devanagari, in every language (`BRAND` in `packages/config`); the Latin form is only for metadata/search.
 Priorities: SEO quality, price transparency, compliance, WhatsApp-first.
 Positioning: outstation, airport, sightseeing and packages — not intra-city ride-hailing.
-Source of truth for scope and open questions: `cab-platform-plan.md`. Anything marked [verify] there must be checked, not assumed.
+Source of truth for scope and open questions: the client plan in `private/cab-platform-plan.md` (local only, never committed). Anything marked [verify] there must be checked, not assumed.
 
 # Non-negotiables
 - The fare engine (`packages/fare-engine`) is the only source of prices. UI, bot and emails call it; nothing hardcodes a fare. `apps/web/src/guards.test.ts` fails the build on rupee amounts elsewhere.
@@ -26,6 +26,6 @@ Source of truth for scope and open questions: `cab-platform-plan.md`. Anything m
 - **SEO:** canonical city slug token `chhatrapati-sambhajinagar`. Old-name / bare `sambhajinagar` URL tokens 301 via `src/proxy.ts` (Next 16's name for middleware). No FAQPage markup. No meta keywords.
 - **Tests:** Vitest projects per package. Fare, compliance, completeness, SEO and i18n logic must have tests. DB integrity tests run against `TEST_DATABASE_URL` and re-migrate it.
 - **Commits:** small, with a clear message. Run `npm run typecheck && npm test` before each commit. No secrets in the repo (`.env*` is gitignored; `.env.example` documents the variables).
-- **Competitor audit (`/audit`):** respect robots.txt, ≥3 s between requests per host, capped and cached. Raw HTML stays in gitignored `audit/raw/`. Never copy competitor copy, prices or distances into our content or seed data.
+- **Competitor audit (`private/audit`, never committed):** respect robots.txt, ≥3 s between requests per host, capped and cached. Raw HTML and results stay in `private/`. Never copy competitor copy, prices or distances into our content or seed data.
 - **Assistant (e-Taxi)**: every fact or price it states must come from a tool result in the same turn (`packages/assistant/src/tools.ts`); prices only via `get_quote` → fare engine. New capabilities are new tools, used by both engines. Anything that writes personal data is a proposal the person must confirm (`confirmProposal`), which also records consent. Keep the system prompt stable (it is cached); per-request context goes in the second system block.
 - Out of scope until scheduled: payments (Razorpay test mode first) and the vendor portal UI. The WhatsApp channel exists but stays off until credentials are configured.

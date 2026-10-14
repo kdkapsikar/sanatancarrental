@@ -5,7 +5,9 @@ coverage/
 *.tsbuildinfo
 .env
 .env.local
-audit/raw/
-audit/lighthouse-json/
+# Client plan, competitor audit and other material that must not be published.
+private/
+# Local editor/launcher settings.
+.claude/
 .DS_Store
 next-env.d.ts
