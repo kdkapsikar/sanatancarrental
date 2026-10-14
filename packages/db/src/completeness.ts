@@ -1,4 +1,4 @@
-import type { LocalisedText, NeedsVerification } from "./schema/types.js";
+import type { LocalisedText, NeedsVerification } from "./schema/types";
 
 /**
  * Completeness = share of required fields that are present AND not flagged in

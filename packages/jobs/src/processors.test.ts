@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { processDocumentExpiry, processReviewRequest } from "./processors.js";
+import { processDocumentExpiry, processReviewRequest } from "./processors";
 
 describe("document-expiry processor", () => {
   it("returns notices for documents expiring within the window", async () => {

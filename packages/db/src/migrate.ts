@@ -1,6 +1,6 @@
 import { migrate } from "drizzle-orm/postgres-js/migrator";
 import { fileURLToPath } from "node:url";
-import { createDb } from "./client.js";
+import { createDb } from "./client";
 
 const url = process.argv[2] ?? process.env["DATABASE_URL"];
 const { db, client } = createDb(url);

@@ -1,8 +1,8 @@
 // Idempotent seed: vehicle classes, 16 places, 20 routes, and EXAMPLE (inactive) fare rules.
 import { sql } from "drizzle-orm";
-import { createDb } from "../client.js";
-import { placeCompleteness, routeCompleteness } from "../completeness.js";
-import { fareRules, places, routes, vehicleClasses } from "../schema/index.js";
+import { createDb } from "../client";
+import { placeCompleteness, routeCompleteness } from "../completeness";
+import { fareRules, places, routes, vehicleClasses } from "../schema/index";
 import {
   PLACE_SEEDS,
   ROUTE_SEEDS,
@@ -10,8 +10,8 @@ import {
   VEHICLE_CLASSES,
   WIKI,
   routeGaps,
-} from "./data.js";
-import { EXAMPLE_FARE_RULES } from "./example-fare-rules.js";
+} from "./data";
+import { EXAMPLE_FARE_RULES } from "./example-fare-rules";
 
 const { db, client } = createDb(process.argv[2]);
 

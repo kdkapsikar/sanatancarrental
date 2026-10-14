@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { readEnv, readFlags } from "./index.js";
+import { readEnv, readFlags } from "./index";
 
 describe("flags", () => {
   it("aggregator mode is off when unset", () => {

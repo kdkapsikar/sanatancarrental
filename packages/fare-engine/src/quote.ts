@@ -1,5 +1,5 @@
-import { calendarDays, nightsSpanned, toIstMinutes } from "./time.js";
-import type { FareRule, Paise, Quote, QuoteInput, QuoteLine, QuoteNote } from "./types.js";
+import { calendarDays, nightsSpanned, toIstMinutes } from "./time";
+import type { FareRule, Paise, Quote, QuoteInput, QuoteLine, QuoteNote } from "./types";
 
 export class FareError extends Error {
   constructor(

@@ -14,7 +14,7 @@ import {
   uniqueIndex,
   uuid,
 } from "drizzle-orm/pg-core";
-import { geographyPoint, type LocalisedText, type NeedsVerification } from "./types.js";
+import { geographyPoint, type LocalisedText, type NeedsVerification } from "./types";
 
 const timestamps = {
   createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),

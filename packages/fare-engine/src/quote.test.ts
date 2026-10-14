@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { FareError, quote, selectRule } from "./quote.js";
-import type { FareRule, QuoteInput, QuoteLine } from "./types.js";
+import { FareError, quote, selectRule } from "./quote";
+import type { FareRule, QuoteInput, QuoteLine } from "./types";
 
 // Test fixture values only. They are not the client's prices and must never be seeded as active.
 const OUT_SEDAN: FareRule = {

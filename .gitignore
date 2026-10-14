@@ -8,3 +8,4 @@ coverage/
 audit/raw/
 audit/lighthouse-json/
 .DS_Store
+next-env.d.ts

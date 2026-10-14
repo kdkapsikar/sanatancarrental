@@ -6,7 +6,7 @@
  * database CHECK prevents from ever being activated. Real rules must be entered by the client
  * as new rows with approved_by set.
  */
-import type { fareRules } from "../schema/index.js";
+import type { fareRules } from "../schema/index";
 
 const common = {
   toll: "at_actuals" as const,

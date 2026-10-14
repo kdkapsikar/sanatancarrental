@@ -15,8 +15,8 @@ import {
 } from "drizzle-orm/pg-core";
 import type { Quote } from "@cab/fare-engine";
 import type { Eligibility } from "@cab/compliance";
-import { places, routes, tourPackages, itineraries } from "./content.js";
-import { drivers, fareRules, guides, tripType, vehicleClasses, vehicles, vendors } from "./fleet.js";
+import { places, routes, tourPackages, itineraries } from "./content";
+import { drivers, fareRules, guides, tripType, vehicleClasses, vehicles, vendors } from "./fleet";
 
 const createdAt = timestamp("created_at", { withTimezone: true }).notNull().defaultNow();
 

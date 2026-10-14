@@ -14,7 +14,7 @@ import {
   toScriptJson,
   touristTrip,
   type BusinessInfo,
-} from "./index.js";
+} from "./index";
 
 const SITE = "https://example.test";
 

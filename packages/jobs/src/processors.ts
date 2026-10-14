@@ -1,5 +1,5 @@
 import { expiringDocuments, type Owner, type OwnerKind } from "@cab/compliance";
-import type { DocumentExpiryJob, ExpiryNotice } from "./queues.js";
+import type { DocumentExpiryJob, ExpiryNotice } from "./queues";
 
 export interface OwnerSource {
   /** Loads owners with documents. Implemented against the DB in the next session. */

@@ -1,3 +1,3 @@
-export * from "./urls.js";
-export * from "./sitemap.js";
-export * from "./jsonld.js";
+export * from "./urls";
+export * from "./sitemap";
+export * from "./jsonld";

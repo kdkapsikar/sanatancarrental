@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { placeCompleteness, routeCompleteness, type PlaceLike, type RouteLike } from "./completeness.js";
+import { placeCompleteness, routeCompleteness, type PlaceLike, type RouteLike } from "./completeness";
 
 const fullPlace: PlaceLike = {
   kind: "cave_site",

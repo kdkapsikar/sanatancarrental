@@ -6,7 +6,7 @@
  *   needs_verification. Never fill them from memory or competitor pages.
  * - verified_source names where the non-null fields came from; it is not a human sign-off.
  */
-import type { NeedsVerification } from "../schema/types.js";
+import type { NeedsVerification } from "../schema/types";
 import wiki from "./wikipedia-2026-10-14.json" with { type: "json" };
 
 export const SOURCE_FETCHED_AT = "2026-10-14T00:00:00+05:30";
@@ -50,7 +50,7 @@ export const PLACE_SEEDS: PlaceSeed[] = [
     },
   },
   {
-    slug: "sambhajinagar-airport",
+    slug: "chhatrapati-sambhajinagar-airport",
     aliases: ["Aurangabad Airport", "IXU", "Chikkalthana Airport", "Chhatrapati Sambhajinagar Airport"],
     district: "Chhatrapati Sambhajinagar",
     needsVerification: {
@@ -196,7 +196,7 @@ export const ROUTE_SEEDS: Array<{
   statesEntered?: string[];
   extraGaps?: NeedsVerification;
 }> = [
-  { origin: "chhatrapati-sambhajinagar", destination: "sambhajinagar-airport" },
+  { origin: "chhatrapati-sambhajinagar", destination: "chhatrapati-sambhajinagar-airport" },
   { origin: "chhatrapati-sambhajinagar", destination: "ajanta-caves" },
   {
     origin: "chhatrapati-sambhajinagar",
@@ -215,11 +215,11 @@ export const ROUTE_SEEDS: Array<{
   { origin: "chhatrapati-sambhajinagar", destination: "mumbai" },
   { origin: "chhatrapati-sambhajinagar", destination: "lonar-crater" },
   { origin: "chhatrapati-sambhajinagar", destination: "paithan" },
-  { origin: "sambhajinagar-airport", destination: "ajanta-caves" },
-  { origin: "sambhajinagar-airport", destination: "ellora-caves" },
-  { origin: "sambhajinagar-airport", destination: "grishneshwar-temple" },
-  { origin: "sambhajinagar-airport", destination: "shirdi" },
-  { origin: "sambhajinagar-airport", destination: "lonar-crater" },
+  { origin: "chhatrapati-sambhajinagar-airport", destination: "ajanta-caves" },
+  { origin: "chhatrapati-sambhajinagar-airport", destination: "ellora-caves" },
+  { origin: "chhatrapati-sambhajinagar-airport", destination: "grishneshwar-temple" },
+  { origin: "chhatrapati-sambhajinagar-airport", destination: "shirdi" },
+  { origin: "chhatrapati-sambhajinagar-airport", destination: "lonar-crater" },
 ].map((r) => ({ ...r, statesEntered: [] as string[] }));
 
 export const routeGaps = (extra?: NeedsVerification): NeedsVerification => ({ ...ROUTE_GAPS, ...extra });

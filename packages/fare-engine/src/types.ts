@@ -96,25 +96,45 @@ export interface QuoteInput {
   parkingEstimatePaise?: Paise;
 }
 
+/** Line and note codes are i18n keys (messages: quote.line.* / quote.note.*). */
+export const QUOTE_LINE_CODES = [
+  "base_km",
+  "minimum_km_applied",
+  "one_way_return",
+  "driver_allowance",
+  "night_halt",
+  "toll",
+  "parking",
+  "border_tax",
+  "waiting",
+  "airport_fee",
+  "local_package",
+  "local_extra_km",
+  "local_extra_hours",
+  "airport_base",
+  "airport_extra_km",
+  "gst",
+] as const;
+export type QuoteLineCode = (typeof QUOTE_LINE_CODES)[number];
+
+export const QUOTE_NOTE_CODES = [
+  "toll_at_actuals",
+  "parking_at_actuals",
+  "border_tax_at_actuals",
+  "toll_included",
+  "parking_included",
+  "driver_allowance_included",
+  "night_halt_included",
+  "minimum_km_rule",
+  "waiting_beyond_estimate",
+  "extra_km_beyond_estimate",
+  "gst_included",
+] as const;
+export type QuoteNoteCode = (typeof QUOTE_NOTE_CODES)[number];
+
 /** i18n-ready line: UI renders `code` via messages with `params`; never a free-text label. */
 export interface QuoteLine {
-  code:
-    | "base_km"
-    | "minimum_km_applied"
-    | "one_way_return"
-    | "driver_allowance"
-    | "night_halt"
-    | "toll"
-    | "parking"
-    | "border_tax"
-    | "waiting"
-    | "airport_fee"
-    | "local_package"
-    | "local_extra_km"
-    | "local_extra_hours"
-    | "airport_base"
-    | "airport_extra_km"
-    | "gst";
+  code: QuoteLineCode;
   quantity: number;
   unitPaise: Paise;
   amountPaise: Paise;
@@ -123,18 +143,7 @@ export interface QuoteLine {
 }
 
 export interface QuoteNote {
-  code:
-    | "toll_at_actuals"
-    | "parking_at_actuals"
-    | "border_tax_at_actuals"
-    | "toll_included"
-    | "parking_included"
-    | "driver_allowance_included"
-    | "night_halt_included"
-    | "minimum_km_rule"
-    | "waiting_beyond_estimate"
-    | "extra_km_beyond_estimate"
-    | "gst_included";
+  code: QuoteNoteCode;
   params?: Record<string, string | number>;
 }
 

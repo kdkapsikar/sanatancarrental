@@ -2,8 +2,8 @@
 import { Worker } from "bullmq";
 import { Redis } from "ioredis";
 import { readEnv } from "@cab/config";
-import { QUEUES } from "./queues.js";
-import { processReviewRequest } from "./processors.js";
+import { QUEUES } from "./queues";
+import { processReviewRequest } from "./processors";
 
 const url = new URL(readEnv().REDIS_URL);
 // BullMQ workers need maxRetriesPerRequest: null on their blocking connection.

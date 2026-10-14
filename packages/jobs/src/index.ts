@@ -1,2 +1,2 @@
-export * from "./queues.js";
-export * from "./processors.js";
+export * from "./queues";
+export * from "./processors";

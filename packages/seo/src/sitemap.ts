@@ -1,4 +1,4 @@
-import { LOCALES, canonicalUrl, hreflangAlternates, type Locale } from "./urls.js";
+import { LOCALES, canonicalUrl, hreflangAlternates, type Locale } from "./urls";
 
 export interface SitemapRecord {
   /** Path without locale, e.g. "routes/chhatrapati-sambhajinagar-to-ellora-caves". */

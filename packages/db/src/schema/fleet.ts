@@ -15,7 +15,7 @@ import {
   uuid,
 } from "drizzle-orm/pg-core";
 import type { FareRule } from "@cab/fare-engine";
-import type { LocalisedText } from "./types.js";
+import type { LocalisedText } from "./types";
 
 const createdAt = timestamp("created_at", { withTimezone: true }).notNull().defaultNow();
 

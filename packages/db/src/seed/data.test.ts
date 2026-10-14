@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { PLACE_SEEDS, ROUTE_SEEDS, WIKI, routeGaps } from "./data.js";
-import { EXAMPLE_FARE_RULES } from "./example-fare-rules.js";
+import { PLACE_SEEDS, ROUTE_SEEDS, WIKI, routeGaps } from "./data";
+import { EXAMPLE_FARE_RULES } from "./example-fare-rules";
 
 describe("seed data guards", () => {
   it("has 15 destinations plus the origin city, each with a cited source", () => {
@@ -15,7 +15,7 @@ describe("seed data guards", () => {
     expect(ROUTE_SEEDS).toHaveLength(20);
     expect(new Set(ROUTE_SEEDS.map((r) => `${r.origin}>${r.destination}`)).size).toBe(20);
     for (const r of ROUTE_SEEDS) {
-      expect(["chhatrapati-sambhajinagar", "sambhajinagar-airport"]).toContain(r.origin);
+      expect(["chhatrapati-sambhajinagar", "chhatrapati-sambhajinagar-airport"]).toContain(r.origin);
     }
   });
 

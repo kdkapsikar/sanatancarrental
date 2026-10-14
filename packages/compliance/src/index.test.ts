@@ -6,7 +6,7 @@ import {
   type ComplianceDocument,
   type EligibilityInput,
   type OwnerKind,
-} from "./index.js";
+} from "./index";
 
 const CONFIG = { maxVehicleAgeYears: 9, expiryWarningDays: 30 };
 const TRIP = "2026-11-10";
