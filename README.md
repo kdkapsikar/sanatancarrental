@@ -11,6 +11,7 @@ Trilingual (en/hi/mr) outstation, airport and sightseeing booking platform. See 
 | `packages/seo` | Canonical city slugs, hreflang, completeness-gated sitemap, JSON-LD builders |
 | `packages/db` | Drizzle schema, SQL migrations, integrity triggers, seed data with provenance |
 | `packages/jobs` | BullMQ queue definitions and a stub worker |
+| `packages/assistant` | e-Taxi assistant: Claude + offline engines, tools, proposals, WhatsApp channel |
 | `packages/config` | Env schema and feature flags (`AGGREGATOR_MODE=false`) |
 | `audit/` | Phase 0 competitor audit scripts, CSVs and `findings.md` |
 | `docs/next-session.md` | Proposal for the quote/booking flow and Razorpay test mode |
@@ -60,6 +61,14 @@ Optional: run the stub job worker (needs Redis) with `npm run worker -w @cab/job
 ### Environment
 See `.env.example`. `BUSINESS_NAME`, `BUSINESS_PHONE`, `BUSINESS_STREET` and `BUSINESS_POSTCODE` are deliberately absent. Until the client supplies real details, no LocalBusiness JSON-LD is emitted and the header shows a generic label.
 
+## e-Taxi assistant
+Built the same way as Saathi (irctc-api-integration), with मदतनीस's front end (e-nagarparishad):
+- **Engines**: `ClaudeAssistant` (Claude tool use, streamed; model from `ASSISTANT_MODEL`, effort `low`, server-side refusal fallback on) when `ANTHROPIC_API_KEY` is set, otherwise `OfflineAssistant`. The offline engine matches English/Hindi/Marathi intents and calls the **same tools**. When the daily token cap is reached, the assistant switches to offline mode for the rest of the IST day. Rate limit per IP / WhatsApp sender.
+- **Tools** (`packages/assistant/src/tools.ts`): search_places, get_place, list_routes, get_route, list_vehicle_classes, **get_quote** (the fare engine; the only source of prices), explain_fares, site_help, request_callback. Facts come back as verified / not_verified / unknown.
+- **Writes are proposals**: request_callback creates a card. Only **Confirm** stores the customer, an append-only consent row (`2026-10-callback-v1`) and a hand-off conversation for the ops team (`conversations.handed_off_to_human`, `handoff_note`). Cards expire after 30 min, run once, and only for their owner.
+- **Web**: floating mascot widget with a teaser, quick-reply chips, a streaming panel, confirm cards, mic input and read-aloud (Web Speech API, hidden where unsupported). Website chats are **not stored on the server**; history lives in the tab's sessionStorage.
+- **WhatsApp** (`/api/whatsapp/webhook`): verify-token handshake, `X-Hub-Signature-256` check, idempotent per message id, replies inside the 24-hour service window only, quick replies and confirm/cancel as reply buttons. Returns 404 until `WHATSAPP_VERIFY_TOKEN`, `WHATSAPP_APP_SECRET`, `WHATSAPP_ACCESS_TOKEN` and `WHATSAPP_PHONE_NUMBER_ID` are set. Point the Meta app's webhook at `https://<site>/api/whatsapp/webhook` and subscribe to `messages`. WhatsApp threads **are** stored (`conversation_messages`) for context. **Decide a retention period** (DPDP) before going live.
+
 ## Scripts
 | Command | Does |
 |---|---|
@@ -86,6 +95,12 @@ Commercial / legal (client decisions)
 - **Document list for vendors/drivers:** the operational baseline from the plan; legal confirmation is needed.
 - **Guide credential type** (tourism department).
 - **DPDP Act** consent requirements: consent records are append-only, but the current rules haven't been checked.
+
+Assistant
+- **Only offline mode has been exercised** end to end. The Claude engine is covered by tests with a mocked SDK; a live run needs `ANTHROPIC_API_KEY` + `ASSISTANT_MODEL` in `.env`.
+- **WhatsApp** was tested against a local mock Graph API only. A real sandbox number and BSP/Meta app are needed, plus a decision on message retention.
+- **Offline replies are English** for now (hi/mr wording is TODO_TRANSLATE). Marathi and Hindi questions are understood; the Claude engine replies in the user's language.
+- **Voice** uses the browser's own speech engines, so quality varies by device. Server-side voice (as मदतनीस does with Bhashini) is not wired in.
 
 Audit gaps
 - **Field INP (CrUX):** the PageSpeed Insights API returned 429 without an API key. Lab LCP/CLS/TBT were recorded.
