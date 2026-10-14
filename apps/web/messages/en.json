@@ -1,6 +1,5 @@
 {
   "site": {
-    "defaultBrand": "Cab & Tour Booking",
     "tagline": "Outstation, airport and sightseeing trips from Chhatrapati Sambhajinagar",
     "nav": {
       "home": "Home",
@@ -251,7 +250,7 @@
     "close": "Close",
     "placeholder": "Ask about a place, a fare or a call back…",
     "send": "Send",
-    "intro": "Namaste! I am {name}. Ask me about places around Chhatrapati Sambhajinagar, how fares work, or ask our team to call you. I only share facts that are confirmed.",
+    "intro": "Namaste! I am {name}, the assistant of {brand}. Ask me about places around Chhatrapati Sambhajinagar, how fares work, or ask our team to call you. I only share facts that are confirmed.",
     "basicMode": "Basic mode: quick answers from our data",
     "privacy": "Chats are not stored on our server. Your number is saved only if you confirm a call-back request.",
     "confirm": "Confirm",

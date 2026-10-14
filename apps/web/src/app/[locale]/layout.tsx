@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Fraunces, Mukta, Tiro_Devanagari_Marathi } from "next/font/google";
+import { BRAND } from "@cab/config";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { AssistantMount } from "@/components/assistant/AssistantMount";
@@ -43,7 +44,7 @@ export default async function LocaleLayout({
   const t = await getTranslations("site");
   const tl = await getTranslations("languages");
   const tb = await getTranslations("mobileBar");
-  const brand = process.env["BUSINESS_NAME"] ?? t("defaultBrand");
+  const brand = BRAND.name;
 
   return (
     <html lang={locale} className={`${display.variable} ${displayDeva.variable} ${body.variable}`}>
@@ -54,7 +55,7 @@ export default async function LocaleLayout({
             <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3 sm:px-6">
               <Link href="/" className="flex items-center gap-3">
                 <BrandMark />
-                <span className="font-display hidden text-lg leading-none font-semibold sm:inline">{brand}</span>
+                <span lang="mr" className="font-display hidden text-xl leading-none font-semibold sm:inline">{brand}</span>
               </Link>
               <nav className="hidden items-center gap-6 text-sm font-medium text-basalt-600 md:flex">
                 <Link href="/#destinations" className="hover:text-kumkum-600">{t("nav.places")}</Link>
@@ -87,7 +88,7 @@ export default async function LocaleLayout({
                 <div>
                   <div className="flex items-center gap-3">
                     <BrandMark />
-                    <span className="font-display text-lg text-sand-50">{brand}</span>
+                    <span lang="mr" className="font-display text-xl text-sand-50">{brand}</span>
                   </div>
                   <p className="mt-3 text-sm text-sand-200/80">{t("tagline")}</p>
                 </div>

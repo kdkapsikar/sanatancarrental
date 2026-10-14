@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { readAssistantConfig } from "@cab/config";
+import { BRAND, readAssistantConfig } from "@cab/config";
 import { AssistantWidget, type WidgetStrings } from "./AssistantWidget";
 
 const TOOLS = ["search_places", "get_place", "list_routes", "get_route", "list_vehicle_classes", "get_quote", "explain_fares", "site_help", "request_callback", "default"] as const;
@@ -18,7 +18,7 @@ export async function AssistantMount({ locale }: { locale: string }) {
     close: t("close"),
     placeholder: t("placeholder"),
     send: t("send"),
-    intro: t("intro", { name }),
+    intro: t("intro", { name, brand: BRAND.name }),
     basicMode: t("basicMode"),
     privacy: t("privacy"),
     confirm: t("confirm"),

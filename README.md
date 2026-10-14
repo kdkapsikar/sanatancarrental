@@ -1,6 +1,6 @@
-# Cab + tour platform — Chhatrapati Sambhajinagar
+# सनातन कार रेंटल (Sanatan Car Rental)
 
-Trilingual (en/hi/mr) outstation, airport and sightseeing booking platform. See `cab-platform-plan.md` for scope and `CLAUDE.md` for the rules every change must follow.
+Trilingual (en/hi/mr) outstation, airport and sightseeing booking platform for Chhatrapati Sambhajinagar. The brand is always written in Devanagari (`BRAND` in `packages/config`). See `cab-platform-plan.md` for scope and `CLAUDE.md` for the rules every change must follow.
 
 ## Layout
 | Path | What |
@@ -59,7 +59,7 @@ The migrate script enables the `postgis` and `pgcrypto` extensions before applyi
 Optional: run the stub job worker (needs Redis) with `npm run worker -w @cab/jobs`.
 
 ### Environment
-See `.env.example`. `BUSINESS_NAME`, `BUSINESS_PHONE`, `BUSINESS_STREET` and `BUSINESS_POSTCODE` are deliberately absent. Until the client supplies real details, no LocalBusiness JSON-LD is emitted and the header shows a generic label.
+See `.env.example`. `BUSINESS_PHONE`, `BUSINESS_STREET` and `BUSINESS_POSTCODE` are deliberately absent. Until the client supplies real contact details, no LocalBusiness JSON-LD is emitted.
 
 ## e-Taxi assistant
 Built the same way as Saathi (irctc-api-integration), with मदतनीस's front end (e-nagarparishad):

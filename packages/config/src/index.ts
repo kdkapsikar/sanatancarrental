@@ -85,3 +85,9 @@ export function readAssistantConfig(env: Record<string, string | undefined> = pr
 export function whatsappEnabled(c: AssistantConfig): boolean {
   return !!(c.WHATSAPP_VERIFY_TOKEN && c.WHATSAPP_APP_SECRET && c.WHATSAPP_ACCESS_TOKEN && c.WHATSAPP_PHONE_NUMBER_ID);
 }
+
+/** The client's brand. Shown in Devanagari in every language; the Latin form is for search/metadata. */
+export const BRAND = {
+  name: "सनातन कार रेंटल",
+  latin: "Sanatan Car Rental",
+} as const;

@@ -1,5 +1,6 @@
 # Project
-Trilingual (en/hi/mr) cab + tour booking platform for Chhatrapati Sambhajinagar.
+सनातन कार रेंटल (Sanatan Car Rental): trilingual (en/hi/mr) cab + tour booking platform for Chhatrapati Sambhajinagar.
+The brand name is always shown in Devanagari, in every language (`BRAND` in `packages/config`); the Latin form is only for metadata/search.
 Priorities: SEO quality, price transparency, compliance, WhatsApp-first.
 Positioning: outstation, airport, sightseeing and packages — not intra-city ride-hailing.
 Source of truth for scope and open questions: `cab-platform-plan.md`. Anything marked [verify] there must be checked, not assumed.

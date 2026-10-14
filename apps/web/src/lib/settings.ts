@@ -1,5 +1,6 @@
 import { readEnv } from "@cab/config";
 import type { BusinessInfo } from "@cab/seo";
+import { BRAND } from "@cab/config";
 
 export const env = readEnv();
 export const SITE_URL = env.SITE_URL;
@@ -7,14 +8,14 @@ export const INDEX_THRESHOLD = env.INDEX_COMPLETENESS_THRESHOLD;
 
 /**
  * Business identity for LocalBusiness/TaxiService JSON-LD. Returns null until the client's
- * real name, phone and address are configured; we never emit made-up business details.
+ * real phone and address are configured; we never emit made-up business details.
  */
 export function businessInfo(): BusinessInfo | null {
   const e = process.env;
-  const required = ["BUSINESS_NAME", "BUSINESS_PHONE", "BUSINESS_STREET", "BUSINESS_POSTCODE"] as const;
+  const required = ["BUSINESS_PHONE", "BUSINESS_STREET", "BUSINESS_POSTCODE"] as const;
   if (required.some((k) => !e[k])) return null;
   return {
-    name: e["BUSINESS_NAME"]!,
+    name: BRAND.name,
     url: SITE_URL,
     telephone: e["BUSINESS_PHONE"]!,
     address: {
