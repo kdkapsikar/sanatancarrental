@@ -298,7 +298,8 @@
       }
     },
     "askPlaceMessage": "TODO_TRANSLATE: Tell me about {place}",
-    "askTripMessage": "TODO_TRANSLATE: I want a cab from {from} to {to}"
+    "askTripMessage": "TODO_TRANSLATE: I want a cab from {from} to {to}",
+    "beep": "TODO_TRANSLATE: Beep!"
   },
   "mobileBar": {
     "places": "TODO_TRANSLATE: Places",

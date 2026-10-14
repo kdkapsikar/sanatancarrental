@@ -30,6 +30,7 @@ export async function AssistantMount({ locale }: { locale: string }) {
     listening: t("listening"),
     readAloud: t("readAloud"),
     newChat: t("newChat"),
+    beep: t("beep"),
     error: t("error"),
     rateLimited: t("rateLimited"),
     tools: Object.fromEntries(TOOLS.map((k) => [k, t(`tools.${k}`)])),

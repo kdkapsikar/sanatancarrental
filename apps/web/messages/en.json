@@ -298,7 +298,8 @@
       }
     },
     "askPlaceMessage": "Tell me about {place}",
-    "askTripMessage": "I want a cab from {from} to {to}"
+    "askTripMessage": "I want a cab from {from} to {to}",
+    "beep": "Beep!"
   },
   "mobileBar": {
     "places": "Places",

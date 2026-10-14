@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
 import type { AssistantEvent, ProposalView, QuickReply } from "@cab/assistant";
-import { ETaxiMascot } from "./ETaxiMascot";
+import { SteeringWheel } from "./SteeringWheel";
 import { canListen, canSpeak, listen, speak, stopSpeaking } from "./speech";
 import { ChatError, resolveProposal, streamChat } from "./stream";
 
@@ -31,6 +31,7 @@ export interface WidgetStrings {
   listening: string;
   readAloud: string;
   newChat: string;
+  beep: string;
   error: string;
   rateLimited: string;
   tools: Record<string, string>;
@@ -77,6 +78,7 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
   const [voiceOn, setVoiceOn] = useState(false);
   const [listening, setListening] = useState<{ stop: () => void } | null>(null);
   const [voiceCaps, setVoiceCaps] = useState({ listen: false, speak: false });
+  const [honk, setHonk] = useState(0);
   const abortRef = useRef<AbortController | null>(null);
   const launcherRef = useRef<HTMLButtonElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -269,7 +271,7 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
 
   const lastAssistant = [...messages].reverse().find((m) => m.role === "assistant");
   const chips = messages.length === 0 ? s.chips : (lastAssistant?.quickReplies ?? []);
-  const pose = busy ? "talk" : teaser && !open ? "wave" : "idle";
+  const wheelState = honk ? "honk" : busy ? "talk" : "idle";
 
   return (
     <>
@@ -296,20 +298,20 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
           className={`fixed inset-x-2 bottom-2 z-50 flex h-[min(640px,calc(100dvh-1rem))] flex-col overflow-hidden rounded-3xl border border-basalt-900/10 bg-sand-50 shadow-2xl sm:inset-x-auto sm:right-5 sm:bottom-28 sm:w-[400px] ${open ? "etaxi-pop" : "hidden"}`}
         >
           <header className="basalt-grain flex items-center gap-3 px-4 py-3 text-sand-50">
-            <ETaxiMascot pose={busy ? "talk" : "idle"} className="size-11 shrink-0" />
+            <SteeringWheel size={44} state={busy ? "talk" : "idle"} label="" />
             <div className="min-w-0 flex-1">
               <h2 id={titleId} className="font-display text-lg leading-tight">{s.name}</h2>
               <p className="truncate text-xs text-sand-200/80">{mode === "offline" ? s.basicMode : s.tagline}</p>
             </div>
             {voiceCaps.speak && (
               <button type="button" onClick={toggleVoice} aria-pressed={voiceOn} title={s.readAloud} className={`grid size-9 place-items-center rounded-full transition ${voiceOn ? "bg-marigold-400 text-basalt-950" : "bg-white/10 hover:bg-white/20"}`}>
-                <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M4 10v4h4l5 4V6L8 10H4z" /><path d="M16 9a4 4 0 0 1 0 6M18.5 6.5a8 8 0 0 1 0 11" /></svg>
+                <span className="ico ico-speaker" aria-hidden="true"><span /></span>
                 <span className="sr-only">{s.readAloud}</span>
               </button>
             )}
             {messages.length > 0 && (
               <button type="button" onClick={reset} title={s.newChat} className="grid size-9 place-items-center rounded-full bg-white/10 hover:bg-white/20">
-                <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8M3 3v5h5" /></svg>
+                <span className="text-xl leading-none" aria-hidden="true">↻</span>
                 <span className="sr-only">{s.newChat}</span>
               </button>
             )}
@@ -390,7 +392,7 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
             <div className="flex items-end gap-2">
               {voiceCaps.listen && (
                 <button type="button" onClick={toggleMic} aria-pressed={!!listening} title={listening ? s.listening : s.mic} className={`grid size-10 shrink-0 place-items-center rounded-full transition ${listening ? "animate-pulse bg-kumkum-600 text-white" : "bg-sand-100 text-basalt-800 hover:bg-sand-200"}`}>
-                  <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3" /><path d="M5 11a7 7 0 0 0 14 0M12 18v3" /></svg>
+                  <span className="ico ico-mic" aria-hidden="true"><span /></span>
                   <span className="sr-only">{listening ? s.listening : s.mic}</span>
                 </button>
               )}
@@ -411,7 +413,7 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
                 className="max-h-28 min-h-10 flex-1 resize-none rounded-2xl bg-sand-100 px-3.5 py-2.5 text-sm outline-none placeholder:text-basalt-400 focus:bg-sand-50 focus:ring-2 focus:ring-kumkum-500/40"
               />
               <button type="submit" disabled={busy || !draft.trim()} className="grid size-10 shrink-0 place-items-center rounded-full bg-kumkum-600 text-white transition hover:bg-kumkum-700 disabled:opacity-40">
-                <svg viewBox="0 0 24 24" className="size-5" fill="currentColor" aria-hidden="true"><path d="M3.4 20.4 21 12 3.4 3.6 3 10l12 2-12 2z" /></svg>
+                <span className="text-lg leading-none" aria-hidden="true">➤</span>
                 <span className="sr-only">{s.send}</span>
               </button>
             </div>
@@ -424,6 +426,10 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
         ref={launcherRef}
         type="button"
         onClick={() => {
+          // A quick honk, then the panel opens.
+          const n = Date.now();
+          setHonk(n);
+          setTimeout(() => setHonk((h) => (h === n ? 0 : h)), 900);
           setOpen((o) => !o);
           setMounted(true);
           closeTeaser();
@@ -431,9 +437,9 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
         aria-expanded={open}
         aria-controls={mounted ? panelId : undefined}
         aria-label={open ? s.close : s.open}
-        className={`group fixed right-4 bottom-4 z-40 size-24 rounded-full transition hover:-translate-y-0.5 max-md:bottom-20 max-md:size-20 sm:right-5 ${open ? "max-sm:hidden" : ""}`}
+        className={`group fixed right-4 bottom-4 z-40 grid place-items-center rounded-full transition hover:-translate-y-0.5 max-md:bottom-20 sm:right-5 ${open ? "max-sm:hidden" : ""}`}
       >
-        <ETaxiMascot pose={pose} className="size-full drop-shadow-lg" />
+        <SteeringWheel key={honk || "wheel"} size={88} state={wheelState} beep={s.beep} className="max-md:text-[7.2px]!" />
       </button>
     </>
   );
