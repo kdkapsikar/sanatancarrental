@@ -5,7 +5,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../..");
-const SCAN = ["apps/web/src", "packages/seo/src", "packages/db/src", "packages/jobs/src", "packages/compliance/src"];
+const SCAN = ["apps/web/src", "packages/seo/src", "packages/db/src", "packages/jobs/src", "packages/compliance/src", "packages/assistant/src"];
 // Allowed: tests, the inactive example fare rules, and seed data.ts (which quotes unverified
 // monument entry-fee figures inside needs_verification notes; those are not fares).
 const ALLOW = [

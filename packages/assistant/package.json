@@ -1,0 +1,19 @@
+{
+  "name": "@cab/assistant",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./whatsapp": "./src/channels/whatsapp.ts"
+  },
+  "scripts": { "typecheck": "tsc -p tsconfig.json" },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0",
+    "@cab/config": "*",
+    "@cab/db": "*",
+    "@cab/fare-engine": "*",
+    "drizzle-orm": "^0.45.4",
+    "zod": "^4.6.7"
+  }
+}

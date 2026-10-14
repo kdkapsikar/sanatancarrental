@@ -221,7 +221,9 @@ export const reviews = pgTable(
 
 export const conversationChannel = pgEnum("conversation_channel", ["whatsapp", "web_chat"]);
 
-export const conversations = pgTable("conversations", {
+export const conversations = pgTable(
+  "conversations",
+  {
   id: uuid("id").primaryKey().defaultRandom(),
   channel: conversationChannel("channel").notNull(),
   externalThreadId: text("external_thread_id"),
@@ -229,8 +231,12 @@ export const conversations = pgTable("conversations", {
   bookingId: uuid("booking_id").references(() => bookings.id),
   locale: locale("locale"),
   handedOffToHuman: boolean("handed_off_to_human").notNull().default(false),
+  /** Short summary for the operations team when handed off. */
+  handoffNote: text("handoff_note"),
   createdAt,
-});
+  },
+  (t) => [uniqueIndex("conversations_thread_uq").on(t.channel, t.externalThreadId)],
+);
 
 export const conversationMessages = pgTable(
   "conversation_messages",
@@ -271,3 +277,33 @@ export const consents = pgTable(
   },
   (t) => [index("consents_phone_purpose_idx").on(t.phone, t.purpose, t.recordedAt)],
 );
+
+export const proposalKind = pgEnum("proposal_kind", ["request_callback"]);
+export const proposalStatus = pgEnum("proposal_status", ["pending", "confirmed", "cancelled"]);
+
+/**
+ * Write actions the assistant proposes. Nothing is stored about the person until they press
+ * Confirm (web card or WhatsApp button); the confirm handler re-validates `payload`.
+ */
+export const assistantProposals = pgTable(
+  "assistant_proposals",
+  {
+    id: uuid("id").primaryKey().defaultRandom(),
+    kind: proposalKind("kind").notNull(),
+    channel: conversationChannel("channel").notNull(),
+    payload: jsonb("payload").notNull(),
+    status: proposalStatus("status").notNull().default("pending"),
+    /** WhatsApp: the sender's wa_id, so only they can confirm. Null for web. */
+    ownerRef: text("owner_ref"),
+    expiresAt: timestamp("expires_at", { withTimezone: true }).notNull(),
+    resolvedAt: timestamp("resolved_at", { withTimezone: true }),
+    createdAt,
+  },
+  (t) => [index("assistant_proposals_status_idx").on(t.status, t.expiresAt)],
+);
+
+/** WhatsApp message ids already handled (webhooks are retried; replies must not repeat). */
+export const whatsappInbound = pgTable("whatsapp_inbound", {
+  messageId: text("message_id").primaryKey(),
+  receivedAt: timestamp("received_at", { withTimezone: true }).notNull().defaultNow(),
+});

@@ -24,3 +24,26 @@ describe("env", () => {
     expect(env.INDEX_COMPLETENESS_THRESHOLD).toBe(0.8);
   });
 });
+
+import { readAssistantConfig, whatsappEnabled } from "./index";
+
+describe("assistant config", () => {
+  it("runs offline by default and is named e-Taxi", () => {
+    const c = readAssistantConfig({});
+    expect(c.ANTHROPIC_API_KEY).toBeUndefined();
+    expect(c.ASSISTANT_NAME).toBe("e-Taxi");
+    expect(c.ASSISTANT_REFUSAL_FALLBACK).toBe(true);
+    expect(readAssistantConfig({ ASSISTANT_REFUSAL_FALLBACK: "false" }).ASSISTANT_REFUSAL_FALLBACK).toBe(false);
+  });
+  it("requires a model when a key is set", () => {
+    expect(() => readAssistantConfig({ ANTHROPIC_API_KEY: "k" })).toThrow(/ASSISTANT_MODEL/);
+  });
+  it("WhatsApp needs every credential", () => {
+    expect(whatsappEnabled(readAssistantConfig({ WHATSAPP_VERIFY_TOKEN: "a" }))).toBe(false);
+    expect(
+      whatsappEnabled(
+        readAssistantConfig({ WHATSAPP_VERIFY_TOKEN: "a", WHATSAPP_APP_SECRET: "b", WHATSAPP_ACCESS_TOKEN: "c", WHATSAPP_PHONE_NUMBER_ID: "d" }),
+      ),
+    ).toBe(true);
+  });
+});
