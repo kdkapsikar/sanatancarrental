@@ -106,7 +106,7 @@ export function RegionMap({
   const o = proj(origin);
 
   // Inset sits in the empty south-east corner. Dots on the right, labels as callouts on the left.
-  const inset = { x: W - 262, y: H - 196, w: 244, h: 178 };
+  const inset = { x: W - 276, y: H - 200, w: 244, h: 178 };
   const iproj = projector([origin, ...near], { x: inset.x + 150, y: inset.y + 36, w: 78, h: inset.h - 56 });
   const io = iproj(origin);
   const callouts = near
@@ -127,6 +127,8 @@ export function RegionMap({
     const pt = proj(p);
     let side: "left" | "right" | "above" | "below" = sideFor(pt, o, W);
     if (placed.some((q) => dist(q, pt) < 46)) side = "below";
+    // Keep labels clear of the inset box.
+    if (pt.x > inset.x - 40 && pt.y > inset.y - 24 && pt.y < inset.y + 8) side = "above";
     placed.push(pt);
     return { p, pt, side };
   });

@@ -13,6 +13,7 @@ import { QuoteBreakdown } from "@/components/QuoteBreakdown";
 import { RegionMap } from "@/components/RegionMap";
 import { StatusChip } from "@/components/StatusChip";
 import { WeekStrip } from "@/components/WeekStrip";
+import { AskButton } from "@/components/AskButton";
 
 export const revalidate = 3600;
 
@@ -38,12 +39,13 @@ export default async function RoutePage({ params }: Params) {
   setRequestLocale(locale);
   const r = await getRoute(slug);
   if (!r) notFound();
-  const [t, tp, tn, tm, th] = await Promise.all([
+  const [t, tp, tn, tm, th, ta] = await Promise.all([
     getTranslations("route"),
     getTranslations("place"),
     getTranslations("site.nav"),
     getTranslations("map"),
     getTranslations("home"),
+    getTranslations("assistant"),
   ]);
   const { route, origin, destination } = r;
   const names = { origin: pick(origin.name, locale)!, destination: pick(destination.name, locale)! };
@@ -99,11 +101,19 @@ export default async function RoutePage({ params }: Params) {
             </div>
             <div className="flex flex-wrap items-center justify-between gap-3 border-t border-dashed border-sand-300 bg-sand-50 px-6 py-4 sm:px-10">
               <StatusChip score={route.completenessScore} />
+              <div className="flex flex-wrap gap-2">
+              <AskButton
+                message={ta("askTripMessage", { from: names.origin, to: names.destination })}
+                className="rounded-full bg-basalt-900 px-4 py-2 text-sm font-semibold text-white transition hover:bg-kumkum-700"
+              >
+                {ta("askTrip")}
+              </AskButton>
               {wa && (
                 <a href={wa} rel="noopener" className="rounded-full bg-peacock-600 px-4 py-2 text-sm font-semibold text-white hover:bg-peacock-700">
                   {th("ctaWhatsapp")}
                 </a>
               )}
+              </div>
             </div>
           </div>
         </div>

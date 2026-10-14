@@ -58,3 +58,33 @@ export function toMapPlaces(rows: Array<typeof places.$inferSelect>, locale: Loc
       href: `/${locale}/places/${p.slug}`,
     }));
 }
+
+/** Filter group for a place kind (home page chips). */
+export function kindGroup(kind: string): "caves" | "temples" | "heritage" | "cities" | "nature" {
+  if (kind === "cave_site") return "caves";
+  if (kind === "temple") return "temples";
+  if (kind === "fort" || kind === "monument") return "heritage";
+  if (kind === "nature") return "nature";
+  return "cities";
+}
+
+/** Places for the trip finder: every name and alias; links to the route from the city when one exists. */
+export function toFinderPlaces(
+  rows: Array<typeof places.$inferSelect>,
+  routeRows: Awaited<ReturnType<typeof listRoutes>>,
+  locale: Locale,
+) {
+  return rows
+    .filter((p) => p.slug !== "chhatrapati-sambhajinagar")
+    .map((p) => {
+      const route = routeRows.find((r) => r.origin.slug === "chhatrapati-sambhajinagar" && r.destination.slug === p.slug);
+      return {
+        slug: p.slug,
+        kind: p.kind,
+        label: pick(p.name, locale)!,
+        alt: locale === "en" ? (p.name.mr ?? null) : p.name.en,
+        terms: [p.slug, p.name.en, p.name.hi, p.name.mr, ...p.aliases].filter((x): x is string => !!x),
+        href: route ? `/${locale}/routes/${route.route.slug}` : `/${locale}/places/${p.slug}`,
+      };
+    });
+}

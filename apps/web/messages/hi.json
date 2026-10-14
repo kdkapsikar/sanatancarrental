@@ -47,7 +47,24 @@
     "routesEyebrow": "TODO_TRANSLATE: Routes",
     "faresEyebrow": "TODO_TRANSLATE: Price transparency",
     "faresHeading": "TODO_TRANSLATE: How a fare is built",
-    "faresIntro": "TODO_TRANSLATE: Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book."
+    "faresIntro": "TODO_TRANSLATE: Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book.",
+    "finder": {
+      "label": "TODO_TRANSLATE: Where do you want to go?",
+      "placeholder": "TODO_TRANSLATE: Try Ellora, शिर्डी, Verul or Lonar…",
+      "go": "TODO_TRANSLATE: Show trip",
+      "ask": "TODO_TRANSLATE: Ask e-Taxi",
+      "askMessage": "TODO_TRANSLATE: Tell me about {place}",
+      "noMatch": "TODO_TRANSLATE: No destination by that name yet. Ask e-Taxi and our team can help.",
+      "from": "TODO_TRANSLATE: From"
+    },
+    "filter": {
+      "all": "TODO_TRANSLATE: All",
+      "caves": "TODO_TRANSLATE: Caves",
+      "temples": "TODO_TRANSLATE: Temples",
+      "heritage": "TODO_TRANSLATE: Forts & monuments",
+      "cities": "TODO_TRANSLATE: Cities & towns",
+      "nature": "TODO_TRANSLATE: Nature"
+    }
   },
   "place": {
     "metaTitle": "TODO_TRANSLATE: {name}: visiting information and cabs",
@@ -279,6 +296,20 @@
         "label": "TODO_TRANSLATE: Call me back",
         "message": "TODO_TRANSLATE: Please call me back"
       }
-    }
+    },
+    "askPlaceMessage": "TODO_TRANSLATE: Tell me about {place}",
+    "askTripMessage": "TODO_TRANSLATE: I want a cab from {from} to {to}"
+  },
+  "mobileBar": {
+    "places": "TODO_TRANSLATE: Places",
+    "fares": "TODO_TRANSLATE: Fares",
+    "ask": "TODO_TRANSLATE: Ask e-Taxi",
+    "whatsapp": "TODO_TRANSLATE: WhatsApp"
+  },
+  "notFound": {
+    "eyebrow": "TODO_TRANSLATE: Wrong turn",
+    "title": "TODO_TRANSLATE: We could not find that page",
+    "body": "TODO_TRANSLATE: The page may have moved, or the place is not on our list yet. Start again from the destinations, or ask e-Taxi.",
+    "home": "TODO_TRANSLATE: Back to the start"
   }
 }

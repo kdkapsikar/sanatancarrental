@@ -1,3 +1,4 @@
+import { ViewTransition } from "react";
 import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { breadcrumbList, canonicalUrl, type Locale } from "@cab/seo";
@@ -11,6 +12,8 @@ import { KindIcon } from "@/components/KindIcon";
 import { RegionMap } from "@/components/RegionMap";
 import { StatusChip } from "@/components/StatusChip";
 import { WeekStrip } from "@/components/WeekStrip";
+import { AskButton } from "@/components/AskButton";
+import { readAssistantConfig } from "@cab/config";
 
 export const revalidate = 3600;
 
@@ -39,11 +42,13 @@ export default async function PlacePage({ params }: Params) {
   setRequestLocale(locale);
   const place = await getPlace(slug);
   if (!place) notFound();
-  const [t, tn, tm] = await Promise.all([
+  const [t, tn, tm, ta] = await Promise.all([
     getTranslations("place"),
     getTranslations("site.nav"),
     getTranslations("map"),
+    getTranslations("assistant"),
   ]);
+  const botName = readAssistantConfig().ASSISTANT_NAME;
   const [related, all] = await Promise.all([routesTouching(place.id), listPlaces()]);
   const name = pick(place.name, locale)!;
   const altName = locale === "en" ? place.name.mr : place.name.en;
@@ -76,10 +81,16 @@ export default async function PlacePage({ params }: Params) {
               ← {t("backToAll")}
             </Link>
             <div className="mt-6 flex items-center gap-3 text-kumkum-600">
-              <KindIcon kind={place.kind} className="h-8 w-10" />
+              <ViewTransition name={`place-icon-${place.slug}`} share="morph" default="none">
+                <span className="grid size-14 place-items-center rounded-2xl bg-white text-kumkum-600 shadow-sm">
+                  <KindIcon kind={place.kind} className="h-8 w-10" />
+                </span>
+              </ViewTransition>
               <span className="text-xs font-semibold uppercase tracking-[0.2em]">{t(`kind.${place.kind}`)}</span>
             </div>
-            <h1 className="font-display mt-3 text-4xl leading-tight text-basalt-950 sm:text-5xl">{name}</h1>
+            <ViewTransition name={`place-title-${place.slug}`} share="morph" default="none">
+              <h1 className="font-display mt-3 text-4xl leading-tight text-basalt-950 sm:text-5xl">{name}</h1>
+            </ViewTransition>
             {altName && <p className="mt-1 text-xl text-basalt-600">{altName}</p>}
             <div className="mt-5 flex flex-wrap items-center gap-3">
               {place.unescoSite && (
@@ -87,6 +98,13 @@ export default async function PlacePage({ params }: Params) {
               )}
               <StatusChip score={place.completenessScore} />
             </div>
+            <AskButton
+              message={ta("askPlaceMessage", { place: name })}
+              className="mt-6 inline-flex items-center gap-2 rounded-full bg-basalt-900 px-5 py-2.5 text-sm font-semibold text-white shadow-lg shadow-basalt-900/20 transition hover:bg-kumkum-700"
+            >
+              <span className="size-2 rounded-full bg-marigold-400" aria-hidden="true" />
+              {ta("askAbout", { name: botName, place: name })}
+            </AskButton>
             {pick(place.description, locale) && shown("description") ? (
               <p className="mt-6 text-lg text-basalt-600">{pick(place.description, locale)}</p>
             ) : (

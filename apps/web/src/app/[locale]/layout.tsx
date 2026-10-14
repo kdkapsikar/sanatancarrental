@@ -6,6 +6,8 @@ import { Fraunces, Mukta, Tiro_Devanagari_Marathi } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
 import { AssistantMount } from "@/components/assistant/AssistantMount";
+import { MobileActionBar } from "@/components/MobileActionBar";
+import { whatsappUrl } from "@/lib/settings";
 import "../globals.css";
 
 const display = Fraunces({ subsets: ["latin"], variable: "--font-display-latin", display: "swap", axes: ["opsz", "SOFT"] });
@@ -40,6 +42,7 @@ export default async function LocaleLayout({
   setRequestLocale(locale);
   const t = await getTranslations("site");
   const tl = await getTranslations("languages");
+  const tb = await getTranslations("mobileBar");
   const brand = process.env["BUSINESS_NAME"] ?? t("defaultBrand");
 
   return (
@@ -77,7 +80,7 @@ export default async function LocaleLayout({
 
           <main>{children}</main>
 
-          <footer className="mt-24">
+          <footer className="mt-24 max-md:pb-16">
             <div className="paithani-border" />
             <div className="basalt-grain text-sand-200">
               <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-3 sm:px-6">
@@ -98,6 +101,11 @@ export default async function LocaleLayout({
               </div>
             </div>
           </footer>
+          <MobileActionBar
+            locale={locale}
+            whatsapp={whatsappUrl()}
+            labels={{ places: tb("places"), fares: tb("fares"), ask: tb("ask"), whatsapp: tb("whatsapp") }}
+          />
           <AssistantMount locale={locale} />
         </NextIntlClientProvider>
       </body>

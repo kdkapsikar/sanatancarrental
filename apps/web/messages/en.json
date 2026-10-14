@@ -47,7 +47,24 @@
     "routesEyebrow": "Routes",
     "faresEyebrow": "Price transparency",
     "faresHeading": "How a fare is built",
-    "faresIntro": "Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book."
+    "faresIntro": "Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book.",
+    "finder": {
+      "label": "Where do you want to go?",
+      "placeholder": "Try Ellora, शिर्डी, Verul or Lonar…",
+      "go": "Show trip",
+      "ask": "Ask e-Taxi",
+      "askMessage": "Tell me about {place}",
+      "noMatch": "No destination by that name yet. Ask e-Taxi and our team can help.",
+      "from": "From"
+    },
+    "filter": {
+      "all": "All",
+      "caves": "Caves",
+      "temples": "Temples",
+      "heritage": "Forts & monuments",
+      "cities": "Cities & towns",
+      "nature": "Nature"
+    }
   },
   "place": {
     "metaTitle": "{name}: visiting information and cabs",
@@ -279,6 +296,20 @@
         "label": "Call me back",
         "message": "Please call me back"
       }
-    }
+    },
+    "askPlaceMessage": "Tell me about {place}",
+    "askTripMessage": "I want a cab from {from} to {to}"
+  },
+  "mobileBar": {
+    "places": "Places",
+    "fares": "Fares",
+    "ask": "Ask e-Taxi",
+    "whatsapp": "WhatsApp"
+  },
+  "notFound": {
+    "eyebrow": "Wrong turn",
+    "title": "We could not find that page",
+    "body": "The page may have moved, or the place is not on our list yet. Start again from the destinations, or ask e-Taxi.",
+    "home": "Back to the start"
   }
 }
