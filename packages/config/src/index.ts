@@ -64,6 +64,8 @@ export const assistantConfigSchema = z
     WHATSAPP_ACCESS_TOKEN: z.string().min(1).optional(),
     WHATSAPP_PHONE_NUMBER_ID: z.string().min(1).optional(),
     WHATSAPP_GRAPH_VERSION: z.string().default("v23.0"),
+    /** Override only for local testing against a mock Graph API. */
+    WHATSAPP_API_BASE: z.string().url().default("https://graph.facebook.com"),
   })
   .superRefine((c, ctx) => {
     if (c.ANTHROPIC_API_KEY && !c.ASSISTANT_MODEL) {
