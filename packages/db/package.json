@@ -1,0 +1,27 @@
+{
+  "name": "@cab/db",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./schema": "./src/schema/index.ts",
+    "./completeness": "./src/completeness.ts"
+  },
+  "scripts": {
+    "typecheck": "tsc -p tsconfig.json",
+    "generate": "drizzle-kit generate",
+    "migrate": "tsx src/migrate.ts",
+    "seed": "tsx src/seed/index.ts"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.4",
+    "postgres": "^3.4.9",
+    "@cab/config": "*",
+    "@cab/fare-engine": "*",
+    "@cab/compliance": "*"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.11"
+  }
+}

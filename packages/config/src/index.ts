@@ -24,7 +24,7 @@ export function readFlags(env: Record<string, string | undefined> = process.env)
 }
 
 export const envSchema = z.object({
-  DATABASE_URL: z.string().url().default("postgres://localhost:5432/cab_platform"),
+  DATABASE_URL: z.string().url().default("postgres://localhost:5433/cab_platform"),
   REDIS_URL: z.string().url().default("redis://localhost:6379"),
   SITE_URL: z.string().url().default("http://localhost:3000"),
   MAX_VEHICLE_AGE_YEARS: z.coerce.number().int().positive().default(9),
