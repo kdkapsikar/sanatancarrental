@@ -1,4 +1,6 @@
 import type { MetadataRoute } from "next";
+
+export const dynamic = "force-static";
 import { buildSitemap, type SitemapRecord } from "@cab/seo";
 import { listPlaces, listRoutes } from "@/lib/content";
 import { READY_LOCALES } from "@/lib/locales";

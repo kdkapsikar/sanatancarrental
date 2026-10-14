@@ -1,6 +1,9 @@
 import { z } from "zod";
 import type { AssistantEvent } from "@cab/assistant";
 import { assistant, clientIp } from "@/lib/assistant";
+import { corsHeaders, preflight, withCors } from "@/lib/cors";
+
+export const OPTIONS = preflight;
 
 export const dynamic = "force-dynamic";
 
@@ -18,10 +21,10 @@ const chatBody = z.object({
 export async function POST(req: Request) {
   const parsed = chatBody.safeParse(await req.json().catch(() => null));
   if (!parsed.success) {
-    return Response.json({ error: { code: "VALIDATION", message: parsed.error.issues[0]?.message ?? "Invalid request" } }, { status: 400 });
+    return withCors(req, Response.json({ error: { code: "VALIDATION", message: parsed.error.issues[0]?.message ?? "Invalid request" } }, { status: 400 }));
   }
   const rejection = assistant.admit(`ip:${clientIp(req)}`);
-  if (rejection) return Response.json({ error: rejection }, { status: 429 });
+  if (rejection) return withCors(req, Response.json({ error: rejection }, { status: 429 }));
 
   const encoder = new TextEncoder();
   const controller = new AbortController();
@@ -67,6 +70,7 @@ export async function POST(req: Request) {
       "Cache-Control": "no-cache, no-transform",
       Connection: "keep-alive",
       "X-Accel-Buffering": "no",
+      ...corsHeaders(req),
     },
   });
 }

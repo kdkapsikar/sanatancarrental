@@ -40,6 +40,9 @@ services:
         sync: false
       - key: ASSISTANT_MODEL
         sync: false
+      # Sites allowed to call this server's chat API, e.g. the GitHub Pages copy (comma list).
+      - key: ALLOWED_ORIGINS
+        value: https://kdkapsikar.github.io
       # Optional: the client's WhatsApp number (digits with country code) for click-to-chat buttons.
       - key: BUSINESS_WHATSAPP
         sync: false

@@ -3,6 +3,7 @@ import type { Db } from "@cab/db";
 import { ClaudeAssistant } from "./claude";
 import { DailyTokenBudget, HourlyLimiter } from "./limits";
 import { OfflineAssistant } from "./offline";
+import { DbData } from "./data-db";
 import type { ToolContext } from "./tools";
 import type { AssistantEngine, Channel, Emit, HistoryTurn, Locale } from "./types";
 
@@ -58,7 +59,7 @@ export class AssistantService {
     const { config, db } = this.deps;
     const history = req.history.filter((h) => h.text).slice(-config.ASSISTANT_HISTORY_TURNS * 2);
     const ctx: ToolContext = {
-      db,
+      data: new DbData(db),
       now: this.deps.now?.() ?? new Date(),
       locale: req.locale,
       channel: req.channel,

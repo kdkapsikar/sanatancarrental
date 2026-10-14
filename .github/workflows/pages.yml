@@ -1,0 +1,82 @@
+name: Deploy site to GitHub Pages
+
+# Builds a static copy of the whole site (all pages in en/hi/mr) and publishes it to
+# https://<owner>.github.io/<repo>/. e-Taxi runs in the browser in basic mode.
+# One-time setup: repo Settings -> Pages -> Source: "GitHub Actions".
+# Optional: Settings -> Secrets and variables -> Actions -> Variables -> API_URL
+#   (the Render deployment, e.g. https://sanatancarrental.onrender.com) to let e-Taxi use the
+#   server (Claude answers, saved call-backs). Add this Pages origin to ALLOWED_ORIGINS on Render.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgis/postgis:17-3.5
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: cab_platform
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U postgres" --health-interval 5s --health-timeout 5s --health-retries 20
+    env:
+      DATABASE_URL: postgres://postgres:postgres@localhost:5432/cab_platform
+      TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/cab_platform_test
+      ASSISTANT_TEST_DATABASE_URL: postgres://postgres:postgres@localhost:5432/cab_platform_test_assistant
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Create test database
+        run: psql postgres://postgres:postgres@localhost:5432/postgres -c "create database cab_platform_test"
+
+      - name: Type-check and test
+        run: npm run typecheck && npm test
+
+      - name: Migrate and seed (pages are rendered from the database)
+        run: npm run db:migrate && npm run db:seed
+
+      - name: Build static site
+        env:
+          NEXT_PUBLIC_BASE_PATH: /${{ github.event.repository.name }}
+          SITE_URL: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}
+          NEXT_PUBLIC_API_URL: ${{ vars.API_URL }}
+          # Search engines stay off until the client's own domain is live.
+          ALLOW_INDEXING: "false"
+        run: npm run build:static -w @cab/web
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: apps/web/out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

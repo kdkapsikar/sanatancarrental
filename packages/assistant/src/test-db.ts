@@ -10,7 +10,10 @@ export const TEST_URL =
 export async function testDb() {
   const url = new URL(TEST_URL);
   const dbName = url.pathname.slice(1);
-  const admin = postgres({ host: url.hostname, port: Number(url.port || 5432), database: "postgres", max: 1, onnotice: () => {} });
+  // Same server and credentials, maintenance database (works locally and in CI).
+  const adminUrl = new URL(TEST_URL);
+  adminUrl.pathname = "/postgres";
+  const admin = postgres(adminUrl.href, { max: 1, onnotice: () => {} });
   try {
     const [row] = await admin`select 1 from pg_database where datname = ${dbName}`;
     if (!row) await admin.unsafe(`create database "${dbName}"`);

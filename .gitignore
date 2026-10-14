@@ -11,3 +11,4 @@ private/
 .claude/
 .DS_Store
 next-env.d.ts
+apps/web/out/

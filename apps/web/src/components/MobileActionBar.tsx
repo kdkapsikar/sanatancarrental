@@ -1,6 +1,7 @@
 "use client";
 
 import { openAssistant } from "./assistant/AssistantWidget";
+import { withBase } from "@/lib/base";
 
 /** Thumb-reach actions on phones. WhatsApp appears only when the client's number is configured. */
 export function MobileActionBar({
@@ -16,11 +17,11 @@ export function MobileActionBar({
   return (
     <nav className="fixed inset-x-0 bottom-0 z-30 border-t border-basalt-900/10 bg-sand-50/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-md md:hidden">
       <div className="flex pr-20">
-        <a href={`/${locale}#destinations`} className={`${item} text-basalt-800`}>
+        <a href={withBase(`/${locale}#destinations`)} className={`${item} text-basalt-800`}>
           <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z" /><circle cx="12" cy="9" r="2.5" /></svg>
           {labels.places}
         </a>
-        <a href={`/${locale}#fares`} className={`${item} text-basalt-800`}>
+        <a href={withBase(`/${locale}#fares`)} className={`${item} text-basalt-800`}>
           <svg viewBox="0 0 24 24" className="size-5" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2zM9 8h6M9 12h6" /></svg>
           {labels.fares}
         </a>

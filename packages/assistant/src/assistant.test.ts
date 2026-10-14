@@ -8,11 +8,13 @@ import { cancelProposal, confirmProposal } from "./proposals";
 import { normalisePhone, runTool, type ToolContext } from "./tools";
 import type { AssistantEvent } from "./types";
 import { testDb } from "./test-db";
+import { DbData, buildSnapshot } from "./data-db";
+import { SnapshotData } from "./data";
 
 let db: Db;
 let close: () => Promise<void>;
 const now = new Date("2026-10-14T10:00:00+05:30");
-const ctx = (over: Partial<ToolContext> = {}): ToolContext => ({ db, now, locale: "en", channel: "web_chat", ownerRef: null, ...over });
+const ctx = (over: Partial<ToolContext> = {}): ToolContext => ({ data: new DbData(db), now, locale: "en", channel: "web_chat", ownerRef: null, ...over });
 
 beforeAll(async () => {
   const t = await testDb();
@@ -185,3 +187,24 @@ describe("service", () => {
     expect(events.at(-1)).toEqual({ type: "done", mode: "offline" });
   });
 });
+
+describe("in-browser mode (published snapshot, no server)", () => {
+  it("answers from the snapshot and never stores a call-back", async () => {
+    const snap = JSON.parse(JSON.stringify(await buildSnapshot(db))); // as the browser receives it
+    const data = new SnapshotData(snap);
+    const ellora = await ask("Is Ellora closed on Tuesday?", { data });
+    expect(ellora.text).toMatch(/isn't confirmed/);
+    const before = (await db.select().from(assistantProposals)).length;
+    const cb = await ask("Call me on 9876500000, my name is Test", { data, locale: "mr" });
+    expect(cb.proposals).toHaveLength(0);
+    expect(cb.text).toMatch(/नंबर ठेवलेला नाही/);
+    expect((await db.select().from(assistantProposals)).length).toBe(before);
+  });
+
+  it("the snapshot holds only public data", async () => {
+    const snap = await buildSnapshot(db);
+    expect(Object.keys(snap).sort()).toEqual(["fareRules", "generatedAt", "places", "routes", "vehicleClasses"]);
+    expect(snap.fareRules.every((r) => r.isActive)).toBe(true); // example rules never leak
+  });
+});
+

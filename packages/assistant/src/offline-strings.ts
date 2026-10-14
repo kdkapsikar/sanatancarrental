@@ -43,6 +43,7 @@ export interface OfflineStrings {
   expired: string;
   cancelled: string;
   sorry: string;
+  callbackUnavailable: string;
 }
 
 const en: OfflineStrings = {
@@ -92,6 +93,7 @@ const en: OfflineStrings = {
   expired: "That request has expired or was already handled. Ask again and I'll prepare a new one.",
   cancelled: "Cancelled. Nothing was saved.",
   sorry: "Sorry, I couldn't answer just now.",
+  callbackUnavailable: "Call-back requests aren't open on this version of the site yet, so I haven't kept your number. Meanwhile I can answer questions about places and fares.",
 };
 
 const hi: OfflineStrings = {
@@ -141,6 +143,7 @@ const hi: OfflineStrings = {
   expired: "यह अनुरोध समाप्त हो गया है या पहले ही निपटाया जा चुका है। फिर से पूछें, मैं नया अनुरोध तैयार कर दूँगा।",
   cancelled: "रद्द किया। कुछ भी सहेजा नहीं गया।",
   sorry: "क्षमा करें, अभी जवाब नहीं दे पाया।",
+  callbackUnavailable: "साइट के इस संस्करण पर अभी कॉल-बैक अनुरोध शुरू नहीं हुए हैं, इसलिए आपका नंबर नहीं रखा गया है। तब तक मैं स्थानों और किराए के बारे में सवालों के जवाब दे सकता हूँ।",
 };
 
 const mr: OfflineStrings = {
@@ -190,6 +193,7 @@ const mr: OfflineStrings = {
   expired: "ही विनंती कालबाह्य झाली आहे किंवा आधीच पूर्ण झाली आहे. पुन्हा विचारा, मी नवीन विनंती तयार करतो.",
   cancelled: "रद्द केले. काहीही जतन केले नाही.",
   sorry: "माफ करा, आत्ता उत्तर देता आले नाही.",
+  callbackUnavailable: "साइटच्या या आवृत्तीवर कॉल-बॅक विनंत्या अजून सुरू झालेल्या नाहीत, म्हणून तुमचा नंबर ठेवलेला नाही. तोपर्यंत मी ठिकाणे आणि भाड्याबद्दलच्या प्रश्नांची उत्तरे देऊ शकतो.",
 };
 
 export const OFFLINE_STRINGS: Record<Locale, OfflineStrings> = { en, hi, mr };

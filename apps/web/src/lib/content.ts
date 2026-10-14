@@ -4,6 +4,7 @@ import { alias } from "drizzle-orm/pg-core";
 import { places, routes, type LocalisedText } from "@cab/db";
 import type { Locale } from "@cab/seo";
 import { db } from "./db";
+import { withBase } from "./base";
 
 /** Localised text with English fallback. Placeholder strings fall back to English too. */
 export function pick(t: LocalisedText | null | undefined, locale: Locale): string | null {
@@ -55,7 +56,7 @@ export function toMapPlaces(rows: Array<typeof places.$inferSelect>, locale: Loc
       name: pick(p.name, locale)!,
       lng: p.location!.lng,
       lat: p.location!.lat,
-      href: `/${locale}/places/${p.slug}`,
+      href: withBase(`/${locale}/places/${p.slug}`),
     }));
 }
 

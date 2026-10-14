@@ -1,10 +1,11 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from "react";
-import type { AssistantEvent, ProposalView, QuickReply } from "@cab/assistant";
+import type { AssistantEvent, ProposalView, QuickReply } from "@cab/assistant/browser";
 import { SteeringWheel } from "./SteeringWheel";
 import { canListen, canSpeak, listen, speak, stopSpeaking } from "./speech";
-import { ChatError, resolveProposal, streamChat } from "./stream";
+import { ChatError, chatInfo, resolveProposal, streamChat } from "./stream";
+import { withBase } from "@/lib/base";
 
 /** Open e-Taxi from anywhere, optionally sending a message: openAssistant("Fare to Shirdi?"). */
 export const openAssistant = (message?: string) =>
@@ -59,7 +60,7 @@ let nextId = 1;
 function linkify(text: string, label: string): ReactNode[] {
   return text.split(/(\/(?:en|hi|mr)(?:\/[\w-]+)+)/g).map((part, i) =>
     /^\/(en|hi|mr)\//.test(part) ? (
-      <a key={i} href={part} className="font-medium text-kumkum-700 underline decoration-dotted underline-offset-2">
+      <a key={i} href={withBase(part)} className="font-medium text-kumkum-700 underline decoration-dotted underline-offset-2">
         {label} →
       </a>
     ) : (
@@ -122,9 +123,7 @@ export function AssistantWidget({ locale, strings: s }: { locale: string; string
 
   useEffect(() => {
     if (!open || mode) return;
-    fetch("/api/chat/info")
-      .then((r) => r.json() as Promise<{ mode: "claude" | "offline" }>)
-      .then((i) => setMode(i.mode), () => setMode("offline"));
+    chatInfo().then((i) => setMode(i.mode), () => setMode("offline"));
   }, [open, mode]);
 
   useEffect(() => {

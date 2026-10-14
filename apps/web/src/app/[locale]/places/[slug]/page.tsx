@@ -22,6 +22,11 @@ const VISITABLE = ["cave_site", "temple", "fort", "monument", "nature"];
 
 type Params = { params: Promise<{ locale: Locale; slug: string }> };
 
+/** Every destination page is built ahead of time (needed for the static GitHub Pages export). */
+export async function generateStaticParams() {
+  return (await listPlaces()).map((p) => ({ slug: p.slug }));
+}
+
 export async function generateMetadata({ params }: Params) {
   const { locale, slug } = await params;
   const place = await getPlace(slug);

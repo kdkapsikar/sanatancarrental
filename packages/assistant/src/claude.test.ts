@@ -5,6 +5,7 @@ import type { Db } from "@cab/db";
 import { ClaudeAssistant, systemPrompt } from "./claude";
 import type { AssistantEvent } from "./types";
 import { testDb } from "./test-db";
+import { DbData } from "./data-db";
 
 let db: Db;
 let close: () => Promise<void>;
@@ -53,7 +54,7 @@ async function run(turns: Scripted[], message = "Is Ellora closed on Tuesday?") 
   const res = await engine.respond({
     message,
     history: [],
-    ctx: { db, now: new Date("2026-10-14T10:00:00+05:30"), locale: "en", channel: "web_chat", ownerRef: null },
+    ctx: { data: new DbData(db), now: new Date("2026-10-14T10:00:00+05:30"), locale: "en", channel: "web_chat", ownerRef: null },
     emit: (e) => events.push(e),
     signal: new AbortController().signal,
   });

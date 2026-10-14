@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { breadcrumbList, canonicalUrl, type Locale } from "@cab/seo";
 import { Link } from "@/i18n/navigation";
-import { getRoute, listPlaces, pick, toMapPlaces } from "@/lib/content";
+import { getRoute, listPlaces, listRoutes, pick, toMapPlaces } from "@/lib/content";
 import { pageMetadata } from "@/lib/metadata";
 import { SITE_URL, whatsappUrl } from "@/lib/settings";
 import { sampleQuoteForRoute } from "@/lib/quotes";
@@ -18,6 +18,11 @@ import { AskButton } from "@/components/AskButton";
 export const revalidate = 3600;
 
 type Params = { params: Promise<{ locale: Locale; slug: string }> };
+
+/** Every route page is built ahead of time (needed for the static GitHub Pages export). */
+export async function generateStaticParams() {
+  return (await listRoutes()).map(({ route }) => ({ slug: route.slug }));
+}
 
 export async function generateMetadata({ params }: Params) {
   const { locale, slug } = await params;

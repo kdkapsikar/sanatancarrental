@@ -60,6 +60,12 @@ Optional: run the stub job worker (needs Redis) with `npm run worker -w @cab/job
 ### Environment
 See `.env.example`. `BUSINESS_PHONE`, `BUSINESS_STREET` and `BUSINESS_POSTCODE` are deliberately absent. Until the client supplies real contact details, no LocalBusiness JSON-LD is emitted.
 
+## GitHub Pages (static copy)
+`.github/workflows/pages.yml` builds a static copy of every page (en/hi/mr) on each push to `main` and publishes it to **https://kdkapsikar.github.io/sanatancarrental/**. Before deploying, it runs the type-check and all tests against a PostGIS database. e-Taxi runs **in the browser** in basic mode, from `assistant-data.json`, which is generated at build and holds public places, routes and vehicles only. On this version call-back requests are not taken, and nothing typed leaves the browser.
+- One-time: repo **Settings → Pages → Source: GitHub Actions**.
+- Optional: set repo variable **`API_URL`** to the Render address. e-Taxi then uses the server (Claude answers, saved call-backs); Render's `ALLOWED_ORIGINS` must include `https://kdkapsikar.github.io`.
+- Local preview of the static build: `DATABASE_URL=… NEXT_PUBLIC_BASE_PATH=/sanatancarrental npm run build:static -w @cab/web` (output in `apps/web/out`).
+
 ## Going live (Render + Neon)
 Same setup as wardwatch / e-nagarparishad: the site runs on **Render** (free plan, Singapore) and the database on **Neon** (PostgreSQL with PostGIS). `render.yaml` describes the service.
 1. **Neon** (neon.tech): create a project in region *Asia Pacific (Singapore)*. Copy the **direct** connection string (not the pooled one); it ends in `?sslmode=require`. Migrations enable PostGIS themselves.

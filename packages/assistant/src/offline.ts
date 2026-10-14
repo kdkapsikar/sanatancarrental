@@ -86,7 +86,7 @@ async function answer(turn: Turn, call: Call): Promise<{ text: string; quickRepl
   const t = turn.message.trim();
   const lang = replyLocale(turn.ctx.locale, t);
   const L = OFFLINE_STRINGS[lang];
-  const list = await allPlaces(turn.ctx.db);
+  const list = await allPlaces(turn.ctx.data);
   const place = findPlacesInText(t, list).filter((p) => p.slug !== CITY)[0];
   const placeName = place ? (place.name[lang] ?? place.name.en) : null;
 
@@ -103,6 +103,7 @@ async function answer(turn: Turn, call: Call): Promise<{ text: string; quickRepl
       preferred_language: lang,
     });
     if (out.isError) return { text: L.badPhone, quickReplies: [] };
+    if (out.result["unavailable"] === "callbacks_need_server") return { text: L.callbackUnavailable, quickReplies: L.menu.slice(0, 3) };
     return { text: L.callbackReady, quickReplies: [] };
   }
 

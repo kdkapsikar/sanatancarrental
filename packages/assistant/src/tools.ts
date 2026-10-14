@@ -1,23 +1,15 @@
-import { and, asc, eq } from "drizzle-orm";
 import { z } from "zod";
-import {
-  assistantProposals,
-  fareRules,
-  places,
-  routes,
-  vehicleClasses,
-  type Db,
-  type NeedsVerification,
-} from "@cab/db";
+import type { NeedsVerification } from "@cab/db";
 import { FareError, quote, selectRule, type FareRule } from "@cab/fare-engine";
 import type { Channel, Locale } from "./types";
+import type { AssistantData, PlaceRow, RouteRow } from "./data";
 
 /**
  * Everything a tool may use. Identity (the WhatsApp sender) comes from the channel only:
  * no tool takes it as input, so the model can't act for someone else.
  */
 export interface ToolContext {
-  db: Db;
+  data: AssistantData;
   now: Date;
   locale: Locale;
   channel: Channel;
@@ -50,8 +42,6 @@ export interface AssistantTool {
 export const CITY = "chhatrapati-sambhajinagar";
 export const PROPOSAL_TTL_MIN = 30;
 
-type PlaceRow = typeof places.$inferSelect;
-type RouteRow = typeof routes.$inferSelect;
 
 /** Lowercase, strip punctuation/spaces, so "Chhatrapati Sambhajinagar" ≈ "chhatrapatisambhajinagar". */
 export const norm = (s: string) => s.toLowerCase().normalize("NFC").replace(/[\s\-_.,'’()]/g, "");
@@ -73,8 +63,8 @@ function placeSummary(p: PlaceRow, ctx: ToolContext) {
   return { slug: p.slug, kind: p.kind, name: p.name, page: pageUrl(ctx, `places/${p.slug}`) };
 }
 
-export async function allPlaces(db: Db): Promise<PlaceRow[]> {
-  return db.select().from(places).orderBy(asc(places.slug));
+export async function allPlaces(data: AssistantData): Promise<PlaceRow[]> {
+  return data.places();
 }
 
 /** Places mentioned in free text (any script), longest name first; the origin city last. */
@@ -101,8 +91,8 @@ function searchPlaces(query: string, list: PlaceRow[]): PlaceRow[] {
   return scored.map((s) => s.p);
 }
 
-async function routeWithPlaces(db: Db, r: RouteRow) {
-  const list = await allPlaces(db);
+async function routeWithPlaces(data: AssistantData, r: RouteRow) {
+  const list = await allPlaces(data);
   return {
     route: r,
     origin: list.find((p) => p.id === r.originPlaceId)!,
@@ -110,22 +100,15 @@ async function routeWithPlaces(db: Db, r: RouteRow) {
   };
 }
 
-async function findRoute(db: Db, input: { slug?: string | undefined; destination?: string | undefined; origin?: string | undefined }) {
-  if (input.slug) {
-    const [r] = await db.select().from(routes).where(eq(routes.slug, input.slug)).limit(1);
-    return r ?? null;
-  }
+async function findRoute(data: AssistantData, input: { slug?: string | undefined; destination?: string | undefined; origin?: string | undefined }) {
+  const all = await data.routes();
+  if (input.slug) return all.find((r) => r.slug === input.slug) ?? null;
   if (!input.destination) return null;
-  const list = await allPlaces(db);
+  const list = await allPlaces(data);
   const dest = list.find((p) => p.slug === input.destination) ?? searchPlaces(input.destination, list)[0];
   const orig = list.find((p) => p.slug === (input.origin ?? CITY)) ?? searchPlaces(input.origin ?? CITY, list)[0];
   if (!dest || !orig) return null;
-  const [r] = await db
-    .select()
-    .from(routes)
-    .where(and(eq(routes.originPlaceId, orig.id), eq(routes.destinationPlaceId, dest.id)))
-    .limit(1);
-  return r ?? null;
+  return all.find((r) => r.originPlaceId === orig.id && r.destinationPlaceId === dest.id) ?? null;
 }
 
 const INDIAN_MOBILE = /^(?:\+?91[\s-]?)?([6-9]\d{9})$/;
@@ -151,7 +134,7 @@ const TOOLS: AssistantTool[] = [
       "Find destinations by name in any language or old name (Aurangabad, संभाजीनगर, Verul, अजिंठा…). Use before other place tools when you are unsure of the slug.",
     schema: z.object({ query: z.string().min(1).max(80) }),
     async run(input: { query: string }, ctx) {
-      const found = searchPlaces(input.query, await allPlaces(ctx.db)).slice(0, 5);
+      const found = searchPlaces(input.query, await allPlaces(ctx.data)).slice(0, 5);
       return { result: { matches: found.map((p) => placeSummary(p, ctx)) } };
     },
   },
@@ -161,7 +144,7 @@ const TOOLS: AssistantTool[] = [
       "Visiting facts for one place: weekly closing day, opening hours, entry fees, UNESCO status. Each fact has a status: verified (state it), not_verified (say it is still being confirmed, and why), or unknown.",
     schema: z.object({ slug }),
     async run(input: { slug: string }, ctx) {
-      const [p] = await ctx.db.select().from(places).where(eq(places.slug, input.slug)).limit(1);
+      const p = (await ctx.data.places()).find((x) => x.slug === input.slug);
       if (!p) return { result: { error: "not_found", slug: input.slug }, isError: true };
       const n = p.needsVerification;
       return {
@@ -184,8 +167,8 @@ const TOOLS: AssistantTool[] = [
     description: "Routes we serve, optionally from one origin slug (default: all).",
     schema: z.object({ from: slug.optional() }),
     async run(input: { from?: string }, ctx) {
-      const list = await allPlaces(ctx.db);
-      const rs = await ctx.db.select().from(routes).orderBy(asc(routes.slug));
+      const list = await allPlaces(ctx.data);
+      const rs = await ctx.data.routes();
       const origin = input.from ? list.find((p) => p.slug === input.from) : null;
       const out = rs
         .filter((r) => !origin || r.originPlaceId === origin.id)
@@ -204,9 +187,9 @@ const TOOLS: AssistantTool[] = [
       "Trip facts for a route: road distance, drive time, toll estimate, each with a verification status. Give a route slug, or a destination (origin defaults to Chhatrapati Sambhajinagar).",
     schema: z.object({ slug: z.string().max(120).optional(), destination: z.string().max(80).optional(), origin: z.string().max(80).optional() }),
     async run(input: { slug?: string; destination?: string; origin?: string }, ctx) {
-      const r = await findRoute(ctx.db, input);
+      const r = await findRoute(ctx.data, input);
       if (!r) return { result: { error: "not_found", hint: "Use list_routes to see the routes we serve." }, isError: true };
-      const { origin, destination } = await routeWithPlaces(ctx.db, r);
+      const { origin, destination } = await routeWithPlaces(ctx.data, r);
       const n = r.needsVerification;
       return {
         result: {
@@ -226,7 +209,7 @@ const TOOLS: AssistantTool[] = [
     description: "Vehicle classes offered (code, name, seats, luggage). Needed for get_quote.",
     schema: z.object({}),
     async run(_input: never, ctx) {
-      const vc = await ctx.db.select().from(vehicleClasses).orderBy(asc(vehicleClasses.sortOrder));
+      const vc = await ctx.data.vehicleClasses();
       return { result: { classes: vc.map((v) => ({ code: v.code, name: v.name.en, seats: v.seats, luggage_bags: v.luggageBags })) } };
     },
   },
@@ -246,12 +229,12 @@ const TOOLS: AssistantTool[] = [
       input: { route_slug?: string; destination?: string; vehicle_class: string; trip_type: "outstation_one_way" | "outstation_round_trip"; start: string; end?: string },
       ctx,
     ) {
-      const r = await findRoute(ctx.db, { slug: input.route_slug, destination: input.destination });
+      const r = await findRoute(ctx.data, { slug: input.route_slug, destination: input.destination });
       if (!r) return { result: { error: "route_not_found" }, isError: true };
       if (r.distanceKm === null || "distanceKm" in r.needsVerification) {
         return { result: { unavailable: "distance_not_verified", message: "No price yet: the road distance for this route is still being verified. Offer a call back." } };
       }
-      const rows = await ctx.db.select().from(fareRules).where(eq(fareRules.isActive, true));
+      const rows = await ctx.data.activeFareRules();
       const rules: FareRule[] = rows.map((row) => ({ ...row.rule, id: row.id, version: row.version, vehicleClass: row.vehicleClassCode, tripType: row.tripType }) as FareRule);
       let rule: FareRule;
       try {
@@ -335,13 +318,14 @@ const TOOLS: AssistantTool[] = [
       }
       const expiresAt = new Date(ctx.now.getTime() + PROPOSAL_TTL_MIN * 60_000);
       const payload = { ...input, phone, preferred_language: input.preferred_language ?? ctx.locale };
-      const [row] = await ctx.db
-        .insert(assistantProposals)
-        .values({ kind: "request_callback", channel: ctx.channel, payload, ownerRef: ctx.ownerRef, expiresAt })
-        .returning({ id: assistantProposals.id });
+      const id = await ctx.data.createProposal({ kind: "request_callback", channel: ctx.channel, payload, ownerRef: ctx.ownerRef, expiresAt });
+      if (!id) {
+        // Static site without a server: nothing can be stored, and nothing leaves the browser.
+        return { result: { unavailable: "callbacks_need_server", message: "Call-back requests can't be taken on this version of the site yet." } };
+      }
       const masked = phone.replace(/^(\+91)(\d{2})\d{5}(\d{3})$/, "$1 $2xxxxx$3");
       const summary = `Call back ${input.name ? `${input.name} ` : ""}on ${masked} about: ${input.trip_summary}`;
-      const proposal: ProposalView = { id: row!.id, kind: "request_callback", summary, expiresAt: expiresAt.toISOString() };
+      const proposal: ProposalView = { id, kind: "request_callback", summary, expiresAt: expiresAt.toISOString() };
       return {
         result: { status: "awaiting_confirmation", summary, message: "Tell the person to press Confirm on the card. Nothing is saved until then." },
         proposal,

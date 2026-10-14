@@ -7,7 +7,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start -p ${PORT:-3000}",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "build:static": "node scripts/build-static.mjs"
   },
   "dependencies": {
     "@cab/config": "*",

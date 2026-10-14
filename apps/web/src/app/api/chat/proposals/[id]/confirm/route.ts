@@ -1,6 +1,9 @@
 import { z } from "zod";
 import { confirmProposal } from "@cab/assistant";
 import { db } from "@/lib/db";
+import { preflight, withCors } from "@/lib/cors";
+
+export const OPTIONS = preflight;
 
 export const dynamic = "force-dynamic";
 
@@ -12,7 +15,11 @@ const MESSAGES = {
 } as const;
 
 /** Confirming a call-back card is the consent event; see confirmProposal(). */
-export async function POST(_req: Request, { params }: { params: Promise<{ id: string }> }) {
+export async function POST(req: Request, ctx: { params: Promise<{ id: string }> }) {
+  return withCors(req, await handle(ctx));
+}
+
+async function handle({ params }: { params: Promise<{ id: string }> }): Promise<Response> {
   const id = z.uuid().safeParse((await params).id);
   if (!id.success) return Response.json({ error: { code: "NOT_FOUND", message: MESSAGES.not_found } }, { status: 404 });
   const r = await confirmProposal(db, id.data, { ownerRef: null });
