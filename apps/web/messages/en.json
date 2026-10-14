@@ -225,5 +225,60 @@
     "fri": "Fri",
     "sat": "Sat",
     "sun": "Sun"
+  },
+  "assistant": {
+    "tagline": "Trips, places and fares · English, हिन्दी, मराठी",
+    "teaserTitle": "Namaste!",
+    "teaser": "Planning Ajanta, Ellora or Shirdi? Ask me anything about your trip.",
+    "open": "Open the {name} assistant",
+    "close": "Close",
+    "placeholder": "Ask about a place, a fare or a call back…",
+    "send": "Send",
+    "intro": "Namaste! I am {name}. Ask me about places around Chhatrapati Sambhajinagar, how fares work, or ask our team to call you. I only share facts that are confirmed.",
+    "basicMode": "Basic mode: quick answers from our data",
+    "privacy": "Chats are not stored on our server. Your number is saved only if you confirm a call-back request.",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "confirmed": "Sent. Our team will call you back.",
+    "cancelled": "Cancelled. Nothing was saved.",
+    "proposalTitle": "Call-back request",
+    "mic": "Speak your question",
+    "listening": "Listening…",
+    "readAloud": "Read answers aloud",
+    "newChat": "Start a new chat",
+    "error": "Sorry, I could not answer just now. Please try again.",
+    "rateLimited": "Too many messages this hour. Please try again a bit later.",
+    "askAbout": "Ask {name} about {place}",
+    "askTrip": "Ask about this trip",
+    "tools": {
+      "search_places": "Looking up places…",
+      "get_place": "Checking visiting details…",
+      "list_routes": "Looking at our routes…",
+      "get_route": "Checking the route…",
+      "list_vehicle_classes": "Checking vehicles…",
+      "get_quote": "Asking the fare engine…",
+      "explain_fares": "Checking how fares work…",
+      "site_help": "Checking the help pages…",
+      "request_callback": "Preparing your request…",
+      "default": "Checking…"
+    },
+    "chips": {
+      "ellora": {
+        "label": "Is Ellora open on Tuesday?",
+        "message": "Is Ellora closed on Tuesday?"
+      },
+      "shirdi": {
+        "label": "Fare to Shirdi",
+        "message": "What is the fare to Shirdi?"
+      },
+      "fares": {
+        "label": "How fares work",
+        "message": "How do fares work?"
+      },
+      "callback": {
+        "label": "Call me back",
+        "message": "Please call me back"
+      }
+    }
   }
 }

@@ -5,6 +5,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Fraunces, Mukta, Tiro_Devanagari_Marathi } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import { Link } from "@/i18n/navigation";
+import { AssistantMount } from "@/components/assistant/AssistantMount";
 import "../globals.css";
 
 const display = Fraunces({ subsets: ["latin"], variable: "--font-display-latin", display: "swap", axes: ["opsz", "SOFT"] });
@@ -97,6 +98,7 @@ export default async function LocaleLayout({
               </div>
             </div>
           </footer>
+          <AssistantMount locale={locale} />
         </NextIntlClientProvider>
       </body>
     </html>

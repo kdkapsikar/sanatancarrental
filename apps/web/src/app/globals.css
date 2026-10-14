@@ -100,6 +100,43 @@
   }
 }
 
+
+/* e-Taxi mascot (see components/assistant/ETaxiMascot.tsx). transform-box is limited to the
+   animated parts, as in Saathi, so static shapes keep their own pivots. */
+@layer components {
+  .etaxi .etaxi-car,
+  .etaxi .etaxi-eyes,
+  .etaxi .etaxi-shadow,
+  .etaxi .etaxi-beam,
+  .etaxi .etaxi-roofglow {
+    transform-box: fill-box;
+    transform-origin: center;
+  }
+  .etaxi .etaxi-car { animation: etaxi-bob 2.8s ease-in-out infinite; }
+  .etaxi .etaxi-shadow { animation: etaxi-shadow 2.8s ease-in-out infinite; }
+  .etaxi .etaxi-eyes { animation: etaxi-blink 5s infinite; }
+  .etaxi .etaxi-beam,
+  .etaxi .etaxi-roofglow { opacity: 0; }
+  .etaxi-wave .etaxi-beam { animation: etaxi-flash 1.6s ease-in-out infinite; }
+  .etaxi-wave .etaxi-roofglow,
+  .etaxi-talk .etaxi-roofglow { animation: etaxi-glow 1.2s ease-in-out infinite; }
+  .etaxi-talk .etaxi-car { animation-duration: 0.9s; }
+  .etaxi-talk .etaxi-shadow { animation-duration: 0.9s; }
+
+  .etaxi-pop { animation: etaxi-pop 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.2) both; }
+  .etaxi-typing span { animation: etaxi-dot 1.2s infinite ease-in-out; }
+  .etaxi-typing span:nth-child(2) { animation-delay: 0.15s; }
+  .etaxi-typing span:nth-child(3) { animation-delay: 0.3s; }
+}
+
+@keyframes etaxi-bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.5px); } }
+@keyframes etaxi-shadow { 0%, 100% { transform: scaleX(1); } 50% { transform: scaleX(0.9); } }
+@keyframes etaxi-blink { 0%, 46%, 50%, 100% { transform: scaleY(1); } 48% { transform: scaleY(0.1); } }
+@keyframes etaxi-flash { 0%, 100% { opacity: 0; } 30%, 60% { opacity: 1; } }
+@keyframes etaxi-glow { 0%, 100% { opacity: 0.2; } 50% { opacity: 1; } }
+@keyframes etaxi-pop { from { opacity: 0; transform: translateY(10px) scale(0.96); } to { opacity: 1; transform: none; } }
+@keyframes etaxi-dot { 0%, 80%, 100% { transform: translateY(0); opacity: 0.4; } 40% { transform: translateY(-4px); opacity: 1; } }
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

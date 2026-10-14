@@ -225,5 +225,60 @@
     "fri": "TODO_TRANSLATE: Fri",
     "sat": "TODO_TRANSLATE: Sat",
     "sun": "TODO_TRANSLATE: Sun"
+  },
+  "assistant": {
+    "tagline": "TODO_TRANSLATE: Trips, places and fares · English, हिन्दी, मराठी",
+    "teaserTitle": "TODO_TRANSLATE: Namaste!",
+    "teaser": "TODO_TRANSLATE: Planning Ajanta, Ellora or Shirdi? Ask me anything about your trip.",
+    "open": "TODO_TRANSLATE: Open the {name} assistant",
+    "close": "TODO_TRANSLATE: Close",
+    "placeholder": "TODO_TRANSLATE: Ask about a place, a fare or a call back…",
+    "send": "TODO_TRANSLATE: Send",
+    "intro": "TODO_TRANSLATE: Namaste! I am {name}. Ask me about places around Chhatrapati Sambhajinagar, how fares work, or ask our team to call you. I only share facts that are confirmed.",
+    "basicMode": "TODO_TRANSLATE: Basic mode: quick answers from our data",
+    "privacy": "TODO_TRANSLATE: Chats are not stored on our server. Your number is saved only if you confirm a call-back request.",
+    "confirm": "TODO_TRANSLATE: Confirm",
+    "cancel": "TODO_TRANSLATE: Cancel",
+    "confirmed": "TODO_TRANSLATE: Sent. Our team will call you back.",
+    "cancelled": "TODO_TRANSLATE: Cancelled. Nothing was saved.",
+    "proposalTitle": "TODO_TRANSLATE: Call-back request",
+    "mic": "TODO_TRANSLATE: Speak your question",
+    "listening": "TODO_TRANSLATE: Listening…",
+    "readAloud": "TODO_TRANSLATE: Read answers aloud",
+    "newChat": "TODO_TRANSLATE: Start a new chat",
+    "error": "TODO_TRANSLATE: Sorry, I could not answer just now. Please try again.",
+    "rateLimited": "TODO_TRANSLATE: Too many messages this hour. Please try again a bit later.",
+    "askAbout": "TODO_TRANSLATE: Ask {name} about {place}",
+    "askTrip": "TODO_TRANSLATE: Ask about this trip",
+    "tools": {
+      "search_places": "TODO_TRANSLATE: Looking up places…",
+      "get_place": "TODO_TRANSLATE: Checking visiting details…",
+      "list_routes": "TODO_TRANSLATE: Looking at our routes…",
+      "get_route": "TODO_TRANSLATE: Checking the route…",
+      "list_vehicle_classes": "TODO_TRANSLATE: Checking vehicles…",
+      "get_quote": "TODO_TRANSLATE: Asking the fare engine…",
+      "explain_fares": "TODO_TRANSLATE: Checking how fares work…",
+      "site_help": "TODO_TRANSLATE: Checking the help pages…",
+      "request_callback": "TODO_TRANSLATE: Preparing your request…",
+      "default": "TODO_TRANSLATE: Checking…"
+    },
+    "chips": {
+      "ellora": {
+        "label": "TODO_TRANSLATE: Is Ellora open on Tuesday?",
+        "message": "TODO_TRANSLATE: Is Ellora closed on Tuesday?"
+      },
+      "shirdi": {
+        "label": "TODO_TRANSLATE: Fare to Shirdi",
+        "message": "TODO_TRANSLATE: What is the fare to Shirdi?"
+      },
+      "fares": {
+        "label": "TODO_TRANSLATE: How fares work",
+        "message": "TODO_TRANSLATE: How do fares work?"
+      },
+      "callback": {
+        "label": "TODO_TRANSLATE: Call me back",
+        "message": "TODO_TRANSLATE: Please call me back"
+      }
+    }
   }
 }

@@ -124,7 +124,8 @@ describe("call-back proposals", () => {
     expect(await db.select().from(consents).where(eq(consents.phone, "+919876543210"))).toHaveLength(1);
     const [conv] = await db.select().from(conversations).where(eq(conversations.externalThreadId, `callback-${id}`));
     expect(conv?.handedOffToHuman).toBe(true);
-    expect(conv?.handoffNote).toMatch(/Ajanta/);
+    expect(conv?.handoffNote).toMatch(/^Trip to Ajanta Caves · trip to Ajanta/);
+    expect(r.proposals[0]!.summary).not.toMatch(/9876543210/); // masked on the card
 
     expect(await confirmProposal(db, id, { ownerRef: null, now })).toEqual({ ok: false, code: "already_handled" });
   });

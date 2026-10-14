@@ -68,9 +68,22 @@ function tomorrowMorningIst(now: Date): string {
 /** "my name is Ravi", "I am Ravi", "मी रवी", "नाम रवि" → Ravi (best effort, optional). */
 function nameIn(text: string): string | undefined {
   const m = /(?:my name is|i am|i'm|this is|name[:\s]+|नाव|नाम|मी)\s+([A-Za-zऀ-ॿ][A-Za-zऀ-ॿ .]{0,40})/i.exec(text);
-  return m?.[1]?.replace(/\s+(and|on|my|phone|number|call).*$/i, "").trim() || undefined;
+  return m?.[1]?.split(/[.,!?;\n]/)[0]?.replace(/\s+(and|on|my|phone|number|call).*$/i, "").trim() || undefined;
 }
-const phoneIn = (text: string) => /(?:\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}/.exec(text)?.[0];
+const PHONE = /(?:\+?91[\s-]?)?[6-9]\d{4}[\s-]?\d{5}/;
+const phoneIn = (text: string) => PHONE.exec(text)?.[0];
+
+/** What the trip is about, without the phone number, name or "call me back" boilerplate. */
+function tripGist(text: string): string {
+  return text
+    .replace(PHONE, "")
+    .replace(/(?:my name is|i am|i'm|this is|नाव|नाम)\s+[^.,!?]+/gi, "")
+    .replace(/\b(please|pls|kindly)?\s*(call me back|call back|callback|call me)\b(\s+on)?/gi, "")
+    .replace(/\s*[.,]\s*[.,]+/g, ".")
+    .replace(/^[\s.,:-]+|[\s.,:-]+$/g, "")
+    .replace(/\s{2,}/g, " ")
+    .slice(0, 200);
+}
 
 async function answer(turn: Turn, call: Call): Promise<{ text: string; quickReplies: QuickReply[] }> {
   const t = turn.message.trim();
@@ -92,11 +105,11 @@ async function answer(turn: Turn, call: Call): Promise<{ text: string; quickRepl
     const out = await call("request_callback", {
       ...(name ? { name } : {}),
       ...(phone ? { phone } : {}),
-      trip_summary: (placeName ? `Trip to ${placeName}. ` : "") + `Message: ${t}`.slice(0, 280),
+      trip_summary: [placeName ? `Trip to ${placeName}` : null, tripGist(t) || null].filter(Boolean).join(" · ") || "Call back requested",
       preferred_language: turn.ctx.locale,
     });
     if (out.isError) return { text: "That number doesn't look like a 10-digit Indian mobile number. Could you send it again?", quickReplies: [] };
-    return { text: `I've prepared a call-back request: ${out.result["summary"]}. Please press Confirm to send it. Nothing is saved until you do.`, quickReplies: [] };
+    return { text: "I've prepared a call-back request. Please check the card below and press Confirm to send it. Nothing is saved until you do.", quickReplies: [] };
   }
 
   // Fares: only the fare engine (via get_quote) may produce a number.
