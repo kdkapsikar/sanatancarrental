@@ -4,8 +4,10 @@ import createNextIntlPlugin from "next-intl/plugin";
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
 const config: NextConfig = {
-  transpilePackages: ["@cab/compliance", "@cab/config", "@cab/db", "@cab/fare-engine", "@cab/seo"],
+  transpilePackages: ["@cab/assistant", "@cab/compliance", "@cab/config", "@cab/db", "@cab/fare-engine", "@cab/seo"],
   poweredByHeader: false,
+  // The Anthropic SDK stays a server-side Node dependency.
+  serverExternalPackages: ["@anthropic-ai/sdk"],
 };
 
 export default withNextIntl(config);

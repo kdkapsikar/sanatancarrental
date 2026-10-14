@@ -153,7 +153,7 @@ async function answer(turn: Turn, call: Call): Promise<{ text: string; quickRepl
     if (closed.status === "verified" && Array.isArray(closed.value)) {
       lines.push(closed.value.length ? `${placeName} is closed every ${closed.value.map((d) => DAY[d as string]).join(" and ")}.` : `${placeName} has no weekly closing day.`);
     } else if (["cave_site", "temple", "fort", "monument", "nature"].includes(place.kind)) {
-      lines.push(`${placeName}'s weekly closing day isn't confirmed: ${pendingWhy(closed)}. Please check before you travel.`);
+      lines.push(`The weekly closing day for ${placeName} isn't confirmed: ${pendingWhy(closed)}. Please check before you travel.`);
     }
     if (has(t, INTENT.closed)) {
       if (hours.status === "verified") {
