@@ -22,7 +22,9 @@ function score(checks: Check[], needs: NeedsVerification): CompletenessResult {
   const missing: string[] = [];
   for (const [field, present, weight = 1] of checks) {
     total += weight;
-    const ok = present && !(field in needs);
+    // A flag on "name" also covers "name.en" etc.
+    const flagged = field in needs || field.split(".")[0]! in needs;
+    const ok = present && !flagged;
     if (ok) have += weight;
     else missing.push(field);
   }

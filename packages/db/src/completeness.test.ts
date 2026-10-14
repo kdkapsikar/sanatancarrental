@@ -25,6 +25,11 @@ describe("completeness", () => {
     expect(r.score).toBeLessThan(1);
   });
 
+  it("a flag on a parent field covers its localised sub-fields", () => {
+    const r = placeCompleteness({ ...fullPlace, needsVerification: { name: "official name unverified" } });
+    expect(r.missing).toEqual(["name.en", "name.hi", "name.mr"]);
+  });
+
   it("TODO_TRANSLATE strings do not count as translated", () => {
     const r = placeCompleteness({ ...fullPlace, name: { en: "X", hi: "TODO_TRANSLATE: X", mr: "X" } });
     expect(r.missing).toContain("name.hi");

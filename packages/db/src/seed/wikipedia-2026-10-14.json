@@ -1,0 +1,162 @@
+[
+ {
+  "slug": "chhatrapati-sambhajinagar",
+  "kind": "city",
+  "wikipediaTitle": "Aurangabad",
+  "source": "https://en.wikipedia.org/wiki/Aurangabad",
+  "lat": 19.88,
+  "lng": 75.32,
+  "hi": "औरंगाबाद",
+  "mr": "छत्रपती संभाजीनगर"
+ },
+ {
+  "slug": "sambhajinagar-airport",
+  "kind": "airport",
+  "wikipediaTitle": "Aurangabad Airport",
+  "source": "https://en.wikipedia.org/wiki/Aurangabad_Airport",
+  "lat": 19.86277778,
+  "lng": 75.39805556,
+  "hi": "औरंगाबाद विमानक्षेत्र",
+  "mr": "औरंगाबाद विमानतळ"
+ },
+ {
+  "slug": "ajanta-caves",
+  "kind": "cave_site",
+  "wikipediaTitle": "Ajanta Caves",
+  "source": "https://en.wikipedia.org/wiki/Ajanta_Caves",
+  "lat": 20.55333333,
+  "lng": 75.70027778,
+  "hi": "अजंता गुफाएँ",
+  "mr": "अजिंठा लेणी"
+ },
+ {
+  "slug": "ellora-caves",
+  "kind": "cave_site",
+  "wikipediaTitle": "Ellora Caves",
+  "source": "https://en.wikipedia.org/wiki/Ellora_Caves",
+  "lat": 20.0268,
+  "lng": 75.1771,
+  "hi": "एलोरा गुफाएं",
+  "mr": "वेरूळ लेणी"
+ },
+ {
+  "slug": "grishneshwar-temple",
+  "kind": "temple",
+  "wikipediaTitle": "Ghrishneshwar Temple",
+  "source": "https://en.wikipedia.org/wiki/Ghrishneshwar_Temple",
+  "lat": 20.02497222,
+  "lng": 75.16991667,
+  "hi": "घृष्णेश्वर मन्दिर",
+  "mr": "घृष्णेश्वर मंदिर"
+ },
+ {
+  "slug": "daulatabad-fort",
+  "kind": "fort",
+  "wikipediaTitle": "Daulatabad Fort",
+  "source": "https://en.wikipedia.org/wiki/Daulatabad_Fort",
+  "lat": 19.942724,
+  "lng": 75.213164,
+  "hi": "दौलताबाद दुर्ग",
+  "mr": "दौलताबाद किल्ला"
+ },
+ {
+  "slug": "bibi-ka-maqbara",
+  "kind": "monument",
+  "wikipediaTitle": "Bibi Ka Maqbara",
+  "source": "https://en.wikipedia.org/wiki/Bibi_Ka_Maqbara",
+  "lat": 19.90151,
+  "lng": 75.320195,
+  "hi": "बीबी का मक़बरा",
+  "mr": "बीबी का मकबरा"
+ },
+ {
+  "slug": "khuldabad",
+  "kind": "town",
+  "wikipediaTitle": "Khuldabad",
+  "source": "https://en.wikipedia.org/wiki/Khuldabad",
+  "lat": 20.009524,
+  "lng": 75.188799,
+  "hi": "खुल्दाबाद",
+  "mr": "खुलताबाद"
+ },
+ {
+  "slug": "shirdi",
+  "kind": "town",
+  "wikipediaTitle": "Shirdi",
+  "source": "https://en.wikipedia.org/wiki/Shirdi",
+  "lat": 19.77,
+  "lng": 74.48,
+  "hi": "शिरडी",
+  "mr": "शिर्डी"
+ },
+ {
+  "slug": "shani-shingnapur",
+  "kind": "town",
+  "wikipediaTitle": "Shani Shingnapur",
+  "source": "https://en.wikipedia.org/wiki/Shani_Shingnapur",
+  "lat": 19.4,
+  "lng": 74.8167,
+  "hi": "शनि शिंगणापुर",
+  "mr": "शनि शिंगणापूर"
+ },
+ {
+  "slug": "nashik",
+  "kind": "city",
+  "wikipediaTitle": "Nashik",
+  "source": "https://en.wikipedia.org/wiki/Nashik",
+  "lat": 19.9975,
+  "lng": 73.78980556,
+  "hi": "नाशिक",
+  "mr": "नाशिक"
+ },
+ {
+  "slug": "trimbakeshwar-temple",
+  "kind": "temple",
+  "wikipediaTitle": "Trimbakeshwar Temple",
+  "source": "https://en.wikipedia.org/wiki/Trimbakeshwar_Temple",
+  "lat": 19.93222222,
+  "lng": 73.53083333,
+  "hi": "त्र्यम्बकेश्वर मन्दिर",
+  "mr": "त्र्यंबकेश्वर मंदिर"
+ },
+ {
+  "slug": "pune",
+  "kind": "city",
+  "wikipediaTitle": "Pune",
+  "source": "https://en.wikipedia.org/wiki/Pune",
+  "lat": 18.52111111,
+  "lng": 73.85527778,
+  "hi": "पुणे",
+  "mr": "पुणे"
+ },
+ {
+  "slug": "mumbai",
+  "kind": "city",
+  "wikipediaTitle": "Mumbai",
+  "source": "https://en.wikipedia.org/wiki/Mumbai",
+  "lat": 19.07611111,
+  "lng": 72.8775,
+  "hi": "मुम्बई",
+  "mr": "मुंबई"
+ },
+ {
+  "slug": "lonar-crater",
+  "kind": "nature",
+  "wikipediaTitle": "Lonar Lake",
+  "source": "https://en.wikipedia.org/wiki/Lonar_Lake",
+  "lat": 19.975,
+  "lng": 76.5075,
+  "hi": "लोनार झील",
+  "mr": "लोणार सरोवर"
+ },
+ {
+  "slug": "paithan",
+  "kind": "town",
+  "wikipediaTitle": "Paithan",
+  "source": "https://en.wikipedia.org/wiki/Paithan",
+  "lat": 19.48,
+  "lng": 75.38,
+  "hi": "पैठण",
+  "mr": "पैठण"
+ }
+]
