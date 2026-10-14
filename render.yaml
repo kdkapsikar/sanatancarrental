@@ -1,0 +1,45 @@
+# Render Blueprint for सनातन कार रेंटल (the whole Next.js site, API and e-Taxi assistant).
+# New > Blueprint > pick this repo (private repos work once Render's GitHub app can see it),
+# then fill in DATABASE_URL. The database is Neon (PostgreSQL with PostGIS), as in wardwatch.
+# (Free plan: the service sleeps after ~15 min idle, so the first request after a pause takes ~30-60 s.)
+services:
+  - type: web
+    name: sanatancarrental
+    runtime: node
+    plan: free
+    region: singapore
+    # Dev dependencies are needed to build (TypeScript, Tailwind, tsx for migrations).
+    # Migrate + seed run before the build because the build pre-renders pages from the database.
+    # The seed is idempotent; remove `npm run db:seed` once the client edits places/routes directly.
+    buildCommand: npm ci --include=dev && npm run db:migrate && npm run db:seed && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: NODE_ENV
+        value: production
+      - key: TZ
+        value: Asia/Kolkata
+      # Neon *direct* connection string (not the pooled one), ending in ?sslmode=require
+      - key: DATABASE_URL
+        sync: false
+      # The public address. Change it when the client's own domain is connected.
+      - key: SITE_URL
+        value: https://sanatancarrental.onrender.com
+      # Search engines stay off until the site runs on the client's own domain.
+      - key: ALLOW_INDEXING
+        value: "false"
+      - key: INDEXABLE_LOCALES
+        value: en
+      - key: ASSISTANT_NAME
+        value: e-Taxi
+      # Optional: set both to let e-Taxi use Claude; without them it runs in basic (offline) mode.
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: ASSISTANT_MODEL
+        sync: false
+      # Optional: the client's WhatsApp number (digits with country code) for click-to-chat buttons.
+      - key: BUSINESS_WHATSAPP
+        sync: false

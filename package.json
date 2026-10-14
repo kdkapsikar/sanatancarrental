@@ -18,7 +18,8 @@
     "db:generate": "npm run generate -w @cab/db",
     "db:migrate": "npm run migrate -w @cab/db",
     "db:seed": "npm run seed -w @cab/db",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "start": "npm run start -w @cab/web"
   },
   "devDependencies": {
     "@types/node": "^26.6.5",

@@ -60,6 +60,15 @@ Optional: run the stub job worker (needs Redis) with `npm run worker -w @cab/job
 ### Environment
 See `.env.example`. `BUSINESS_PHONE`, `BUSINESS_STREET` and `BUSINESS_POSTCODE` are deliberately absent. Until the client supplies real contact details, no LocalBusiness JSON-LD is emitted.
 
+## Going live (Render + Neon)
+Same setup as wardwatch / e-nagarparishad: the site runs on **Render** (free plan, Singapore) and the database on **Neon** (PostgreSQL with PostGIS). `render.yaml` describes the service.
+1. **Neon** (neon.tech): create a project in region *Asia Pacific (Singapore)*. Copy the **direct** connection string (not the pooled one); it ends in `?sslmode=require`. Migrations enable PostGIS themselves.
+2. **Render** (render.com): *New → Blueprint*, connect GitHub and pick `kdkapsikar/sanatancarrental` (for a private repo, allow Render's GitHub app to see it). Paste the Neon string into `DATABASE_URL`. The optional `ANTHROPIC_API_KEY`, `ASSISTANT_MODEL` and `BUSINESS_WHATSAPP` can stay empty.
+3. The first build migrates, seeds and builds (a few minutes). The site is then at `https://sanatancarrental.onrender.com`; the exact address is shown in Render. If Render gives a different address, update `SITE_URL` to match.
+4. Every push to `main` redeploys automatically.
+
+Search engines are blocked (`ALLOW_INDEXING=false`, robots.txt `Disallow: /`) until the client's own domain is connected. Then add the domain in Render, set `SITE_URL` to it and `ALLOW_INDEXING=true`. The free plan sleeps after ~15 minutes idle, so the first visit afterwards takes 30-60 s; use a paid plan for the client's launch.
+
 ## e-Taxi assistant
 Built the same way as Saathi (irctc-api-integration), with मदतनीस's front end (e-nagarparishad):
 - **Engines**: `ClaudeAssistant` (Claude tool use, streamed; model from `ASSISTANT_MODEL`, effort `low`, server-side refusal fallback on) when `ANTHROPIC_API_KEY` is set, otherwise `OfflineAssistant`. The offline engine matches English/Hindi/Marathi intents and calls the **same tools**. When the daily token cap is reached, the assistant switches to offline mode for the rest of the IST day. Rate limit per IP / WhatsApp sender.

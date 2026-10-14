@@ -5,6 +5,11 @@ import { BRAND } from "@cab/config";
 export const env = readEnv();
 export const SITE_URL = env.SITE_URL;
 export const INDEX_THRESHOLD = env.INDEX_COMPLETENESS_THRESHOLD;
+/**
+ * Master switch for search engines. Off until the site runs on the client's own domain, so a
+ * temporary host (e.g. *.onrender.com) never gets indexed as a duplicate.
+ */
+export const ALLOW_INDEXING = process.env["ALLOW_INDEXING"] === "true";
 
 /**
  * Business identity for LocalBusiness/TaxiService JSON-LD. Returns null until the client's

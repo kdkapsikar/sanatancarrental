@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { BRAND } from "@cab/config";
 import { canonicalUrl, hreflangAlternates, shouldIndex, type Locale } from "@cab/seo";
-import { INDEX_THRESHOLD, SITE_URL } from "./settings";
+import { ALLOW_INDEXING, INDEX_THRESHOLD, SITE_URL } from "./settings";
 import { READY_LOCALES, isReadyLocale } from "./locales";
 
 /**
@@ -16,7 +16,7 @@ export function pageMetadata(opts: {
   completenessScore?: number;
 }): Metadata {
   const dataOk = opts.completenessScore === undefined || shouldIndex(opts.completenessScore, INDEX_THRESHOLD);
-  const indexable = dataOk && isReadyLocale(opts.locale);
+  const indexable = ALLOW_INDEXING && dataOk && isReadyLocale(opts.locale);
   const languages = indexable ? hreflangAlternates(SITE_URL, opts.path, READY_LOCALES) : undefined;
   // Brand in Devanagari everywhere; English pages also carry the Latin name for search.
   const brand = opts.locale === "en" ? `${BRAND.name} (${BRAND.latin})` : BRAND.name;
