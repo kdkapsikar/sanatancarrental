@@ -19,7 +19,8 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "^0.0.1",
-    "drizzle-orm": "^0.45.4"
+    "drizzle-orm": "^0.45.4",
+    "@cab/compliance": "*"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",

@@ -27,3 +27,10 @@ export function businessInfo(): BusinessInfo | null {
     areaServed: ["Chhatrapati Sambhajinagar", "Aurangabad", "छत्रपती संभाजीनगर", "औरंगाबाद"],
   };
 }
+
+/** wa.me click-to-chat link, only when the client's WhatsApp number is configured. */
+export function whatsappUrl(text?: string): string | null {
+  const digits = (process.env["BUSINESS_WHATSAPP"] ?? "").replace(/\D/g, "");
+  if (digits.length < 10) return null;
+  return `https://wa.me/${digits}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
+}

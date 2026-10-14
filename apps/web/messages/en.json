@@ -6,26 +6,48 @@
       "home": "Home",
       "places": "Destinations",
       "routes": "Routes",
-      "language": "Language"
+      "language": "Language",
+      "fares": "Fares"
     },
     "footer": {
       "pricesNote": "Prices are calculated per trip and shown with every inclusion and exclusion.",
-      "cityNames": "Chhatrapati Sambhajinagar, formerly Aurangabad"
+      "cityNames": "Chhatrapati Sambhajinagar, formerly Aurangabad",
+      "sourcesNote": "Facts on this site show their source. Anything not yet confirmed is marked as being verified."
     }
   },
   "languages": {
     "en": "English",
     "hi": "हिन्दी",
-    "mr": "मराठी"
+    "mr": "मराठी",
+    "short": {
+      "en": "EN",
+      "hi": "हि",
+      "mr": "म"
+    }
   },
   "home": {
     "metaTitle": "Cabs and tours from Chhatrapati Sambhajinagar (Aurangabad)",
     "metaDescription": "Outstation cabs, airport transfers and sightseeing trips to Ajanta, Ellora, Shirdi and more, with itemised fares.",
-    "heading": "Trips from Chhatrapati Sambhajinagar",
-    "intro": "Outstation cabs, airport transfers and sightseeing trips. Every fare shows exactly what is included and what is not.",
-    "destinationsHeading": "Destinations",
+    "heading": "Ajanta, Ellora and the Deccan, with every rupee explained",
+    "intro": "Outstation trips, airport transfers and sightseeing from the city. Each quote lists every charge, and every fact on this site shows its source.",
+    "destinationsHeading": "Where would you like to go?",
     "routesHeading": "Routes from the city",
-    "dataNote": "Details marked as not yet verified are still being checked with official sources."
+    "dataNote": "Details marked as not yet verified are still being checked with official sources.",
+    "eyebrow": "Chhatrapati Sambhajinagar · formerly Aurangabad",
+    "ctaDestinations": "Explore destinations",
+    "ctaFares": "How fares work",
+    "ctaWhatsapp": "Get a quote on WhatsApp",
+    "statPlaces": "destinations mapped",
+    "statRoutes": "routes from the city",
+    "statLanguages": "languages",
+    "tripsEyebrow": "Ways to travel",
+    "tripsHeading": "Built for trips out of the city, not across it",
+    "destinationsEyebrow": "Destinations",
+    "destinationsIntro": "Pick a place to see what is confirmed so far and how to get there.",
+    "routesEyebrow": "Routes",
+    "faresEyebrow": "Price transparency",
+    "faresHeading": "How a fare is built",
+    "faresIntro": "Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book."
   },
   "place": {
     "metaTitle": "{name}: visiting information and cabs",
@@ -49,7 +71,10 @@
     "notVerified": "Not yet verified",
     "verificationPending": "Some details on this page are still being verified with official sources, so it is not yet listed in search engines.",
     "routesHere": "Routes to {name}",
-    "source": "Source"
+    "source": "Source",
+    "backToAll": "All destinations",
+    "planEyebrow": "Plan your visit",
+    "mapHeading": "Where it is"
   },
   "route": {
     "metaTitle": "{origin} to {destination} cab",
@@ -60,7 +85,12 @@
     "toll": "Estimated tolls",
     "faresPending": "Fares for this route are being finalised. Ask us for a quote and we will send the full breakdown.",
     "kmValue": "{km} km",
-    "minutesValue": "{hours, plural, =0 {} one {# hr } other {# hrs }}{minutes} min"
+    "minutesValue": "{hours, plural, =0 {} one {# hr } other {# hrs }}{minutes} min",
+    "eyebrow": "Route",
+    "fareHeading": "Fare",
+    "factsHeading": "Trip facts",
+    "from": "From",
+    "to": "To"
   },
   "weekday": {
     "mon": "Monday",
@@ -106,5 +136,94 @@
       "extra_km_beyond_estimate": "Distance beyond the estimate, charged per km",
       "gst_included": "GST at {percent}%"
     }
+  },
+  "map": {
+    "title": "Map of destinations from Chhatrapati Sambhajinagar",
+    "caption": "Drawn from each place’s coordinates. Lines show direction from the city, not road routes or distances.",
+    "insetTitle": "Around the city",
+    "routeCaption": "Straight-line sketch from coordinates. Road distance and time appear above once verified."
+  },
+  "trips": {
+    "outstation": {
+      "title": "Outstation",
+      "body": "One-way or round trips to Shirdi, Nashik, Pune, Mumbai and beyond, billed by distance with a clear daily minimum."
+    },
+    "airport": {
+      "title": "Airport transfers",
+      "body": "Pickups and drops at the city airport, straight to your hotel or to the caves."
+    },
+    "sightseeing": {
+      "title": "Sightseeing",
+      "body": "Day plans for Ellora, Ajanta, Daulatabad and the city, planned around closing days."
+    },
+    "pilgrimage": {
+      "title": "Pilgrimage circuits",
+      "body": "Grishneshwar, Shirdi, Shani Shingnapur and the Nashik–Trimbakeshwar circuit."
+    }
+  },
+  "status": {
+    "verified": "Verified",
+    "pending": "Being verified",
+    "score": "{percent}% of details confirmed"
+  },
+  "fares": {
+    "receiptTitle": "Anatomy of a quote",
+    "line": {
+      "base_km": "Distance driven",
+      "minimum_km_applied": "Daily minimum distance top-up",
+      "driver_allowance": "Driver allowance per day",
+      "night_halt": "Night halt, when the trip spans the night",
+      "gst": "GST, shown as its own line"
+    },
+    "noAmounts": "Labels only. Real amounts appear in your quote once rates are approved.",
+    "builtInTitle": "Built into the price",
+    "builtInBody": "Distance, any daily minimum, driver allowance and night halts are calculated up front and listed one by one.",
+    "actualsTitle": "Paid at actual cost",
+    "note": {
+      "toll_at_actuals": "Tolls, as charged at the plaza",
+      "parking_at_actuals": "Parking, as charged on site",
+      "border_tax_at_actuals": "State entry tax, if the trip leaves Maharashtra"
+    },
+    "sameBillTitle": "Quote and bill match",
+    "sameBillBody": "Your bill is checked against the saved quote. It changes only if the trip itself changes."
+  },
+  "trust": {
+    "eyebrow": "Checked before every trip",
+    "heading": "No trip is assigned without valid documents",
+    "body": "Before a vehicle and driver are assigned, our system checks that each document below is on file, verified and valid for the whole trip. If anything is missing or expires mid-trip, the assignment is blocked.",
+    "group": {
+      "vehicle": "Vehicle",
+      "driver": "Driver"
+    },
+    "doc": {
+      "registration_certificate": "Registration certificate (RC)",
+      "tourist_permit": "Tourist / contract-carriage permit",
+      "insurance": "Insurance",
+      "fitness_certificate": "Fitness certificate",
+      "puc_certificate": "Pollution (PUC) certificate",
+      "driving_licence": "Driving licence",
+      "psv_badge": "Public service vehicle badge",
+      "police_verification": "Police verification",
+      "vendor_kyc": "Vendor KYC",
+      "vendor_agreement": "Vendor agreement"
+    },
+    "footnote": "This describes how our booking system checks assignments. It is not a statement about any licence or registration."
+  },
+  "weekStrip": {
+    "label": "Weekly opening days",
+    "closed": "Closed",
+    "open": "Open",
+    "unknown": "The weekly closing day has not been verified yet.",
+    "conflict": "Published sources disagree on the closing day, so we are confirming it with the authority.",
+    "knownNote": "Check holiday closures before you travel."
+  },
+  "weekdayShort": {
+    "mon": "Mon",
+    "tue": "Tue",
+    "wed": "Wed",
+    "thu": "Thu",
+    "fri": "Fri",
+    "sat": "Sat",
+    "sun": "Sun"
   }
 }

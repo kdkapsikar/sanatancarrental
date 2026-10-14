@@ -6,26 +6,48 @@
       "home": "TODO_TRANSLATE: Home",
       "places": "TODO_TRANSLATE: Destinations",
       "routes": "TODO_TRANSLATE: Routes",
-      "language": "TODO_TRANSLATE: Language"
+      "language": "TODO_TRANSLATE: Language",
+      "fares": "TODO_TRANSLATE: Fares"
     },
     "footer": {
       "pricesNote": "TODO_TRANSLATE: Prices are calculated per trip and shown with every inclusion and exclusion.",
-      "cityNames": "TODO_TRANSLATE: Chhatrapati Sambhajinagar, formerly Aurangabad"
+      "cityNames": "TODO_TRANSLATE: Chhatrapati Sambhajinagar, formerly Aurangabad",
+      "sourcesNote": "TODO_TRANSLATE: Facts on this site show their source. Anything not yet confirmed is marked as being verified."
     }
   },
   "languages": {
     "en": "English",
     "hi": "हिन्दी",
-    "mr": "मराठी"
+    "mr": "मराठी",
+    "short": {
+      "en": "EN",
+      "hi": "हि",
+      "mr": "म"
+    }
   },
   "home": {
     "metaTitle": "TODO_TRANSLATE: Cabs and tours from Chhatrapati Sambhajinagar (Aurangabad)",
     "metaDescription": "TODO_TRANSLATE: Outstation cabs, airport transfers and sightseeing trips to Ajanta, Ellora, Shirdi and more, with itemised fares.",
-    "heading": "TODO_TRANSLATE: Trips from Chhatrapati Sambhajinagar",
-    "intro": "TODO_TRANSLATE: Outstation cabs, airport transfers and sightseeing trips. Every fare shows exactly what is included and what is not.",
-    "destinationsHeading": "TODO_TRANSLATE: Destinations",
+    "heading": "TODO_TRANSLATE: Ajanta, Ellora and the Deccan, with every rupee explained",
+    "intro": "TODO_TRANSLATE: Outstation trips, airport transfers and sightseeing from the city. Each quote lists every charge, and every fact on this site shows its source.",
+    "destinationsHeading": "TODO_TRANSLATE: Where would you like to go?",
     "routesHeading": "TODO_TRANSLATE: Routes from the city",
-    "dataNote": "TODO_TRANSLATE: Details marked as not yet verified are still being checked with official sources."
+    "dataNote": "TODO_TRANSLATE: Details marked as not yet verified are still being checked with official sources.",
+    "eyebrow": "TODO_TRANSLATE: Chhatrapati Sambhajinagar · formerly Aurangabad",
+    "ctaDestinations": "TODO_TRANSLATE: Explore destinations",
+    "ctaFares": "TODO_TRANSLATE: How fares work",
+    "ctaWhatsapp": "TODO_TRANSLATE: Get a quote on WhatsApp",
+    "statPlaces": "TODO_TRANSLATE: destinations mapped",
+    "statRoutes": "TODO_TRANSLATE: routes from the city",
+    "statLanguages": "TODO_TRANSLATE: languages",
+    "tripsEyebrow": "TODO_TRANSLATE: Ways to travel",
+    "tripsHeading": "TODO_TRANSLATE: Built for trips out of the city, not across it",
+    "destinationsEyebrow": "TODO_TRANSLATE: Destinations",
+    "destinationsIntro": "TODO_TRANSLATE: Pick a place to see what is confirmed so far and how to get there.",
+    "routesEyebrow": "TODO_TRANSLATE: Routes",
+    "faresEyebrow": "TODO_TRANSLATE: Price transparency",
+    "faresHeading": "TODO_TRANSLATE: How a fare is built",
+    "faresIntro": "TODO_TRANSLATE: Every quote is itemised. You see what is built into the price and what is paid at actual cost before you book."
   },
   "place": {
     "metaTitle": "TODO_TRANSLATE: {name}: visiting information and cabs",
@@ -49,7 +71,10 @@
     "notVerified": "TODO_TRANSLATE: Not yet verified",
     "verificationPending": "TODO_TRANSLATE: Some details on this page are still being verified with official sources, so it is not yet listed in search engines.",
     "routesHere": "TODO_TRANSLATE: Routes to {name}",
-    "source": "TODO_TRANSLATE: Source"
+    "source": "TODO_TRANSLATE: Source",
+    "backToAll": "TODO_TRANSLATE: All destinations",
+    "planEyebrow": "TODO_TRANSLATE: Plan your visit",
+    "mapHeading": "TODO_TRANSLATE: Where it is"
   },
   "route": {
     "metaTitle": "TODO_TRANSLATE: {origin} to {destination} cab",
@@ -60,7 +85,12 @@
     "toll": "TODO_TRANSLATE: Estimated tolls",
     "faresPending": "TODO_TRANSLATE: Fares for this route are being finalised. Ask us for a quote and we will send the full breakdown.",
     "kmValue": "TODO_TRANSLATE: {km} km",
-    "minutesValue": "TODO_TRANSLATE: {hours, plural, =0 {} one {# hr } other {# hrs }}{minutes} min"
+    "minutesValue": "TODO_TRANSLATE: {hours, plural, =0 {} one {# hr } other {# hrs }}{minutes} min",
+    "eyebrow": "TODO_TRANSLATE: Route",
+    "fareHeading": "TODO_TRANSLATE: Fare",
+    "factsHeading": "TODO_TRANSLATE: Trip facts",
+    "from": "TODO_TRANSLATE: From",
+    "to": "TODO_TRANSLATE: To"
   },
   "weekday": {
     "mon": "TODO_TRANSLATE: Monday",
@@ -106,5 +136,94 @@
       "extra_km_beyond_estimate": "TODO_TRANSLATE: Distance beyond the estimate, charged per km",
       "gst_included": "TODO_TRANSLATE: GST at {percent}%"
     }
+  },
+  "map": {
+    "title": "TODO_TRANSLATE: Map of destinations from Chhatrapati Sambhajinagar",
+    "caption": "TODO_TRANSLATE: Drawn from each place’s coordinates. Lines show direction from the city, not road routes or distances.",
+    "insetTitle": "TODO_TRANSLATE: Around the city",
+    "routeCaption": "TODO_TRANSLATE: Straight-line sketch from coordinates. Road distance and time appear above once verified."
+  },
+  "trips": {
+    "outstation": {
+      "title": "TODO_TRANSLATE: Outstation",
+      "body": "TODO_TRANSLATE: One-way or round trips to Shirdi, Nashik, Pune, Mumbai and beyond, billed by distance with a clear daily minimum."
+    },
+    "airport": {
+      "title": "TODO_TRANSLATE: Airport transfers",
+      "body": "TODO_TRANSLATE: Pickups and drops at the city airport, straight to your hotel or to the caves."
+    },
+    "sightseeing": {
+      "title": "TODO_TRANSLATE: Sightseeing",
+      "body": "TODO_TRANSLATE: Day plans for Ellora, Ajanta, Daulatabad and the city, planned around closing days."
+    },
+    "pilgrimage": {
+      "title": "TODO_TRANSLATE: Pilgrimage circuits",
+      "body": "TODO_TRANSLATE: Grishneshwar, Shirdi, Shani Shingnapur and the Nashik–Trimbakeshwar circuit."
+    }
+  },
+  "status": {
+    "verified": "TODO_TRANSLATE: Verified",
+    "pending": "TODO_TRANSLATE: Being verified",
+    "score": "TODO_TRANSLATE: {percent}% of details confirmed"
+  },
+  "fares": {
+    "receiptTitle": "TODO_TRANSLATE: Anatomy of a quote",
+    "line": {
+      "base_km": "TODO_TRANSLATE: Distance driven",
+      "minimum_km_applied": "TODO_TRANSLATE: Daily minimum distance top-up",
+      "driver_allowance": "TODO_TRANSLATE: Driver allowance per day",
+      "night_halt": "TODO_TRANSLATE: Night halt, when the trip spans the night",
+      "gst": "TODO_TRANSLATE: GST, shown as its own line"
+    },
+    "noAmounts": "TODO_TRANSLATE: Labels only. Real amounts appear in your quote once rates are approved.",
+    "builtInTitle": "TODO_TRANSLATE: Built into the price",
+    "builtInBody": "TODO_TRANSLATE: Distance, any daily minimum, driver allowance and night halts are calculated up front and listed one by one.",
+    "actualsTitle": "TODO_TRANSLATE: Paid at actual cost",
+    "note": {
+      "toll_at_actuals": "TODO_TRANSLATE: Tolls, as charged at the plaza",
+      "parking_at_actuals": "TODO_TRANSLATE: Parking, as charged on site",
+      "border_tax_at_actuals": "TODO_TRANSLATE: State entry tax, if the trip leaves Maharashtra"
+    },
+    "sameBillTitle": "TODO_TRANSLATE: Quote and bill match",
+    "sameBillBody": "TODO_TRANSLATE: Your bill is checked against the saved quote. It changes only if the trip itself changes."
+  },
+  "trust": {
+    "eyebrow": "TODO_TRANSLATE: Checked before every trip",
+    "heading": "TODO_TRANSLATE: No trip is assigned without valid documents",
+    "body": "TODO_TRANSLATE: Before a vehicle and driver are assigned, our system checks that each document below is on file, verified and valid for the whole trip. If anything is missing or expires mid-trip, the assignment is blocked.",
+    "group": {
+      "vehicle": "TODO_TRANSLATE: Vehicle",
+      "driver": "TODO_TRANSLATE: Driver"
+    },
+    "doc": {
+      "registration_certificate": "TODO_TRANSLATE: Registration certificate (RC)",
+      "tourist_permit": "TODO_TRANSLATE: Tourist / contract-carriage permit",
+      "insurance": "TODO_TRANSLATE: Insurance",
+      "fitness_certificate": "TODO_TRANSLATE: Fitness certificate",
+      "puc_certificate": "TODO_TRANSLATE: Pollution (PUC) certificate",
+      "driving_licence": "TODO_TRANSLATE: Driving licence",
+      "psv_badge": "TODO_TRANSLATE: Public service vehicle badge",
+      "police_verification": "TODO_TRANSLATE: Police verification",
+      "vendor_kyc": "TODO_TRANSLATE: Vendor KYC",
+      "vendor_agreement": "TODO_TRANSLATE: Vendor agreement"
+    },
+    "footnote": "TODO_TRANSLATE: This describes how our booking system checks assignments. It is not a statement about any licence or registration."
+  },
+  "weekStrip": {
+    "label": "TODO_TRANSLATE: Weekly opening days",
+    "closed": "TODO_TRANSLATE: Closed",
+    "open": "TODO_TRANSLATE: Open",
+    "unknown": "TODO_TRANSLATE: The weekly closing day has not been verified yet.",
+    "conflict": "TODO_TRANSLATE: Published sources disagree on the closing day, so we are confirming it with the authority.",
+    "knownNote": "TODO_TRANSLATE: Check holiday closures before you travel."
+  },
+  "weekdayShort": {
+    "mon": "TODO_TRANSLATE: Mon",
+    "tue": "TODO_TRANSLATE: Tue",
+    "wed": "TODO_TRANSLATE: Wed",
+    "thu": "TODO_TRANSLATE: Thu",
+    "fri": "TODO_TRANSLATE: Fri",
+    "sat": "TODO_TRANSLATE: Sat",
+    "sun": "TODO_TRANSLATE: Sun"
   }
 }

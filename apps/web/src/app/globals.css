@@ -1,5 +1,110 @@
 @import "tailwindcss";
 
+/*
+ * Visual identity: Paithani silk (kumkum magenta, peacock teal, marigold) on sandstone,
+ * with Deccan-basalt ink. Display: Fraunces (Latin) + Tiro Devanagari (hi/mr).
+ * Body: Mukta, which covers Latin and Devanagari in one family.
+ */
 @theme {
-  --font-sans: var(--font-latin), var(--font-devanagari), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-latin), var(--font-display-deva), Georgia, serif;
+
+  --color-sand-50: #fdfaf4;
+  --color-sand-100: #f8f1e4;
+  --color-sand-200: #efe3cc;
+  --color-sand-300: #e2cfa9;
+  --color-basalt-950: #16151b;
+  --color-basalt-900: #201f27;
+  --color-basalt-800: #2d2b36;
+  --color-basalt-600: #555262;
+  --color-basalt-400: #8c8899;
+  --color-kumkum-50: #fdf0f4;
+  --color-kumkum-500: #c0265f;
+  --color-kumkum-600: #a3174d;
+  --color-kumkum-700: #82103c;
+  --color-peacock-50: #eaf7f5;
+  --color-peacock-500: #0f8a7e;
+  --color-peacock-600: #0b6f66;
+  --color-peacock-700: #0a5650;
+  --color-marigold-300: #f6cf6a;
+  --color-marigold-400: #f0b432;
+  --color-marigold-500: #d9961a;
+
+  --animate-draw: draw 2.4s cubic-bezier(0.6, 0, 0.2, 1) both;
+  --animate-rise: rise 0.8s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  --animate-pulse-ring: pulse-ring 2.6s ease-out infinite;
+
+  @keyframes draw {
+    from { stroke-dashoffset: var(--len, 600); }
+    to { stroke-dashoffset: 0; }
+  }
+  @keyframes rise {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: none; }
+  }
+  @keyframes pulse-ring {
+    0% { r: 6; opacity: 0.7; }
+    100% { r: 22; opacity: 0; }
+  }
+}
+
+@layer base {
+  html {
+    background: var(--color-sand-50);
+    color: var(--color-basalt-900);
+    -webkit-text-size-adjust: 100%;
+  }
+  :lang(hi) .font-display,
+  :lang(mr) .font-display {
+    /* Devanagari display face first on hi/mr pages. */
+    font-family: var(--font-display-deva), var(--font-display-latin), serif;
+    letter-spacing: 0;
+  }
+  ::selection {
+    background: var(--color-marigold-300);
+    color: var(--color-basalt-950);
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-kumkum-500);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+}
+
+@layer components {
+  /* Woven Paithani-style border: alternating diamonds between two rules. */
+  .paithani-border {
+    height: 14px;
+    background:
+      linear-gradient(var(--color-marigold-400), var(--color-marigold-400)) top / 100% 2px no-repeat,
+      linear-gradient(var(--color-marigold-400), var(--color-marigold-400)) bottom / 100% 2px no-repeat,
+      conic-gradient(from 45deg at 50% 50%, var(--color-kumkum-600) 0 25%, transparent 0 50%, var(--color-peacock-600) 0 75%, transparent 0) center / 14px 10px repeat-x;
+  }
+  /* Faint basalt grain for dark panels. */
+  .basalt-grain {
+    background-color: var(--color-basalt-900);
+    background-image:
+      radial-gradient(circle at 20% 10%, rgb(255 255 255 / 0.05), transparent 40%),
+      radial-gradient(circle at 80% 90%, rgb(192 38 95 / 0.18), transparent 45%),
+      repeating-linear-gradient(115deg, rgb(255 255 255 / 0.018) 0 2px, transparent 2px 7px);
+  }
+  /* Hatching for "not yet verified" cells. */
+  .hatch {
+    background-image: repeating-linear-gradient(135deg, rgb(140 136 153 / 0.22) 0 2px, transparent 2px 7px);
+  }
+  .card {
+    border-radius: 1.25rem;
+    background: white;
+    box-shadow: 0 1px 0 rgb(22 21 27 / 0.04), 0 8px 24px -12px rgb(22 21 27 / 0.18);
+    border: 1px solid rgb(22 21 27 / 0.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
 }

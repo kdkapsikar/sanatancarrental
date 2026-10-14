@@ -44,3 +44,17 @@ export async function getRoute(slug: string) {
 export async function routesTouching(placeId: string) {
   return routeQuery().where(or(eq(routes.originPlaceId, placeId), eq(routes.destinationPlaceId, placeId)));
 }
+
+/** Places with coordinates, localised, for the region map. */
+export function toMapPlaces(rows: Array<typeof places.$inferSelect>, locale: Locale) {
+  return rows
+    .filter((p) => p.location)
+    .map((p) => ({
+      slug: p.slug,
+      kind: p.kind,
+      name: pick(p.name, locale)!,
+      lng: p.location!.lng,
+      lat: p.location!.lat,
+      href: `/${locale}/places/${p.slug}`,
+    }));
+}
